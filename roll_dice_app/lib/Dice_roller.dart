@@ -20,6 +20,15 @@ class DiceRoller extends StatefulWidget {
 //     //activeImage = 'assets/images/dice-4.png';
 //   }
 
+class _DiceRollerState extends State<DiceRoller> {
+  var currentDiceRoll = 2;
+  void rolldice() {
+    setState(() {
+      currentDiceRoll = Random().nextInt(6) + 1;
+    });
+    //activeImage = 'assets/images/dice-4.png';
+  }
+
   Widget build(context) {
     return Column(
       //Its by default takes all the vartical space
@@ -28,8 +37,8 @@ class DiceRoller extends StatefulWidget {
       children: [
         //Here it will take a list of widget
         Image.asset(
-          activeImage,
-          width: 200,
+          'assets/images/dice-$currentDiceRoll.png',
+          width: 150,
         ),
         const SizedBox(
           height: 20,
