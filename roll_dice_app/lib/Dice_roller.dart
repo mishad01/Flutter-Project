@@ -9,14 +9,16 @@ class DiceRoller extends StatefulWidget {
   }
 }
 
-class _DiceRollerState extends State<DiceRoller> {
-  var activeImage = 'assets/images/dice-1.png';
-  void rolldice() {
-    setState(() {
-      activeImage = 'assets/images/dice-4.png';
-    });
-    //activeImage = 'assets/images/dice-4.png';
-  }
+//Basic way for random number
+// class _DiceRollerState extends State<DiceRoller> {
+//   var activeImage = 'assets/images/dice-1.png';
+//   void rolldice() {
+//     var diceRoll = Random().nextInt(6)+1;
+//     setState(() {
+//       activeImage = 'assets/images/dice-$diceRoll.png';
+//     });
+//     //activeImage = 'assets/images/dice-4.png';
+//   }
 
   Widget build(context) {
     return Column(
