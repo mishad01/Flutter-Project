@@ -22,10 +22,14 @@ class StartScreen extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
-        TextButton(
-            onPressed: () {},
-            style: TextButton.styleFrom(backgroundColor: Colors.white),
-            child: Text('Start Quizz'))
+        OutlinedButton.icon(
+          //Icon can be used in some other places to.But if you wanna use clickable we go for this
+          onPressed: () {},
+          style: OutlinedButton.styleFrom(foregroundColor: Colors.white),
+          // child: Text('Start Quizz'), //Here after using OutlinedButton.icon the child isn't child anymore.It bocomes level
+          icon: Icon(Icons.arrow_right_alt),
+          label: Text('Start Quizz'),
+        ),
       ],
     ));
   }
