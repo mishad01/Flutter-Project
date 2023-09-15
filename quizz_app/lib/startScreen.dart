@@ -11,6 +11,9 @@ class StartScreen extends StatelessWidget {
         Image.asset(
           'assets/images/quiz-logo.png',
           width: 100,
+          //color: Colors.black, //We can change the color of our logo using this
+          color: const Color.fromARGB(
+              148, 255, 255, 255), //Using this we can create opacity
         ),
         const SizedBox(
           height: 30,
