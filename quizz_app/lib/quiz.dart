@@ -11,7 +11,9 @@ class quiz extends StatefulWidget {
 
 class _quizzState extends State<quiz> {
   //var activeScreen =StartScreen(); //we can store widgets in variables because widgets are objects and objects are regular number in dart
-  Widget activeScreen = const StartScreen();
+  Widget activeScreen =
+      StartScreen(switchScreen); //here whitch screen working as a pointer
+
   void switchScreen() {
     setState(() {
       activeScreen = const questionScreen();
