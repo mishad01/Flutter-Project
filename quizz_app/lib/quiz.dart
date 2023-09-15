@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizz_app/questions_screen.dart';
 import 'package:quizz_app/startScreen.dart';
 
 class quiz extends StatefulWidget {
@@ -9,6 +10,14 @@ class quiz extends StatefulWidget {
 }
 
 class _quizzState extends State<quiz> {
+  //var activeScreen =StartScreen(); //we can store widgets in variables because widgets are objects and objects are regular number in dart
+  Widget activeScreen = const StartScreen();
+  void switchScreen() {
+    setState(() {
+      activeScreen = const questionScreen();
+    });
+  }
+
   @override
   Widget build(context) {
     return MaterialApp(
@@ -24,7 +33,7 @@ class _quizzState extends State<quiz> {
               end: Alignment.bottomRight,
             ),
           ),
-          child: StartScreen(),
+          child: activeScreen,
         ),
       ),
     );
