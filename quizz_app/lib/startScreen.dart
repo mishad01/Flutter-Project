@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class StartScreen extends StatelessWidget {
-  const StartScreen(void Function() startQuiz,
+  StartScreen(this.startQuiz,
       {super.key}); //Her efunction is special type in flutter
+
+  final void Function() startQuiz;
 
   @override
   Widget build(context) {
@@ -29,7 +31,9 @@ class StartScreen extends StatelessWidget {
         ),
         OutlinedButton.icon(
           //Icon can be used in some other places to.But if you wanna use clickable we go for this
-          onPressed: () {},
+          onPressed: () {
+            startQuiz(); //We are passing a pointer at anonymous function
+          },
           style: OutlinedButton.styleFrom(foregroundColor: Colors.white),
           // child: Text('Start Quizz'), //Here after using OutlinedButton.icon the child isn't child anymore.It bocomes level
           icon: Icon(Icons.arrow_right_alt),

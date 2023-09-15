@@ -11,8 +11,16 @@ class quiz extends StatefulWidget {
 
 class _quizzState extends State<quiz> {
   //var activeScreen =StartScreen(); //we can store widgets in variables because widgets are objects and objects are regular number in dart
-  Widget activeScreen =
-      StartScreen(switchScreen); //here whitch screen working as a pointer
+  Widget? activeScreen; //by adding ? we can say active screen can also be null
+  //Ternary Expressions
+  @override
+  void initState() {
+    //Executed by Flutter when the StatefulWidget's State object is initialized
+    //Its use for some initialization work..Which only wroks one
+    activeScreen = StartScreen(switchScreen);
+    super
+        .initState(); //It makes sure in the parent class ,in state class initstate is executed as well to allow flutter to do its additional initializarion that might be performed in thtat parent class
+  }
 
   void switchScreen() {
     setState(() {
@@ -22,6 +30,7 @@ class _quizzState extends State<quiz> {
 
   @override
   Widget build(context) {
+    //build(): Executed by Flutter when the Widget is built for the first time AND after setState() was called
     return MaterialApp(
       home: Scaffold(
         body: Container(
