@@ -16,7 +16,10 @@ class _questionScreen extends State<questionScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('Questions..'),
+          const Text(
+            'Questions..',
+            style: TextStyle(color: Colors.white),
+          ),
           const SizedBox(
             height: 20,
           ),
