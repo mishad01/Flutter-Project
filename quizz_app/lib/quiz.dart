@@ -30,7 +30,7 @@ class _quizzState extends State<quiz> {
 
   @override
   Widget build(context) {
-    //build(): Executed by Flutter when the Widget is built for the first time AND after setState() was called
+    //build(): Executed by Flutter when the Widget is built for the first time AND after setState() was called.
     return MaterialApp(
       home: Scaffold(
         body: Container(
