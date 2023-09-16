@@ -11,20 +11,23 @@ class quiz extends StatefulWidget {
 
 class _quizzState extends State<quiz> {
   //var activeScreen =StartScreen(); //we can store widgets in variables because widgets are objects and objects are regular number in dart
-  Widget? activeScreen; //by adding ? we can say active screen can also be null
+  //Widget? activeScreen; //by adding ? we can say active screen can also be null
   //Ternary Expressions
+  var activeScreen = 'start-screen';
   @override
-  void initState() {
-    //Executed by Flutter when the StatefulWidget's State object is initialized
-    //Its use for some initialization work..Which only wroks one
-    activeScreen = StartScreen(switchScreen);
-    super
-        .initState(); //It makes sure in the parent class ,in state class initstate is executed as well to allow flutter to do its additional initializarion that might be performed in thtat parent class
-  }
+  // void initState() {
+  //   //Executed by Flutter when the StatefulWidget's State object is initialized
+  //   //Its use for some initialization work..Which only wroks one
+  //   activeScreen = StartScreen(switchScreen);
+  //   super
+  //       .initState(); //It makes sure in the parent class ,in state class initstate is executed as well to allow flutter to do its additional initializarion that might be performed in thtat parent class
+  // }
+  //ALternative of InitState()
 
   void switchScreen() {
     setState(() {
-      activeScreen = const questionScreen();
+      //activeScreen = const questionScreen();
+      activeScreen = 'questions-screen';
     });
   }
 
@@ -44,7 +47,11 @@ class _quizzState extends State<quiz> {
               end: Alignment.bottomRight,
             ),
           ),
-          child: activeScreen,
+          child: Center(
+            child: activeScreen == 'start-screen'
+                ? StartScreen(switchScreen)
+                : const questionScreen(),
+          ),
         ),
       ),
     );
