@@ -10,7 +10,7 @@ class questionScreen extends StatefulWidget {
   }
 }
 
-class _questionScreen extends State<questionScreen> {
+class _questionScreenn extends State<questionScreen> {
   @override
   Widget build(context) {
     final currentQuestion = questions[0];
