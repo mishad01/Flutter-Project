@@ -5,7 +5,7 @@ import 'package:quizz_app/data/questions.dart';
 class questionScreen extends StatefulWidget {
   const questionScreen({super.key});
   @override
-  State<questionScreen> createState() {
+  State<questionScreen> createStatee() {
     return _questionScreen();
   }
 }
