@@ -13,21 +13,21 @@ class StartScreen extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Image.asset(
-          'assets/images/quiz-logo.png',
+          //'assets/images/quiz-logo.png',
+          'assets/images/test.png',
           width: 100,
           //color: Colors.black, //We can change the color of our logo using this
-          color: const Color.fromARGB(
-              148, 255, 255, 255), //Using this we can create opacity
+          //color: const Color.fromARGB(148, 255, 255, 255), //Using this we can create opacity
         ),
         const SizedBox(
-          height: 30,
+          height: 20,
         ),
         const Text(
-          'Learning Flutter Quizz App',
+          'Quizz App Test',
           style: TextStyle(color: Colors.white),
         ),
         const SizedBox(
-          height: 30,
+          height: 10,
         ),
         OutlinedButton.icon(
           //Icon can be used in some other places to.But if you wanna use clickable we go for this

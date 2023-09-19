@@ -11,15 +11,22 @@ class questionScreen extends StatefulWidget {
 }
 
 class _questionScreen extends State<questionScreen> {
+  var currentQuestionIndex = 0;
+  void answerQuestion() {
+    setState(() {
+      currentQuestionIndex++; //To execute this we must use setState
+    });
+  }
+
   @override
   Widget build(context) {
-    final currentQuestion = questions[0];
+    final currentQuestion = questions[currentQuestionIndex];
 
     return SizedBox(
       width: double.infinity,
       child: Container(
         //We are using container to get mergin option
-        margin: EdgeInsets.all(
+        margin: const EdgeInsets.all(
             20), //Using this we can rezie the answet botton box size
         child: Column(
           //Padding is the internal spacing  between content and the borders
@@ -34,8 +41,11 @@ class _questionScreen extends State<questionScreen> {
                   .center, //We want the question in center thats why we did this
             ),
             const SizedBox(height: 20),
-            ...currentQuestion.answers.map((item) {
-              return answerButton(txt: item, onTap: () {});
+            ...currentQuestion.getShuffledAnswer().map((item) {
+              return answerButton(
+                txt: item,
+                onTap: answerQuestion,
+              );
             }),
           ],
         ),
