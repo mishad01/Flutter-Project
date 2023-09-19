@@ -18,7 +18,10 @@ class _questionScreen extends State<questionScreen> {
     return SizedBox(
       width: double.infinity,
       child: Column(
+        //Padding is the internal spacing  between content and the borders
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment:
+            CrossAxisAlignment.stretch, //The box stretched out the full screen
         children: [
           Text(
             currentQuestion.txt,
