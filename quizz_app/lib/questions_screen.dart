@@ -29,17 +29,17 @@ class _questionScreen extends State<questionScreen> {
             txt: currentQuestion.answers[0],
             onTap: () {},
           ),
-          //const SizedBox(height: 20),
+          const SizedBox(height: 20),
           answerButton(
             txt: currentQuestion.answers[1],
             onTap: () {},
           ),
-          //const SizedBox(height: 20),
+          const SizedBox(height: 20),
           answerButton(
             txt: currentQuestion.answers[2],
             onTap: () {},
           ),
-          //const SizedBox(height: 20),
+          const SizedBox(height: 20),
           answerButton(
             txt: currentQuestion.answers[3],
             onTap: () {},
