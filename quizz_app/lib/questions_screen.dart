@@ -26,7 +26,7 @@ class _questionScreen extends State<questionScreen> {
     return SizedBox(
       width: double.infinity,
       child: Container(
-        //We are using container to get mergin option
+        //We are using container to get mergin option as
         margin: const EdgeInsets.all(
             20), //Using this we can rezie the answet botton box size
         child: Column(
