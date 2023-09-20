@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizz_app/answerButton.dart';
 import 'package:quizz_app/data/questions.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class questionScreen extends StatefulWidget {
   const questionScreen({super.key});
@@ -36,7 +37,10 @@ class _questionScreen extends State<questionScreen> {
           children: [
             Text(
               currentQuestion.txt,
-              style: const TextStyle(color: Colors.white),
+              style: GoogleFonts.mooli(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
               textAlign: TextAlign
                   .center, //We want the question in center thats why we did this
             ),
