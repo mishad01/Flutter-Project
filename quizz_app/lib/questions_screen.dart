@@ -15,7 +15,7 @@ class _questionScreen extends State<questionScreen> {
   var currentQuestionIndex = 0;
   void answerQuestion() {
     setState(() {
-      currentQuestionIndex++; //To execute this we must use setState
+      currentQuestionIndex++; //To execute this we must use setStatee
     });
   }
 
