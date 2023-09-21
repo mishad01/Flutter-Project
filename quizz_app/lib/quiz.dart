@@ -4,6 +4,7 @@ import 'package:quizz_app/startScreen.dart';
 
 class quiz extends StatefulWidget {
   const quiz({super.key});
+
   State<quiz> createState() {
     return _quizzState();
   }
@@ -45,7 +46,7 @@ class _quizzState extends State<quiz> {
 
     Widget screenWidget = StartScreen(switchScreen);
     if (activeScreen == 'question-screen') {
-      screenWidget = const questionScreen();
+      screenWidget = questionScreen(onSelectAnswer: chooseAnswer);
     }
     return MaterialApp(
       home: Scaffold(
