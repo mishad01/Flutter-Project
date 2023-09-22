@@ -2,66 +2,51 @@ import 'package:flutter/material.dart';
 import 'package:quizz_app/questions_screen.dart';
 import 'package:quizz_app/startScreen.dart';
 
-class quiz extends StatefulWidget {
-  const quiz({super.key});
-
-  State<quiz> createState() {
-    return _quizzState();
+class quizz extends StatefulWidget {
+  quizz({super.key});
+  @override
+  State<quizz> createState() {
+    return _quizz();
   }
 }
 
-class _quizzState extends State<quiz> {
-  //var activeScreen =StartScreen(); //we can store widgets in variables because widgets are objects and objects are regular number in dart
-  //Widget? activeScreen; //by adding ? we can say active screen can also be null
-  //Ternary Expressions
-  //@override
+class _quizz extends State<quizz> {
+  // Widget? activeScreen;
+
+  // @override
   // void initState() {
-  //   //Executed by Flutter when the StatefulWidget's State object is initialized
-  //   //Its use for some initialization work..Which only wroks one
   //   activeScreen = StartScreen(switchScreen);
-  //   super
-  //       .initState(); //It makes sure in the parent class ,in state class initstate is executed as well to allow flutter to do its additional initializarion that might be performed in thtat parent class
+  //   super.initState();
   // }
-  //ALternative of InitState()
 
   var activeScreen = 'start-screen';
 
-  final List<String> selectedAnswers = [];
-
   void switchScreen() {
     setState(() {
-      //activeScreen = const questionScreen();
-      activeScreen = 'questions-screen';
+      activeScreen = 'question-screen';
     });
   }
 
-  void chooseAnswer(String answer) {
-    //Here I expect to get the selected answer which should be type string
-    selectedAnswers.add(answer);
-  }
-
   @override
-  Widget build(context) {
-    //build(): Executed by Flutter when the Widget is built for the first time AND after setState() was called.
-
+  Widget build(BuildContext context) {
     Widget screenWidget = StartScreen(switchScreen);
     if (activeScreen == 'question-screen') {
-      screenWidget = questionScreen(onSelectAnswer: chooseAnswer);
+      screenWidget = questionScreen();
     }
-    return MaterialApp(
-      home: Scaffold(
-        body: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color.fromARGB(255, 78, 13, 151),
-                Color.fromARGB(255, 112, 55, 179),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
+    return SizedBox(
+      child: MaterialApp(
+        home: Scaffold(
+          body: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  const Color.fromARGB(255, 90, 15, 219),
+                  const Color.fromARGB(255, 123, 67, 219)
+                ],
+              ),
             ),
+            child: screenWidget,
           ),
-          child: screenWidget,
         ),
       ),
     );
