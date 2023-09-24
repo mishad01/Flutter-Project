@@ -19,6 +19,7 @@ class _quizz extends State<quizz> {
   //   super.initState();
   // }
 
+  final List<String> selectedAnswer = [];
   var activeScreen = 'start-screen';
 
   void switchScreen() {
@@ -27,11 +28,17 @@ class _quizz extends State<quizz> {
     });
   }
 
+  void choosenAnswer(String answer) {
+    selectedAnswer.add(answer);
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget screenWidget = StartScreen(switchScreen);
     if (activeScreen == 'question-screen') {
-      screenWidget = questionScreen();
+      screenWidget = questionScreen(
+        onSelectAnswer: choosenAnswer,
+      );
     }
     return SizedBox(
       child: MaterialApp(
