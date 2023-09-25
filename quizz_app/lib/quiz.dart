@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizz_app/data/questions.dart';
 import 'package:quizz_app/questions_screen.dart';
 import 'package:quizz_app/startScreen.dart';
 
@@ -30,6 +31,11 @@ class _quizz extends State<quizz> {
 
   void choosenAnswer(String answer) {
     selectedAnswer.add(answer);
+    if (selectedAnswer.length == questions.length) {
+      setState(() {
+        activeScreen = 'start-screen';
+      });
+    }
   }
 
   @override
