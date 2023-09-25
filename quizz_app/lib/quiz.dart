@@ -50,7 +50,9 @@ class _quizz extends State<quizz> {
     }
 
     if (activeScreen == 'result-screen') {
-      screenWidget = resultScreen();
+      screenWidget = resultScreen(
+        choosenAnswer: [],
+      );
     }
     return SizedBox(
       child: MaterialApp(
