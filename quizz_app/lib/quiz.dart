@@ -51,7 +51,7 @@ class _quizz extends State<quizz> {
 
     if (activeScreen == 'result-screen') {
       screenWidget = resultScreen(
-        choosenAnswer: [],
+        choosenAnswer: selectedAnswer,
       );
     }
     return SizedBox(
