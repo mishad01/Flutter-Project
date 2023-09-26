@@ -14,10 +14,10 @@ class questionsSummary extends StatelessWidget {
             Column(
               children: [
                 Text(data['question'] as String),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
-                Text(data['Selected Answer'] as String),
+                Text(data['user_Answer'] as String),
                 Text(data['Correct_Answer'] as String),
               ],
             ),
