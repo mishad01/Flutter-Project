@@ -17,8 +17,11 @@ class questionsSummary extends StatelessWidget {
                 const SizedBox(
                   height: 5,
                 ),
-                Text(data['user_Answer'] as String),
-                Text(data['Correct_Answer'] as String),
+                Text(data['user_answer'] as String),
+                Text(data['correct_answer']
+                    as String), //correct_Answer HERE THIS IS WRONG AND WE WILL GET ERROR BECAUSE IN REULT SCREEN WE GAVE correct_answer THE A was small letter
+                // Text(data['user_answer'] as String),
+                // Text(data['correct_answer'] as String),
               ],
             ),
           ],
