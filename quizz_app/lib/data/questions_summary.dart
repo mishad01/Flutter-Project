@@ -11,17 +11,19 @@ class questionsSummary extends StatelessWidget {
           children: [
             Text(
                 ((data['question_index'] as int) + 1).toString()), //TypeCasting
-            Column(
-              children: [
-                Text(data['question'] as String),
-                const SizedBox(
-                  height: 5,
-                ),
-                // Text(data['user_Answer'] as String),
-                // Text(data['correct_Answer'] as String), //correct_Answer HERE THIS IS WRONG AND WE WILL GET ERROR BECAUSE IN REULT SCREEN WE GAVE correct_answer THE A was small letter
-                Text(data['user_answer'] as String),
-                Text(data['correct_answer'] as String),
-              ],
+            Expanded(
+              child: Column(
+                children: [
+                  Text(data['question'] as String),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  // Text(data['user_Answer'] as String),
+                  // Text(data['correct_Answer'] as String), //correct_Answer HERE THIS IS WRONG AND WE WILL GET ERROR BECAUSE IN REULT SCREEN WE GAVE correct_answer THE A was small letter
+                  Text(data['user_answer'] as String),
+                  Text(data['correct_answer'] as String),
+                ],
+              ),
             ),
           ],
         );
