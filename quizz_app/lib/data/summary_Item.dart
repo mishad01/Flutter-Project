@@ -17,8 +17,8 @@ class summaryItem extends StatelessWidget {
             padding: EdgeInsets.all(8.0), // Adjust the padding as needed
             decoration: BoxDecoration(
               color: isCorrect
-                  ? Colors.green
-                  : const Color.fromARGB(255, 238, 13, 13), // Background color
+                  ? const Color.fromARGB(255, 85, 245, 91)
+                  : Color.fromARGB(255, 255, 69, 140), // Background color
               borderRadius: BorderRadius.circular(
                   100.0), // Adjust the radius for roundness
             ),
