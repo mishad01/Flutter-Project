@@ -18,9 +18,11 @@ class _questionScreen extends State<questionScreen> {
   var currentQuestionIndex = 0;
   void answerQuestion(String selectedAnswer) {
     widget.onSelectAnswer(selectedAnswer);
-    setState(() {
-      currentQuestionIndex++; //To execute this we must use setStatee
-    });
+    setState(
+      () {
+        currentQuestionIndex++; //To execute this we must use setStatee
+      },
+    );
   }
 
   @override
@@ -41,25 +43,27 @@ class _questionScreen extends State<questionScreen> {
           children: [
             Text(
               currentQuestion.txt,
-              style: GoogleFonts.mooli(
+              style: GoogleFonts.lato(
                   color: Colors.white,
-                  fontSize: 24,
+                  fontSize: 15,
                   fontWeight: FontWeight.bold),
               textAlign: TextAlign
                   .center, //We want the question in center thats why we did this
             ),
             const SizedBox(height: 20),
-            ...currentQuestion.getShuffledAnswer().map((item) {
-              const SizedBox(
-                height: 20,
-              );
-              return answerButton(
-                txt: item,
-                onTap: () {
-                  answerQuestion(item);
-                },
-              );
-            }),
+            ...currentQuestion.getShuffledAnswer().map(
+              (item) {
+                const SizedBox(
+                  height: 20,
+                );
+                return answerButton(
+                  txt: item,
+                  onTap: () {
+                    answerQuestion(item);
+                  },
+                );
+              },
+            ),
           ],
         ),
       ),

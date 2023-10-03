@@ -40,6 +40,13 @@ class _quizz extends State<quizz> {
     }
   }
 
+  void restartquizz() {
+    setState(() {
+      selectedAnswer = [];
+      activeScreen = 'question-screen';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget screenWidget = StartScreen(switchScreen);
@@ -52,6 +59,7 @@ class _quizz extends State<quizz> {
     if (activeScreen == 'result-screen') {
       screenWidget = resultScreen(
         choosenAnswer: selectedAnswer,
+        onrestart: restartquizz,
       );
     }
     return SizedBox(
