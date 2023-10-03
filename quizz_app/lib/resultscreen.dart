@@ -40,7 +40,12 @@ class resultScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-                'Your Answered $numofCorrectQestions out of $numTotalQuestions questions correctly'),
+              'Your Answered $numofCorrectQestions correctly out of $numTotalQuestions questions',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
+            ),
             const SizedBox(
               height: 30,
             ),
@@ -49,9 +54,11 @@ class resultScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            TextButton(
+            TextButton.icon(
               onPressed: () {},
-              child: Text('Restart Quizz'),
+              style: TextButton.styleFrom(foregroundColor: Colors.white),
+              label: Text('Restart Quizz'),
+              icon: Icon(Icons.rotate_right),
             ),
           ],
         ),
