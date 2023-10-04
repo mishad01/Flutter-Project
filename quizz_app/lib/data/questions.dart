@@ -7,8 +7,8 @@ const questions = [
   quizzQuestion(
     'What are the main building blocks of Flutter UIs?',
     [
-      'Widgets',
-      'Components',
+      'Widgets'
+          'Components',
       'Blocks',
       'Functions',
     ],
