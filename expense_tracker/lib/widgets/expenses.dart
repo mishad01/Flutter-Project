@@ -20,7 +20,7 @@ class _expenses extends State<expenses> {
     ),
     expense(
       title: 'Cinema',
-      amount: 9.99,
+      amount: 15.69,
       date: DateTime.now(),
       category: Category.leisure,
     ),

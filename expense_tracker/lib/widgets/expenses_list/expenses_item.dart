@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class expenseItem extends StatelessWidget {
-  const expenseItem(this.expense, {super.key});
-  final expense;
+  const expenseItem(this.expensee, {super.key});
+  final expense expensee;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -15,19 +15,21 @@ class expenseItem extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Text(expense.title),
+            Text(expensee.title),
             const SizedBox(height: 4),
             Row(
               children: [
-                Text('\$${expense.amount.toStringAsFixed(2)}'),
+                Text('\$${expensee.amount.toStringAsFixed(2)}'),
                 const Spacer(),
                 Row(
                   children: [
+                    Icon(Icons.alarm),
+                    const SizedBox(width: 8),
                     Text(
-                      expense.title,
-                    )
+                      expensee.date.toString(),
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           ],
