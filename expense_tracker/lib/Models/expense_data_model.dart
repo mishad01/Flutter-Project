@@ -2,12 +2,13 @@ import 'package:uuid/uuid.dart';
 
 const uuid = Uuid();
 
+//enum is It allows us to create custom type ..Mainly we fixed a specific value for specific datatype.Without that value any other value wont be accepted  there
 enum Category {
   food,
   trable,
   leisure,
   work
-} //It allows us to create custom type  //It genartes a unique string id
+} //In this project we wanna have a custom type category,we wanna have ac ustom type category.
 
 class expense {
   expense({
@@ -15,7 +16,7 @@ class expense {
     required this.amount,
     required this.date,
     required this.category,
-  }) : string_id = uuid.v4();
+  }) : string_id = uuid.v4(); //It genartes a unique string id
 
   final String string_id;
   final String title;
