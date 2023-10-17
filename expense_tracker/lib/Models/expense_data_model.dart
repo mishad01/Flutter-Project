@@ -7,7 +7,7 @@ enum Category {
   trable,
   leisure,
   work
-} //It allows us to create custom type
+} //It allows us to create custom type  //It genartes a unique string id
 
 class expense {
   expense({
