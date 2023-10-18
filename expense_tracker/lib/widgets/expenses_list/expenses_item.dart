@@ -20,7 +20,7 @@ class expenseItem extends StatelessWidget {
             Row(
               children: [
                 Text('\$${expensee.amount.toStringAsFixed(2)}'),
-                const Spacer(),
+                const Spacer(), //This gives side wise space like two text will go in two corner
                 Row(
                   children: [
                     Icon(Icons.alarm),
