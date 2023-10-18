@@ -22,5 +22,6 @@ class expense {
   final String title;
   final double amount;
   final DateTime date; //Here DataTime is a data type.
-  final Category category;
+  final Category
+      category; //If we pass value from function then there might be typo here for that we will use alternative.For that we will use a fixed set of allowed value
 }
