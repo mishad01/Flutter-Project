@@ -1,38 +1,38 @@
-import 'package:expense_tracker/Models/expense_data_model.dart';
-import 'package:expense_tracker/widgets/expenses_list/expenses_list.dart';
+import 'package:expense_tracker/Model/expensedatainfo.dart';
+import 'package:expense_tracker/expenses_list.dart';
 import 'package:flutter/material.dart';
 
-class expenses extends StatefulWidget {
-  expenses({super.key});
+class Expenses extends StatefulWidget {
+  Expenses({super.key});
   @override
-  State<expenses> createState() {
-    return _expenses();
+  State<Expenses> createState() {
+    return _Expenses();
   }
 }
 
-class _expenses extends State<expenses> {
-  final List<expense> _registeredExpenses = [
-    expense(
+class _Expenses extends State<Expenses> {
+  final List<ExpenseDataInfo> _regestredExpenses = [
+    ExpenseDataInfo(
       title: 'Flutter Course',
       amount: 19.99,
       date: DateTime.now(),
       category: Category.work,
     ),
-    expense(
+    ExpenseDataInfo(
       title: 'Cinema',
-      amount: 15.69,
+      amount: 15.99,
       date: DateTime.now(),
       category: Category.leisure,
-    ),
+    )
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
+      body: Column(children: [
         Text("The Chart"),
-        Expanded(child: expensesList(expenses: _registeredExpenses))
-      ],
-    ));
+        Expanded(child: ExpensesList(expenses: _regestredExpenses)),
+      ]),
+    );
   }
 }
