@@ -21,11 +21,11 @@ class ExpenseItem extends StatelessWidget {
               const Spacer(), //This gives side wise space like two text will go in two corner
               Row(
                 children: [
-                  Icon(Icons.alarm),
+                  Icon((categoryIcons[expense.category])),
                   const SizedBox(
                     width: 8,
                   ),
-                  Text(expense.date.toString()),
+                  Text(expense.formattedDate),
                 ],
               )
             ],
