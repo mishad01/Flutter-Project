@@ -1,5 +1,5 @@
 import 'package:expense_tracker_test/Model/expenseDataInfo.dart';
-import 'package:expense_tracker_test/Widgets/expenseList.dart';
+import 'package:expense_tracker_test/expenseList.dart';
 import 'package:flutter/material.dart';
 
 class Expenses extends StatefulWidget {
@@ -28,6 +28,8 @@ class _Expenses extends State<Expenses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.add))]),
       body: Column(
         children: [
           Text('CHART'),
