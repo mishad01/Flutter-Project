@@ -27,6 +27,11 @@ class _Expenses extends State<Expenses> {
   ];
   @override
   Widget build(BuildContext context) {
+    AppBar(
+      actions: [
+        Icon(Icons.add),
+      ],
+    );
     return Scaffold(
       body: Column(
         children: [
