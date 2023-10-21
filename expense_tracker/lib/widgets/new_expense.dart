@@ -9,9 +9,19 @@ class newExpense extends StatefulWidget {
 }
 
 class _newExpense extends State<newExpense> {
-  var _enteredTitle = ''; //Empty string
+  //First way of user input
+  /* var _enteredTitle = ''; //Empty string
   void _savetitleInput(String inputValue) {
     _enteredTitle = inputValue;
+  } dhgfhfhg*/
+
+  //Second way of user input
+  final titleControler =
+      TextEditingController(); //If we use this to get input then we need to use dispose() too.To delete it from memory
+  @override
+  void dispose() {
+    titleControler.dispose();
+    super.dispose();
   }
 
   @override
@@ -20,8 +30,8 @@ class _newExpense extends State<newExpense> {
       padding: const EdgeInsets.all(16),
       child: Column(children: [
         TextField(
-          onChanged:
-              _savetitleInput, //It allows us to register a function whenever that will be triggered whenever the value int the text field is assigned
+          //onChanged:_savetitleInput, //It allows us to register a function whenever that will be triggered whenever the value int the text field is assigned
+          controller: titleControler,
           maxLength: 50, //It assigns how many character can we write
           // keyboardType: TextInputType.text, //The whole keyboard will pop up
           decoration: const InputDecoration(
@@ -33,7 +43,8 @@ class _newExpense extends State<newExpense> {
           children: [
             ElevatedButton(
                 onPressed: () {
-                  print(_enteredTitle);
+                  //print(_enteredTitle);
+                  print(titleControler);
                 },
                 child: Text('Save Expense')),
           ],
