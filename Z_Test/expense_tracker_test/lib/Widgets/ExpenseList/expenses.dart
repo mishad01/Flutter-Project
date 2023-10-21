@@ -25,14 +25,22 @@ class _Expenses extends State<Expenses> {
       ccategory: Category.leisure,
     ),
   ];
+
+  void openExpensesOverlay() {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => Text("Modal Botom sheet"),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    AppBar(
-      actions: [
-        Icon(Icons.add),
-      ],
-    );
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(onPressed: openExpensesOverlay, icon: Icon(Icons.add))
+        ],
+      ),
       body: Column(
         children: [
           Text('The Chart'),
