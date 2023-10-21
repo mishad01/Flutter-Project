@@ -8,12 +8,7 @@ final formatter = DateFormat
 const uuid = Uuid();
 
 ////It allows us to create custom type
-enum Category {
-  food,
-  travle,
-  leisure,
-  work,
-} //In this project we wanna have a custom type category,we wanna have ac ustom type category.
+enum Category { food, travle, leisure, work } //In this project we wanna have a custom type category,we wanna have ac ustom type category.
 
 const categoryIcons = {
   Category.food: Icons.lunch_dining,
@@ -21,7 +16,6 @@ const categoryIcons = {
   Category.leisure: Icons.movie,
   Category.work: Icons.work,
 };
-
 class ExpenseDataInfo {
   ExpenseDataInfo({
     required this.title,
