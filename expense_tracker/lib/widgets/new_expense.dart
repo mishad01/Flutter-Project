@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+//import 'package:flutter/services.dart';
 
 class newExpense extends StatefulWidget {
   newExpense({super.key});
@@ -27,13 +27,24 @@ class _newExpense extends State<newExpense> {
     super.dispose();
   }
 
+  void presentDatePicker() {
+    //SHowdate picker builtin flutter function
+    final now = DateTime.now();
+    final firstDate = DateTime(now.year - 1, now.month, now.day);
+    showDatePicker(
+        context: context,
+        initialDate: now,
+        firstDate: firstDate,
+        lastDate: now);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(children: [
         TextField(
-          //onChanged:_savetitleInput, //It allows us to register a function whenever that will be triggered whenever the value int the text field is assigned
+          //onChanged:_savetitleInput, //It allows us to register a function whenever that will be triggered whenever the value int the text field is assigned in 31 number line
           controller: titleControler,
           maxLength: 50, //It assigns how many character can we write
           // keyboardType: TextInputType.text, //The whole keyboard will pop up
@@ -42,13 +53,34 @@ class _newExpense extends State<newExpense> {
             label: Text("Title"),
           ),
         ),
-        TextField(
-          controller: amountControler,
-          keyboardType: TextInputType.number,
-          decoration: InputDecoration(
-            prefixText: '\$ ',
-            label: Text('Amount'),
-          ),
+        Row(
+          children: [
+            Expanded(
+              child: TextField(
+                controller: amountControler,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  prefixText: '\$ ',
+                  label: Text('Amount'),
+                ),
+              ),
+            ),
+            const SizedBox(
+              width: 16,
+            ),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text('Selected Date'),
+                  IconButton(
+                      onPressed: presentDatePicker,
+                      icon: const Icon(Icons.calendar_month))
+                ],
+              ),
+            ),
+          ],
         ),
         Row(
           children: [
