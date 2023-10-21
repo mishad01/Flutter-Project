@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 //import 'package:flutter/services.dart';
+
+final formatter = DateFormat.yMd();
 
 class newExpense extends StatefulWidget {
   newExpense({super.key});
@@ -17,9 +20,11 @@ class _newExpense extends State<newExpense> {
   } */
 
   //Second way of user input
-  final titleControler =
-      TextEditingController(); //If we use this to get input then we need to use dispose() too.To delete it from memory
+  //If we use this to get input then we need to use dispose() too.To delete it from memory
+  final titleControler = TextEditingController();
   final amountControler = TextEditingController();
+  DateTime? _selectedDate; //it will either keep value or null
+
   @override
   void dispose() {
     titleControler.dispose();
@@ -27,15 +32,28 @@ class _newExpense extends State<newExpense> {
     super.dispose();
   }
 
-  void presentDatePicker() {
+  void presentDatePicker() async {
+    //when we will find future then we can use this async
     //SHowdate picker builtin flutter function
     final now = DateTime.now();
     final firstDate = DateTime(now.year - 1, now.month, now.day);
-    showDatePicker(
-        context: context,
-        initialDate: now,
-        firstDate: firstDate,
-        lastDate: now);
+    // showDatePicker(
+    //   context: context,
+    //   initialDate: now,
+    //   firstDate: firstDate,
+    //   lastDate: now,
+    //  );
+    final pickedDate = await showDatePicker(
+      //This await keyword internally tells flutter that this value hsould be stored in picked date wont be available immediately but atleast at some point in future and flutter should therefore basically wait before it stores in that variable
+      //To store this showdate picker value we will use async besides function preameter and use await and put this inside a variable
+      context: context,
+      initialDate: now,
+      firstDate: firstDate,
+      lastDate: now,
+    );
+    setState(() {
+      _selectedDate = pickedDate;
+    });
   }
 
   @override
@@ -73,7 +91,10 @@ class _newExpense extends State<newExpense> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('Selected Date'),
+                  Text(_selectedDate == null
+                      ? 'No Date Selected'
+                      : formatter.format(
+                          _selectedDate!)), //using ! to froce dart to assume that this wont be null
                   IconButton(
                       onPressed: presentDatePicker,
                       icon: const Icon(Icons.calendar_month))
