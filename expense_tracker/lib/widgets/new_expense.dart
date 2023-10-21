@@ -52,7 +52,12 @@ class _newExpense extends State<newExpense> {
         ),
         Row(
           children: [
-            TextButton(onPressed: () {}, child: Text("Cancel")),
+            TextButton(
+                onPressed: () {
+                  Navigator.pop(
+                      context); //Its for cancel everything and here pop cancels the overlay and inside pop the context is fron build(context) which is in 31 line
+                },
+                child: Text("Cancel")),
             ElevatedButton(
                 onPressed: () {
                   //print(_enteredTitle);
