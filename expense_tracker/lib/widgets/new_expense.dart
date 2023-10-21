@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class newExpense extends StatefulWidget {
   newExpense({super.key});
@@ -13,14 +14,16 @@ class _newExpense extends State<newExpense> {
   /* var _enteredTitle = ''; //Empty string
   void _savetitleInput(String inputValue) {
     _enteredTitle = inputValue;
-  } dhgfhfhg*/
+  } */
 
   //Second way of user input
   final titleControler =
       TextEditingController(); //If we use this to get input then we need to use dispose() too.To delete it from memory
+  final amountControler = TextEditingController();
   @override
   void dispose() {
     titleControler.dispose();
+    amountControler.dispose();
     super.dispose();
   }
 
@@ -39,12 +42,22 @@ class _newExpense extends State<newExpense> {
             label: Text("Title"),
           ),
         ),
+        TextField(
+          controller: amountControler,
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(
+            prefixText: '\$ ',
+            label: Text('Amount'),
+          ),
+        ),
         Row(
           children: [
+            TextButton(onPressed: () {}, child: Text("Cancel")),
             ElevatedButton(
                 onPressed: () {
                   //print(_enteredTitle);
                   print(titleControler);
+                  print(amountControler);
                 },
                 child: Text('Save Expense')),
           ],
