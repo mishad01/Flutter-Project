@@ -33,6 +33,37 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
+  void submitExpenseData() {
+    //trim removes excess white space at the begining and end
+    //Trypass takes a string as a input and then returns a double if it is conver that string into number
+    //trypass('hello')=>null,trypass'(15.60')=>15.60
+    final enetredamount = double.tryParse(amountController.text);
+    final amountisInvalid = enetredamount == null ||
+        enetredamount <=
+            0; //if these two conditions are true then it will return true;
+    if (titleController.text.trim().isEmpty ||
+        amountisInvalid ||
+        selectedDate == null) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text('INVALID INPUT'),
+          content:
+              Text('MAKE Sure to input valid title,ammount,date and category'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: Text('OKAY'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+  }
+
   @override
   void dispose() {
     titleController.dispose();
@@ -115,11 +146,7 @@ class _NewExpenseState extends State<NewExpense> {
                 },
                 child: Text('Cancel')),
             ElevatedButton(
-                onPressed: () {
-                  print(titleController.text);
-                  print(amountController.value);
-                },
-                child: Text('Save Expense'))
+                onPressed: submitExpenseData, child: Text('Save Expense'))
           ],
         )
       ]),
