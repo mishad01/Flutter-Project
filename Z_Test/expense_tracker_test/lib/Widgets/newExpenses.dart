@@ -14,6 +14,14 @@ class _NewExpenseState extends State<NewExpense> {
   final amountController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return;
+    return const Padding(
+      padding: EdgeInsets.all(16),
+      child: Column(children: [
+        TextField(
+          maxLength: 50,
+          decoration: InputDecoration(label: Text('title')),
+        )
+      ]),
+    );
   }
 }
