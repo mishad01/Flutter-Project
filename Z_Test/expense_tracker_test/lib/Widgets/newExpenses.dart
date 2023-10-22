@@ -45,6 +45,17 @@ class _NewExpenseState extends State<NewExpense> {
                 decoration:
                     InputDecoration(prefixText: '\$', label: Text('Amount')),
               ),
+            ),
+            const SizedBox(
+              width: 16,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text('selected text'),
+                IconButton(onPressed: () {}, icon: Icon(Icons.calendar_month))
+              ],
             )
           ],
         ),
