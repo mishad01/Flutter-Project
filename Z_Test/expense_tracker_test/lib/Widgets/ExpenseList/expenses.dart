@@ -29,6 +29,7 @@ class _Expenses extends State<Expenses> {
 
   void openExpensesOverlay() {
     showModalBottomSheet(
+      isScrollControlled: true, //Its for not overlap
       context: context,
       builder: (ctx) => NewExpense(onAddExpense: addExpenses),
     );
