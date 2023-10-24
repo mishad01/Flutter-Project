@@ -51,7 +51,7 @@ class _Expenses extends State<Expenses> {
       ),
       body: Column(
         children: [
-          Text('The Chart'),
+          Text('The Chartt'),
           Expanded(child: ExpensesList(expenses: registredExpenses)),
         ],
       ),
