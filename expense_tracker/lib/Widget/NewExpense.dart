@@ -9,14 +9,37 @@ class NewExpense extends StatefulWidget {
 }
 
 class _NewExpanse extends State<NewExpense> {
+  final titleControler = TextEditingController();
+  final amountControler = TextEditingController();
+  @override
+  void dispose() {
+    titleControler.dispose();
+    amountControler.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextField(
-          decoration: InputDecoration(label: Text('Ttile')),
-        ),
-      ],
+    return Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          TextField(
+            decoration: InputDecoration(
+              label: Text('Ttile'),
+            ),
+          ),
+          TextField(
+            decoration: InputDecoration(
+              label: Text('Amount'),
+            ),
+          ),
+          Row(
+            children: [
+              ElevatedButton(onPressed: () {}, child: Text('Save Expense'))
+            ],
+          )
+        ],
+      ),
     );
   }
 }
