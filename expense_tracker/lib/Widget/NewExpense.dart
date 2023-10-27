@@ -26,13 +26,14 @@ class _NewExpanse extends State<NewExpense> {
           TextField(
             controller: titleControler,
             decoration: InputDecoration(
-              label: Text('Ttile'),
+              label: Text('Title'),
             ),
           ),
           TextField(
             controller: amountControler,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
+              prefixText: '\$',
               label: Text('Amount'),
             ),
           ),
