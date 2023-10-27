@@ -13,7 +13,9 @@ class _NewExpanse extends State<NewExpense> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('Point 1'),
+        TextField(
+          decoration: InputDecoration(label: Text('Ttile')),
+        ),
       ],
     );
   }
