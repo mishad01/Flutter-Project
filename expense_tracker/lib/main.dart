@@ -1,10 +1,9 @@
-import 'package:expense_tracker/widgets/expenses.dart';
+import 'package:expense_tracker/Widget/expense.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main(List<String> args) {
   runApp(
     MaterialApp(
-      //theme: ThemeData(useMaterial3: true),
       home: Expenses(),
     ),
   );

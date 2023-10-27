@@ -1,35 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
 import 'package:intl/intl.dart';
+import 'package:uuid/uuid.dart';
 
-final formatter = DateFormat
-    .yMd(); //yMd() is a constructor function //It defines how the date wll be formated
+final uuid = Uuid();
+final formatter = DateFormat.yMd();
 
-const uuid = Uuid();
+enum Category { food, travle, leisure, work }
 
-////It allows us to create custom type
-enum Category { food, travle, leisure, work } //In this project we wanna have a custom type category,we wanna have ac ustom type category.
-
-const categoryIcons = {
-  Category.food: Icons.lunch_dining,
-  Category.travle: Icons.flight_takeoff,
+const categoryIcon = {
+  Category.food: Icons.lunch_dining_outlined,
   Category.leisure: Icons.movie,
+  Category.travle: Icons.flight_takeoff,
   Category.work: Icons.work,
 };
+
 class ExpenseDataInfo {
   ExpenseDataInfo({
     required this.title,
     required this.amount,
     required this.date,
     required this.category,
-  }) : id = uuid.v4(); //It genartes a unique string id
+  }) : id = uuid.v4();
 
+  final String id;
   final String title;
   final double amount;
-  final String id;
-  final DateTime date; //Here DataTime is a data type.
-  final Category
-      category; //If we pass value from function then there might be typo here for that we will use alternative.For that we will use a fixed set of allowed value
+  final DateTime date;
+  final Category category;
 
   String get formattedDate {
     return formatter.format(date);
