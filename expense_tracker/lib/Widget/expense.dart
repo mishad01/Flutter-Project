@@ -22,11 +22,22 @@ class _Expenses extends State<Expenses> {
         date: DateTime.now(),
         category: Category.food),
   ];
+  void addOverlay() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => Text('Next Screen'),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(actions: [
-        IconButton(onPressed: () {}, icon: Icon(Icons.add)),
+        IconButton(
+            onPressed: () {
+              addOverlay();
+            },
+            icon: Icon(Icons.add)),
       ]),
       body: Column(
         children: [
