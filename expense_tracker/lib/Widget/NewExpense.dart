@@ -24,11 +24,13 @@ class _NewExpanse extends State<NewExpense> {
       child: Column(
         children: [
           TextField(
+            controller: titleControler,
             decoration: InputDecoration(
               label: Text('Ttile'),
             ),
           ),
           TextField(
+            controller: amountControler,
             decoration: InputDecoration(
               label: Text('Amount'),
             ),
