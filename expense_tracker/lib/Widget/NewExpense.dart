@@ -29,13 +29,25 @@ class _NewExpanse extends State<NewExpense> {
               label: Text('Title'),
             ),
           ),
-          TextField(
-            controller: amountControler,
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              prefixText: '\$',
-              label: Text('Amount'),
-            ),
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: amountControler,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    prefixText: '\$',
+                    label: Text('Amount'),
+                  ),
+                ),
+              ),
+              Row(
+                children: [
+                  Text('Select Date'),
+                  IconButton(onPressed: () {}, icon: Icon(Icons.calendar_month))
+                ],
+              )
+            ],
           ),
           Row(
             children: [
