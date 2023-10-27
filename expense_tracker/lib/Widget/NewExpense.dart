@@ -31,6 +31,7 @@ class _NewExpanse extends State<NewExpense> {
           ),
           TextField(
             controller: amountControler,
+            keyboardType: TextInputType.number,
             decoration: InputDecoration(
               label: Text('Amount'),
             ),
