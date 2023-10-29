@@ -6,7 +6,7 @@ final formatter = DateFormat.yMd();
 
 class NewExpense extends StatefulWidget {
   NewExpense({super.key, required this.onAddexpense});
-  //final void Function(ExpenseDataInfo expense) onAddexpense;
+  final void Function(ExpenseDataInfo expense) onAddexpense;
   @override
   State<StatefulWidget> createState() {
     return _NewExpanse();
