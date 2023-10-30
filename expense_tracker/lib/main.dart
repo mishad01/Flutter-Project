@@ -32,7 +32,12 @@ void main(List<String> args) {
               backgroundColor: kColorScheme.primaryContainer,
             ),
           ),
-          textTheme: ThemeData().textTheme.copyWith()),
+          textTheme: ThemeData().textTheme.copyWith(
+                titleLarge: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: kColorScheme.onSecondaryContainer,
+                    fontSize: 16),
+              )),
       home: Expenses(),
     ),
   );

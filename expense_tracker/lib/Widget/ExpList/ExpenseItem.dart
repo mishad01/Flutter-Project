@@ -9,9 +9,10 @@ class expenseItem extends StatelessWidget {
     return Card(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Column(children: [
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             expense.title,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           SizedBox(
             height: 10,
