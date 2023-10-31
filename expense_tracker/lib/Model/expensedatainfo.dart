@@ -26,7 +26,7 @@ class ExpenseDataInfo {
   final String title;
   final double amount;
   final DateTime date;
-  final Category category;
+  Category category;
 
   String get formattedDate {
     return formatter.format(date);
@@ -34,11 +34,19 @@ class ExpenseDataInfo {
 }
 
 class ExpenseBucket {
-  ExpenseBucket({required this.category, required this.expenses});
+  ExpenseBucket({
+    required this.category,
+    required this.expenses,
+  });
+  //If we wanna add extra constructor function this is how we can do this
+  ExpenseBucket.forCategory(List<ExpenseDataInfo> allExpenses, this.category)
+      : expenses = allExpenses
+            .where((expense) => expense.category == category)
+            .toList();
   final Category category;
   List<ExpenseDataInfo> expenses;
 
-  double get totalExpense {
+  double get totalExpenses {
     double sum = 0;
 
     for (final expense in expenses) {
