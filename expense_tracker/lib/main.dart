@@ -38,6 +38,7 @@ void main(List<String> args) {
                     color: kColorScheme.onSecondaryContainer,
                     fontSize: 16),
               )),
+      themeMode: ThemeMode.system,
       home: Expenses(),
     ),
   );
