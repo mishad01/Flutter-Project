@@ -22,6 +22,7 @@ class _NewExpanse extends State<NewExpense> {
   void dispose() {
     titleControler.dispose();
     amountControler.dispose();
+    super.dispose();
   }
 
   void submitExpenseData() {
