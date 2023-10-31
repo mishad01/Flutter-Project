@@ -32,3 +32,20 @@ class ExpenseDataInfo {
     return formatter.format(date);
   }
 }
+
+class ExpenseBucket {
+  ExpenseBucket({required this.category, required this.expenses});
+  final Category category;
+  List<ExpenseDataInfo> expenses;
+
+  double get totalExpense {
+    double sum = 0;
+
+    for (final expense in expenses) {
+      //here this expenses from 39 number
+      sum += expense.amount;
+    }
+
+    return sum;
+  }
+}
