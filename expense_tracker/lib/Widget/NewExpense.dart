@@ -63,7 +63,7 @@ class _NewExpanse extends State<NewExpense> {
         firstDate: firstDate,
         lastDate: initialDate);
     setState(() {
-      SelectedDate = pickdate;
+      SelectedDate = pickdateE;
     });
   }
 
