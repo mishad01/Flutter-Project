@@ -2,6 +2,7 @@ import 'package:expense_tracker/Widget/expense.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+//🚀 Just Built My Own Expense Tracker App Using Flutter! 📊
 var kColorScheme =
     ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 96, 59, 181));
 
