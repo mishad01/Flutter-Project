@@ -9,12 +9,12 @@ var kdarkColorScheme = ColorScheme.fromSeed(
   brightness: Brightness.dark,
   seedColor: Color.fromARGB(255, 9, 99, 125),
 );
-void main(List<String> args) {
+void main(List<String> ) {
   // WidgetsFlutterBinding.ensureInitialized()
   // SystemChrome.setPreferredOrientations([
   //   DeviceOrientation.portraitUp,
   // ]).then(
-  //   (value) {
+  //   (value) {//
   runApp(
     MaterialApp(
       darkTheme: ThemeData.dark().copyWith(
