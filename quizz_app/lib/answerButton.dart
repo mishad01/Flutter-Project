@@ -17,10 +17,11 @@ class answerButton extends StatelessWidget {
             //Using this we can mig the button small and big
             vertical: 10,
             horizontal:
-                40), //It alwos to set seperate padding for horizontal and vertical pedding mainly spacing
+                20), //It alwos to set seperate padding for horizontal and vertical pedding mainly spacing
         backgroundColor: Color.fromARGB(255, 34, 15, 85),
         foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+        // maximumSize: Size(100, 100),
+        //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
       ),
       child: Text(txt, textAlign: TextAlign.center),
     );
