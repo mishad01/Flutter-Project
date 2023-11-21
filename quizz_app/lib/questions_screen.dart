@@ -38,8 +38,8 @@ class _questionScreen extends State<questionScreen> {
         child: Column(
           //Padding is the internal spacing  between content and the borders
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment
-              .stretch, //The box stretched out the full screen
+          // crossAxisAlignment: CrossAxisAlignment
+          //     .stretch, //The box stretched out the full screen
           children: [
             Text(
               currentQuestion.txt,
@@ -53,9 +53,6 @@ class _questionScreen extends State<questionScreen> {
             const SizedBox(height: 20),
             ...currentQuestion.getShuffledAnswer().map(
               (item) {
-                const SizedBox(
-                  height: 20,
-                );
                 return answerButton(
                   txt: item,
                   onTap: () {

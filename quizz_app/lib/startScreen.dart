@@ -12,7 +12,7 @@ class StartScreen extends StatelessWidget {
         child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Image.asset(
+        Image.network(
           //'assets/images/quiz-logo.png',
           'assets/images/qlogo.png', color: Color.fromARGB(188, 255, 255, 255),
           width: 100,

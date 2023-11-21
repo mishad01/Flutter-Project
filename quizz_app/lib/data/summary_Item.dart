@@ -10,28 +10,28 @@ class summaryItem extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-            width: 30,
-            height: 32,
-            alignment: Alignment.center,
-            padding: EdgeInsets.all(8.0), // Adjust the padding as needed
-            decoration: BoxDecoration(
-              color: isCorrect
-                  ? const Color.fromARGB(255, 85, 245, 91)
-                  : Color.fromARGB(255, 255, 69, 140), // Background color
-              borderRadius: BorderRadius.circular(
-                  100.0), // Adjust the radius for roundness
-            ),
-            child:
-                Text((((itemData['question_index'] as int) + 1).toString()))),
-        const SizedBox(
-          width: 20,
-        ),
         //TypeCasting
         Expanded(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Container(
+                  width: 30,
+                  height: 32,
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.all(8.0), // Adjust the padding as needed
+                  decoration: BoxDecoration(
+                    color: isCorrect
+                        ? const Color.fromARGB(255, 85, 245, 91)
+                        : Color.fromARGB(255, 255, 69, 140), // Background color
+                    borderRadius: BorderRadius.circular(
+                        300.0), // Adjust the radius for roundness
+                  ),
+                  child: Text(
+                      (((itemData['question_index'] as int) + 1).toString()))),
+              const SizedBox(
+                width: 40,
+              ),
               Text(
                 (itemData['question'] as String),
                 style: const TextStyle(
@@ -50,8 +50,10 @@ class summaryItem extends StatelessWidget {
               ),
               Text(
                 (itemData['correct_answer'] as String),
-                style:
-                    const TextStyle(color: Color.fromARGB(255, 102, 168, 255)),
+                style: const TextStyle(color: Color.fromARGB(255, 0, 218, 36)),
+              ),
+              const SizedBox(
+                height: 15,
               ),
             ],
           ),

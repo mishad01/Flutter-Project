@@ -52,7 +52,9 @@ class resultScreen extends StatelessWidget {
               height: 30,
             ),
             //questionsSummary(getsummaryData()),
-            questionsSummary(SummaryData),
+            Container(
+                alignment: Alignment.center,
+                child: questionsSummary(SummaryData)),
             const SizedBox(
               height: 30,
             ),
