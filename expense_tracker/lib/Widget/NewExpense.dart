@@ -70,72 +70,75 @@ class _NewExpanse extends State<NewExpense> {
   @override
   Widget build(BuildContext context) {
     final keyboardspace = MediaQuery.of(context).viewInsets.bottom;
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
-        child: Column(
-          children: [
-            TextField(
-              controller: titleControler,
-              decoration: const InputDecoration(
-                label: Text('Title'),
+    return SizedBox(
+      height: double.infinity,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
+          child: Column(
+            children: [
+              TextField(
+                controller: titleControler,
+                decoration: const InputDecoration(
+                  label: Text('Title'),
+                ),
               ),
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: amountControler,
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      prefixText: '\$',
-                      label: Text('Amount'),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: amountControler,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        prefixText: '\$',
+                        label: Text('Amount'),
+                      ),
                     ),
                   ),
-                ),
-                const Spacer(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(SelectedDate == null
-                        ? 'Select Date'
-                        : formatter.format(SelectedDate!)),
-                    IconButton(
-                        onPressed: presentDatePicker,
-                        icon: const Icon(Icons.calendar_month))
-                  ],
-                )
-              ],
-            ),
-            Row(
-              children: [
-                DropdownButton(
-                    value: selectedCategory,
-                    items: Category.values
-                        .map((e) => DropdownMenuItem(
-                            value: e, child: Text(e.name.toUpperCase())))
-                        .toList(),
-                    onChanged: (value) {
-                      if (value == null) {
-                        return;
-                      }
-                      setState(() {
-                        selectedCategory = value;
-                      });
-                    }),
-                //Spacer(),
-                TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Cancel')),
-                ElevatedButton(
-                    onPressed: submitExpenseData,
-                    child: const Text('Save Expense'))
-              ],
-            )
-          ],
+                  const Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(SelectedDate == null
+                          ? 'Select Date'
+                          : formatter.format(SelectedDate!)),
+                      IconButton(
+                          onPressed: presentDatePicker,
+                          icon: const Icon(Icons.calendar_month))
+                    ],
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  DropdownButton(
+                      value: selectedCategory,
+                      items: Category.values
+                          .map((e) => DropdownMenuItem(
+                              value: e, child: Text(e.name.toUpperCase())))
+                          .toList(),
+                      onChanged: (value) {
+                        if (value == null) {
+                          return;
+                        }
+                        setState(() {
+                          selectedCategory = value;
+                        });
+                      }),
+                  //Spacer(),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Cancel')),
+                  ElevatedButton(
+                      onPressed: submitExpenseData,
+                      child: const Text('Save Expense'))
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
