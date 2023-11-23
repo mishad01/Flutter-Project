@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/demo_button.dart';
 
 class UIUpdatesDemo extends StatefulWidget {
   UIUpdatesDemo({super.key});
   @override
   StatefulElement createElement() {
-    print('UIUpdateDemo BUILD Called');
+    print('UIUpdateDemo Create Element Called');
     return super.createElement();
   }
 
@@ -32,28 +33,7 @@ class _UIUpdateDemo extends State<UIUpdatesDemo> {
             const SizedBox(height: 10),
             const Text('Do you understand how Flutter updates UIs?'),
             const SizedBox(height: 10),
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextButton(
-                      onPressed: () {
-                        setState(() {
-                          isunderstood = true;
-                        });
-                      },
-                      child: const Text("YES")),
-                  TextButton(
-                      onPressed: () {
-                        setState(() {
-                          isunderstood = false;
-                        });
-                      },
-                      child: const Text("NO")),
-                ],
-              ),
-            ),
-            if (isunderstood) Text("Awesome"),
+            DemoButtons(),
           ],
         ),
       ),
