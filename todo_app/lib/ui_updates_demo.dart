@@ -34,11 +34,8 @@ class _UIUpdateDemo extends State<UIUpdatesDemo> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TextButton(onPressed: () {}, child: Text("YES")),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  TextButton(onPressed: () {}, child: Text("NO")),
+                  TextButton(onPressed: () {}, child: const Text("YES")),
+                  TextButton(onPressed: () {}, child: const Text("NO")),
                 ],
               ),
             )
