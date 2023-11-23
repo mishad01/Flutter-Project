@@ -1,20 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/demo_button.dart';
 
-class UIUpdatesDemo extends StatefulWidget {
+class UIUpdatesDemo extends StatelessWidget {
   UIUpdatesDemo({super.key});
-  @override
-  StatefulElement createElement() {
-    print('UIUpdateDemo Create Element Called');
-    return super.createElement();
-  }
-
-  State<UIUpdatesDemo> createState() {
-    return _UIUpdateDemo();
-  }
-}
-
-class _UIUpdateDemo extends State<UIUpdatesDemo> {
   var isunderstood = false;
   @override
   Widget build(BuildContext context) {

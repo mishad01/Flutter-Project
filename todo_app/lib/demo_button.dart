@@ -13,6 +13,7 @@ class _DemoButtons extends State<DemoButtons> {
 
   @override
   Widget build(BuildContext context) {
+    print('Demo button BUILD Called');
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
