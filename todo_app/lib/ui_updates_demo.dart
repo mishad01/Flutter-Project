@@ -26,7 +26,7 @@ class _UIUpdateDemo extends State<UIUpdatesDemo> {
             textAlign: TextAlign.center,
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          //SizedBox(height: 10),
+          SizedBox(height: 10),
           //Text('Do you understand how Flutter updates UIs?'),
         ],
       ),
