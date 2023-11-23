@@ -18,17 +18,32 @@ class _UIUpdateDemo extends State<UIUpdatesDemo> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'Every Flutter developer should have a basic understanding of Flutter\'s internals!',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 10),
-          Text('Do you understand how Flutter updates UIs?'),
-        ],
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Every Flutter developer should have a basic understanding of Flutter\'s internals!',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            const Text('Do you understand how Flutter updates UIs?'),
+            const SizedBox(height: 10),
+            // Center(
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       TextButton(onPressed: () {}, child: Text("YES")),
+            //       // SizedBox(
+            //       //   width: 5,
+            //       // ),
+            //       TextButton(onPressed: () {}, child: Text("NO")),
+            //     ],
+            //   ),
+            // )
+          ],
+        ),
       ),
     );
   }
