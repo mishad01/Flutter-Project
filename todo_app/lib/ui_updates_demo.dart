@@ -27,7 +27,7 @@ class _UIUpdateDemo extends State<UIUpdatesDemo> {
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 10),
-          //Text('Do you understand how Flutter updates UIs?'),
+          Text('Do you understand how Flutter updates UIs?'),
         ],
       ),
     );
