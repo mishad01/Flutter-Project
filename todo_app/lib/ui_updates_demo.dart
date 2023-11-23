@@ -30,18 +30,18 @@ class _UIUpdateDemo extends State<UIUpdatesDemo> {
             const SizedBox(height: 10),
             const Text('Do you understand how Flutter updates UIs?'),
             const SizedBox(height: 10),
-            // Center(
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //       TextButton(onPressed: () {}, child: Text("YES")),
-            //       // SizedBox(
-            //       //   width: 5,
-            //       // ),
-            //       TextButton(onPressed: () {}, child: Text("NO")),
-            //     ],
-            //   ),
-            // )
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(onPressed: () {}, child: Text("YES")),
+                  // SizedBox(
+                  //   width: 5,
+                  // ),
+                  //TextButton(onPressed: () {}, child: Text("NO")),
+                ],
+              ),
+            )
           ],
         ),
       ),
