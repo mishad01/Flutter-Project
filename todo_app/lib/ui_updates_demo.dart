@@ -14,6 +14,7 @@ class UIUpdatesDemo extends StatefulWidget {
 }
 
 class _UIUpdateDemo extends State<UIUpdatesDemo> {
+  var isunderstood = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,11 +35,24 @@ class _UIUpdateDemo extends State<UIUpdatesDemo> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TextButton(onPressed: () {}, child: const Text("YES")),
-                  TextButton(onPressed: () {}, child: const Text("NO")),
+                  TextButton(
+                      onPressed: () {
+                        setState(() {
+                          isunderstood = true;
+                        });
+                      },
+                      child: const Text("YES")),
+                  TextButton(
+                      onPressed: () {
+                        setState(() {
+                          isunderstood = false;
+                        });
+                      },
+                      child: const Text("NO")),
                 ],
               ),
-            )
+            ),
+            if (isunderstood) Text("Awesome"),
           ],
         ),
       ),
