@@ -4,7 +4,7 @@ class UIUpdatesDemo extends StatefulWidget {
   UIUpdatesDemo({super.key});
   @override
   StatefulElement createElement() {
-    // TODO: implement createElement
+    print('UIUpdateDemo BUILD Called');
     return super.createElement();
   }
 
@@ -17,6 +17,7 @@ class _UIUpdateDemo extends State<UIUpdatesDemo> {
   var isunderstood = false;
   @override
   Widget build(BuildContext context) {
+    print('UIUpdateDemo BUILD Called');
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Center(
