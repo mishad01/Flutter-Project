@@ -1,5 +1,3 @@
-import 'dart:js_util';
-
 import 'package:flutter/material.dart';
 import 'package:todo_test/Key/checkable_todo_item.dart';
 
@@ -25,16 +23,28 @@ class _KeysState extends State<Keys> {
   var _order = 'asc';
   final _todos = [
     const Todo(
-      'Learn Flutter',
+      'Final Syllabus',
       Priority.urgent,
     ),
     const Todo(
-      'Practice Flutter',
+      'Practice Problem Solving',
       Priority.normal,
     ),
     const Todo(
-      'Explore other courses',
+      'Explore courses',
       Priority.low,
+    ),
+    const Todo(
+      'Note Lectures',
+      Priority.low,
+    ),
+    const Todo(
+      'Take Medicines',
+      Priority.normal,
+    ),
+    const Todo(
+      'Collect All Notes',
+      Priority.urgent,
     ),
   ];
 
@@ -73,8 +83,8 @@ class _KeysState extends State<Keys> {
               // for (final todo in _orderedTodos) TodoItem(todo.text, todo.priority),
               for (final todo in _orderedTodos)
                 CheckableTodoItem(
-                  //key: ValueKey(todo.text),
-                  key: ObjectKey(todo.text),
+                  key: ValueKey(todo.text),
+                  //key: ObjectKey(todo.text),
                   todo.text,
                   todo.priority,
                 ),
