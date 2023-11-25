@@ -1,49 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:todo_test/Key/todo.dart';
+import 'package:todo_test/Key/checkable_todo_item.dart';
+
+//import 'package:todo_test/key/todo.dart';
 
 class Todo {
-  Todo(this.text, this.priority);
-  String text;
-  Priority priority;
+  const Todo(this.text, this.priority);
+
+  final String text;
+  final Priority priority;
 }
 
-class keys extends StatefulWidget {
+class Keys extends StatefulWidget {
+  const Keys({super.key});
+
   @override
-  _keys createState() {
-    return _keys();
+  State<Keys> createState() {
+    return _KeysState();
   }
 }
 
-class _keys extends State {
-  var order = 'asc';
-  final _todo = [
-    Todo('Learing Flutter', Priority.urgent),
-    Todo('Practice Flutter', Priority.normal),
-    Todo('Explore other course', Priority.low),
+class _KeysState extends State<Keys> {
+  var _order = 'asc';
+  final _todos = [
+    const Todo(
+      'Learn Flutter',
+      Priority.urgent,
+    ),
+    const Todo(
+      'Practice Flutter',
+      Priority.normal,
+    ),
+    const Todo(
+      'Explore other courses',
+      Priority.low,
+    ),
   ];
 
-  List<Todo> get orderedTodos {
-    // Create a copy of the _todos list
-    final sortedTodos = List.of(_todo);
-
-    // Sort the copy of the todos list based on the comparison function
+  List<Todo> get _orderedTodos {
+    final sortedTodos = List.of(_todos);
     sortedTodos.sort((a, b) {
-      // Compare the text of todo 'a' with the text of todo 'b'
       final bComesAfterA = a.text.compareTo(b.text);
-
-      // Determine the sorting order (ascending or descending) and return the result accordingly
-      return order == 'asc' ? bComesAfterA : -bComesAfterA;
+      return _order == 'asc' ? bComesAfterA : -bComesAfterA;
     });
-
-    // Return the sorted list of todos
     return sortedTodos;
   }
 
-  void changeOrder() {
-    // Update the sorting order (_order) when this function is called
+  void _changeOrder() {
     setState(() {
-      // If the current order is 'asc', change it to 'desc'; otherwise, change it to 'asc'
-      order = order == 'asc' ? 'desc' : 'asc';
+      _order = _order == 'asc' ? 'desc' : 'asc';
     });
   }
 
@@ -52,11 +56,25 @@ class _keys extends State {
     return Column(
       children: [
         Align(
+          alignment: Alignment.centerRight,
           child: TextButton.icon(
-            onPressed: changeOrder,
+            onPressed: _changeOrder,
             icon: Icon(
-                order == 'asc' ? Icons.arrow_downward : Icons.arrow_upward),
-            label: Text('Sort ${order == 'asc' ? 'Descending' : 'Ascending'}'),
+              _order == 'asc' ? Icons.arrow_downward : Icons.arrow_upward,
+            ),
+            label: Text('Sort ${_order == 'asc' ? 'Descending' : 'Ascending'}'),
+          ),
+        ),
+        Expanded(
+          child: Column(
+            children: [
+              // for (final todo in _orderedTodos) TodoItem(todo.text, todo.priority),
+              for (final todo in _orderedTodos)
+                CheckableTodoItem(
+                  todo.text,
+                  todo.priority,
+                ),
+            ],
           ),
         ),
       ],

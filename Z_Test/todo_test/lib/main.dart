@@ -17,7 +17,7 @@ class App extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Flutter Internals'),
         ),
-        body: keys(),
+        body: Keys(),
       ),
     );
   }

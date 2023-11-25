@@ -9,20 +9,23 @@ class TodoItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var icon = Icons.low_priority;
-    if (icon == Priority.urgent) {
+    if (priority == Priority.urgent) {
       icon = Icons.notifications_active;
     }
-    if (icon == Priority.normal) {
+    if (priority == Priority.normal) {
       icon = Icons.list;
     }
-    return Row(
-      children: [
-        Icon(icon),
-        SizedBox(
-          width: 12,
-        ),
-        Text(text),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          Icon(icon),
+          SizedBox(
+            width: 12,
+          ),
+          Text(text),
+        ],
+      ),
     );
   }
 }
