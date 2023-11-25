@@ -40,7 +40,9 @@ class _keys extends State {
   }
 
   void changeOrder() {
+    // Update the sorting order (_order) when this function is called
     setState(() {
+      // If the current order is 'asc', change it to 'desc'; otherwise, change it to 'asc'
       order = order == 'asc' ? 'desc' : 'asc';
     });
   }
@@ -49,11 +51,13 @@ class _keys extends State {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextButton.icon(
-          onPressed: changeOrder,
-          icon:
-              Icon(order == 'asc' ? Icons.arrow_downward : Icons.arrow_upward),
-          label: Text('Sort ${order == 'asc' ? 'Descending' : 'Ascending'}'),
+        Align(
+          child: TextButton.icon(
+            onPressed: changeOrder,
+            icon: Icon(
+                order == 'asc' ? Icons.arrow_downward : Icons.arrow_upward),
+            label: Text('Sort ${order == 'asc' ? 'Descending' : 'Ascending'}'),
+          ),
         ),
       ],
     );
