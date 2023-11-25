@@ -9,7 +9,7 @@ class Todo {
 
 class keys extends StatefulWidget {
   @override
-  State<keys> createState() {
+  _keys createState() {
     return _keys();
   }
 }
@@ -48,7 +48,14 @@ class _keys extends State {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [],
+      children: [
+        TextButton.icon(
+          onPressed: changeOrder,
+          icon:
+              Icon(order == 'asc' ? Icons.arrow_downward : Icons.arrow_upward),
+          label: Text('Sort ${order == 'asc' ? 'Descending' : 'Ascending'}'),
+        ),
+      ],
     );
   }
 }
