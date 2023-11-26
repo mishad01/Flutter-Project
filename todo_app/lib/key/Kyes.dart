@@ -46,7 +46,7 @@ class _KeysState extends State<Keys> {
 
   void _changeOrder() {
     setState(() {
-      _order = _order == 'asc' ? 'desc';
+      _order = _order == 'asc' ? 'desc' : 'asc';
     });
   }
 
