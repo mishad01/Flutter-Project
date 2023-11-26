@@ -11,10 +11,17 @@ class questionScreen extends StatefulWidget {
 class _questionScreen extends State<questionScreen> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text("Hello"),
-      ],
+    return SizedBox(
+      width: double.infinity,
+      child: Container(
+        margin: EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Hello"),
+          ],
+        ),
+      ),
     );
   }
 }
