@@ -12,31 +12,37 @@ class questionScreen extends StatefulWidget {
 }
 
 class _questionScreen extends State<questionScreen> {
+  var currentQuestionIndex = 0;
+  void answerQuestion() {
+    setState(() {
+      currentQuestionIndex++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final currentQuestion = questions[0];
+    final currentQuestion = questions[currentQuestionIndex];
     return SizedBox(
       width: double.infinity,
       child: Container(
-        margin: EdgeInsets.all(20),
+        margin: EdgeInsets.all(40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
               currentQuestion.question,
               style: TextStyle(color: Colors.white),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(
               height: 10,
             ),
-            ...currentQuestion.answer.map(
+            ...currentQuestion.getShuffledAnswer().map(
               (answer) {
-                return answerButton(text: answer, onTap: () {});
+                return answerButton(text: answer, onTap: answerQuestion);
               },
             ),
-            // ElevatedButton(
-            //     onPressed: () {}, child: Text(currentQuestion.answer[0])),
-            // ElevatedButton(onPressed: () {}, child: Text("Answer2")),
           ],
         ),
       ),
