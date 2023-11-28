@@ -20,8 +20,8 @@ class _resultScreen extends State {
           children: [
             Text(
               "Your Answerd this number of Question out of this",
-              // style:
-              //     TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
             // const SizedBox(
             //   height: 10,
