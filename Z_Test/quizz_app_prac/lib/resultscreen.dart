@@ -23,9 +23,9 @@ class _resultScreen extends State {
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
-            // const SizedBox(
-            //   height: 10,
-            // ),
+            const SizedBox(
+              height: 10,
+            ),
             // TextButton.icon(
             //   onPressed: () {},
             //   icon: Icon(Icons.rotate_right),
