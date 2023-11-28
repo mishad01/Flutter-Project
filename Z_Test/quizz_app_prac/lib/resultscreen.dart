@@ -26,12 +26,12 @@ class _resultScreen extends State {
             const SizedBox(
               height: 10,
             ),
-            // TextButton.icon(
-            //   onPressed: () {},
-            //   icon: Icon(Icons.rotate_right),
-            //   style: TextButton.styleFrom(foregroundColor: Colors.white),
-            //   label: Text("Restart Quizz"),
-            // ),
+            TextButton.icon(
+              onPressed: () {},
+              icon: Icon(Icons.rotate_right),
+              // style: TextButton.styleFrom(foregroundColor: Colors.white),
+              label: Text("Restart Quizz"),
+            ),
           ],
         ),
       ),
