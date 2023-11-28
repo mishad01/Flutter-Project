@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 
-class resultScreen extends StatefulWidget {
-  resultScreen({super.key});
-  @override
-  State<StatefulWidget> createState() {
-    return _resultScreen();
-  }
-}
+class resultScreen extends StatelessWidget {
+  resultScreen({super.key, required this.chosenAnswers});
 
-class _resultScreen extends State {
+  final List<String> chosenAnswers;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
