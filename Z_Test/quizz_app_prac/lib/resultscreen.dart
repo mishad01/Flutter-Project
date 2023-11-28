@@ -29,7 +29,7 @@ class _resultScreen extends State {
             TextButton.icon(
               onPressed: () {},
               icon: Icon(Icons.rotate_right),
-              // style: TextButton.styleFrom(foregroundColor: Colors.white),
+              style: TextButton.styleFrom(foregroundColor: Colors.white),
               label: Text("Restart Quizz"),
             ),
           ],
