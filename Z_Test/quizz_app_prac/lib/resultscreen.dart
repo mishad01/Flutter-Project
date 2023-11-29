@@ -1,17 +1,32 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:quizz_app_prac/Data/questions.dart';
 
 class resultScreen extends StatelessWidget {
   resultScreen({super.key, required this.chosenAnswers});
 
   final List<String> chosenAnswers;
 
-  // List<Map<String, Object>> getSummaryData() {
-  //   final summary = [];
-  // }
+  List<Map<String, Object>> getSummaryData() {
+    List<Map<String, Object>> summary = [];
+    for (var i = 0; i < chosenAnswers.length; i++) {
+      summary.add({
+        'question-index': i + 1,
+        'quesion': questions[i].question,
+        'correct-answer': questions[i].answer[0],
+        'user_answer': chosenAnswers[i],
+      });
+    }
+    return summary;
+  }
 
   @override
   Widget build(BuildContext context) {
+    final summaryData = getSummaryData();
+    final totalQuestion = questions.length;
+    // final numOfcurrentAnswer = summaryData.where((element) {
+    //   return
+    // })
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -20,7 +35,7 @@ class resultScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Your Answerd this number of Question out of this",
+              "Your Answerd this number of Question out of $totalQuestion",
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
