@@ -26,11 +26,11 @@ class questionSummary extends StatelessWidget {
                       color: Color.fromARGB(255, 217, 72, 253),
                     ),
                   ),
-                  // Text(
-                  //   (data['correct-answer'] as String),
-                  //   style:
-                  //       const TextStyle(color: Color.fromARGB(255, 0, 218, 36)),
-                  // ),
+                  Text(
+                    (data['correct-answer'] as String),
+                    style:
+                        const TextStyle(color: Color.fromARGB(255, 0, 218, 36)),
+                  ),
                   // const SizedBox(
                   //   height: 15,
                   // ),
