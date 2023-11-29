@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class resultScreen extends StatelessWidget {
@@ -5,7 +6,9 @@ class resultScreen extends StatelessWidget {
 
   final List<String> chosenAnswers;
 
-  List<Map<String, Object>> getSummaryData() {}
+  // List<Map<String, Object>> getSummaryData() {
+  //   final summary = [];
+  // }
 
   @override
   Widget build(BuildContext context) {
