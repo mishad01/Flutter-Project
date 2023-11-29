@@ -31,9 +31,9 @@ class questionSummary extends StatelessWidget {
                     style:
                         const TextStyle(color: Color.fromARGB(255, 0, 218, 36)),
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
+                  // const SizedBox(
+                  //   height: 15,
+                  // ),
                 ],
               ),
             )
