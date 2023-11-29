@@ -20,12 +20,12 @@ class questionSummary extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
-                  Text(
-                    (data['user-answer'] as String),
-                    style: const TextStyle(
-                      color: Color.fromARGB(255, 217, 72, 253),
-                    ),
-                  ),
+                  // Text(
+                  //   (data['user-answer'] as String),
+                  //   style: const TextStyle(
+                  //     color: Color.fromARGB(255, 217, 72, 253),
+                  //   ),
+                  // ),
                   // Text(
                   //   (data['correct-answer'] as String),
                   //   style:
