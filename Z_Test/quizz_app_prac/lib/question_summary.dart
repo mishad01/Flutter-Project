@@ -13,16 +13,34 @@ class questionSummary extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: summaryData.map((data) {
+            final bool isCorrect;
+            isCorrect = data['user_answer'] == data['correct_answer'];
             return Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(((data['question-index'] as int) + 1).toString()),
+                Container(
+                    width: 30,
+                    height: 32,
+                    alignment: Alignment.center,
+                    padding:
+                        EdgeInsets.all(8.0), // Adjust the padding as needed
+                    decoration: BoxDecoration(
+                      color: isCorrect
+                          ? const Color.fromARGB(255, 85, 245, 91)
+                          : Color.fromARGB(
+                              255, 255, 69, 140), // Background color
+                      borderRadius: BorderRadius.circular(
+                          300.0), // Adjust the radius for roundness
+                    ),
+                    child:
+                        Text(((data['question-index'] as int) + 1).toString())),
                 Expanded(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
                         data['questions'] as String,
-                        textAlign: TextAlign.center,
+                        //textAlign: TextAlign.center,
                       ),
                       const SizedBox(
                         height: 5,

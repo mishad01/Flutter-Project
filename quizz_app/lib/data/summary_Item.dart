@@ -16,19 +16,20 @@ class summaryItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                  width: 30,
-                  height: 32,
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.all(8.0), // Adjust the padding as needed
-                  decoration: BoxDecoration(
-                    color: isCorrect
-                        ? const Color.fromARGB(255, 85, 245, 91)
-                        : Color.fromARGB(255, 255, 69, 140), // Background color
-                    borderRadius: BorderRadius.circular(
-                        300.0), // Adjust the radius for roundness
-                  ),
-                  child: Text(
-                      (((itemData['question_index'] as int) + 1).toString()))),
+                width: 30,
+                height: 32,
+                alignment: Alignment.center,
+                padding: EdgeInsets.all(8.0), // Adjust the padding as needed
+                decoration: BoxDecoration(
+                  color: isCorrect
+                      ? const Color.fromARGB(255, 85, 245, 91)
+                      : Color.fromARGB(255, 255, 69, 140), // Background color
+                  borderRadius: BorderRadius.circular(
+                      300.0), // Adjust the radius for roundness
+                ),
+                child: Text(
+                    (((itemData['question_index'] as int) + 1).toString())),
+              ),
               const SizedBox(
                 width: 40,
               ),
