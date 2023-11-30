@@ -36,7 +36,7 @@ class resultScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Your Answerd this number of Question out of $totalQuestion",
+              "Your Answerd $numOfcurrentAnswer out of $totalQuestion Question",
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
