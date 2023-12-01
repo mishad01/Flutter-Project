@@ -3,7 +3,9 @@ import 'package:quiz_app_self_prac/answerButton.dart';
 import 'package:quiz_app_self_prac/data/questions.dart';
 
 class questionScreen extends StatefulWidget {
-  questionScreen({super.key});
+  questionScreen({required this.onSelectedAnswer, super.key});
+
+  void Function(String textt) onSelectedAnswer;
   @override
   State<StatefulWidget> createState() {
     return _questionScreen();
@@ -12,24 +14,43 @@ class questionScreen extends StatefulWidget {
 
 class _questionScreen extends State<questionScreen> {
   var questionIndex = 0;
-  final currentquestion = questions[0];
+
+  void answeredQuestion(String text) {
+    widget.onSelectedAnswer(text);
+    setState(() {
+      questionIndex++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            currentquestion.question,
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          ...currentquestion.Answer.map((answer) {
-            return answerButton(answerText: answer, onTap: () {});
-          }),
-        ],
+    final currentquestion = questions[questionIndex];
+    return SizedBox(
+      width: double.infinity,
+      child: Container(
+        margin: EdgeInsets.all(15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              currentquestion.question,
+              style: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ...currentquestion.Answer.map((answer) {
+              return answerButton(
+                  answerText: answer,
+                  onTap: () {
+                    answeredQuestion(answer);
+                  });
+            }),
+          ],
+        ),
       ),
     );
   }
