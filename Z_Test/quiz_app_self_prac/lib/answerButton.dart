@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class answerButton extends StatelessWidget {
-  answerButton({super.key});
+  answerButton({required this.answerText, required this.onTap, super.key});
   void Function() onTap;
+  String answerText;
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [ElevatedButton(onPressed: onPressed, child: child)],
+      children: [ElevatedButton(onPressed: onTap, child: Text(answerText))],
     );
   }
 }
