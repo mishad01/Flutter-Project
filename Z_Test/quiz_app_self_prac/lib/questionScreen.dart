@@ -29,7 +29,6 @@ class _questionScreen extends State<questionScreen> {
           ...currentquestion.Answer.map((answer) {
             return answerButton(answerText: answer, onTap: () {});
           }),
-          answerButton(answerText: currentquestion.Answer[0], onTap: () {}),
         ],
       ),
     );
