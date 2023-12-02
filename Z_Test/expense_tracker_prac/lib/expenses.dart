@@ -36,7 +36,9 @@ class _expenses extends State<expenses> {
           SizedBox(
             height: 10,
           ),
-          expenseList(expenses: registeredExpenses),
+          Expanded(
+            child: expenseList(expenses: registeredExpenses),
+          ),
         ],
       ),
     );
