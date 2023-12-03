@@ -11,12 +11,12 @@ class expenses extends StatefulWidget {
 
 class _expenses extends State<expenses> {
   final List<expenseStruc> registeredExpenses = [
-    expenseStruc(
-      title: "Flutter Course",
-      amount: 19.99,
-      date: DateTime.now(),
-      category: Category.work,
-    ),
+    // expenseStruc(
+    //   title: "Flutter Course",
+    //   amount: 19.99,
+    //   date: DateTime.now(),
+    //   category: Category.work,
+    // ),
     expenseStruc(
       title: "Cinema",
       amount: 9.99,
