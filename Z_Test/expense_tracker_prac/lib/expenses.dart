@@ -17,12 +17,12 @@ class _expenses extends State<expenses> {
     //   date: DateTime.now(),
     //   category: Category.work,
     // ),
-    expenseStruc(
-      title: "Cinema",
-      amount: 9.99,
-      date: DateTime.now(),
-      category: Category.leisure,
-    )
+    // expenseStruc(
+    //   title: "Cinema",
+    //   amount: 9.99,
+    //   date: DateTime.now(),
+    //   category: Category.leisure,
+    // )
   ];
   @override
   Widget build(BuildContext context) {
