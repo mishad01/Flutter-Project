@@ -5,7 +5,7 @@ class CategorieScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: 
-    Text("test 6"),
+    Text("test 7"),
     ,);
   }
 }
