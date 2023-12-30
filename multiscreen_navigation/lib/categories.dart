@@ -16,7 +16,7 @@ class categoriesScreen extends StatelessWidget {
           mainAxisSpacing: 20,
         ), // "gridDelegate:"" controls the layout of grid view item
         //"SliverGridDelegateWithFixedCrossAxisCount" It means that, I can in the end, set the number of coloumns
-        children: [
+        children: const [
           Text(
             "1",
             style: TextStyle(color: Colors.white),
