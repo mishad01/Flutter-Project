@@ -1,4 +1,7 @@
+//import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:multiscreen_navigation/data/dummy_data.dart';
+import 'package:multiscreen_navigation/widget/catagory_grid_item.dart';
 
 class categoriesScreen extends StatelessWidget {
   categoriesScreen({super.key});
@@ -16,27 +19,10 @@ class categoriesScreen extends StatelessWidget {
           mainAxisSpacing: 20,
         ), // "gridDelegate:"" controls the layout of grid view item
         //"SliverGridDelegateWithFixedCrossAxisCount" It means that, I can in the end, set the number of coloumns
-        children: const [
-          Text(
-            "1",
-            style: TextStyle(color: Colors.white),
-          ),
-          Text(
-            "2",
-            style: TextStyle(color: Colors.white),
-          ),
-          Text(
-            "3",
-            style: TextStyle(color: Colors.white),
-          ),
-          Text(
-            "4",
-            style: TextStyle(color: Colors.white),
-          ),
-          Text(
-            "5",
-            style: TextStyle(color: Colors.white),
-          )
+        children: [
+          //availableCategories.map((category)=>CategoryGridItem(category : category)).tolist())
+          for (final category in availableCategories)
+            categoryGridItem(category: category)
         ],
       ),
     );
