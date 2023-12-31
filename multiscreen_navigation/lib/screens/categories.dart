@@ -1,13 +1,20 @@
 //import 'package:flutter/foundation.dart';
+//import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:multiscreen_navigation/data/dummy_data.dart';
+import 'package:multiscreen_navigation/models/catagoryModel.dart';
 import 'package:multiscreen_navigation/screens/meals.dart';
 import 'package:multiscreen_navigation/widget/catagory_grid_item.dart';
 
 class categoriesScreen extends StatelessWidget {
   categoriesScreen({super.key});
 
-  void _selectCategory(BuildContext context) {
+  void _selectCategory(BuildContext context, Category category) {
+    //here where essentially returns a new iterable /basically what it does is a list that only contains the item that match a certain condition
+    final filteredMeals = dummyMeals
+        .where((meal) => meal.categories.contains(category.id))
+        .toList();
+
     //MaterialPageRoute(builder: builder) it gives us route that can bepushed to stack
     Navigator.push(
       context,
