@@ -3,14 +3,16 @@ import 'package:multiscreen_navigation/main.dart';
 import 'package:multiscreen_navigation/models/catagoryModel.dart';
 
 class categoryGridItem extends StatelessWidget {
-  const categoryGridItem({super.key, required this.category});
+  const categoryGridItem(
+      {super.key, required this.category, required this.onSelectCategory});
 
   final Category category;
+  final void Function() onSelectCategory;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onSelectCategory,
       splashColor: Theme.of(context).primaryColor,
       borderRadius: BorderRadius.circular(16), //TAP EFFECT
       child: Container(
