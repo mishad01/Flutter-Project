@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:multiscreen_and_navigation_prac/data/dummyData.dart';
+import 'package:multiscreen_and_navigation_prac/widget/Category_Grid_Item.dart';
 
 class categoriesScreen extends StatelessWidget {
   const categoriesScreen({super.key});
@@ -9,39 +11,20 @@ class categoriesScreen extends StatelessWidget {
 
       // Create a GridView widget, which is a scrollable grid of widgets.
       body: GridView(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount:
-                2, // Set the number of items in each row (cross-axis) to 2.
-            childAspectRatio: 3 /
-                2, // Define the width-to-height ratio of each grid item to be 3:2.
-            crossAxisSpacing:
-                20, // Add spacing (20 pixels) between items in the same row.
-            mainAxisSpacing:
-                20 // Add spacing (20 pixels) between rows in the grid.
-            ),
-        children: [
-          Text(
-            "1",
-            style: TextStyle(color: Colors.white),
-          ),
-          Text(
-            "2",
-            style: TextStyle(color: Colors.white),
-          ),
-          Text(
-            "3",
-            style: TextStyle(color: Colors.white),
-          ),
-          Text(
-            "4",
-            style: TextStyle(color: Colors.white),
-          ),
-          Text(
-            "5",
-            style: TextStyle(color: Colors.white),
-          )
-        ],
-      ),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              // Set the number of items in each row (cross-axis) to 2
+              // Define the width-to-height ratio of each grid item to be 3:2
+              // Add spacing (20 pixels) between items in the same row
+              // Add spacing (20 pixels) between rows in the grid
+              crossAxisCount: 2,
+              childAspectRatio: 3 / 2,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20),
+          children: [
+            // availableCategories.map((category) => CategoryGridItem(category: category)).toList()
+            for (final category in availableCategories)
+              CategoryGridItem(category: category),
+          ]),
     );
   }
 }
