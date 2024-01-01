@@ -20,8 +20,8 @@ class categoriesScreen extends StatelessWidget {
       context,
       MaterialPageRoute(
         builder: (ctx) => MealsScreen(
-          title: "Some Title",
-          meals: [],
+          title: category.title,
+          meals: filteredMeals,
         ),
       ),
     ); //Navigation basically works with screen stack
@@ -48,7 +48,7 @@ class categoriesScreen extends StatelessWidget {
             categoryGridItem(
               category: category,
               onSelectCategory: () {
-                _selectCategory(context);
+                _selectCategory(context, category);
               },
             )
         ],
