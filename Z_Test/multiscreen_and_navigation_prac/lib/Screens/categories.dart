@@ -6,13 +6,33 @@ import 'package:multiscreen_and_navigation_prac/widget/Category_Grid_Item.dart';
 class categoriesScreen extends StatelessWidget {
   const categoriesScreen({super.key});
 
+  // void _selectCategory(BuildContext context) {
+  //   //Here context is not availbale globally that's why we have to use "BuildContext context". So that we can pass context as a value to push
+  //   Navigator.push(
+  //     context,
+  //     MaterialPageRoute(
+  //       builder: (context) => MealsScreen(title: "Some title", meals: []),
+  //     ),
+  //   );
+  // }
+  // This is a method named '_selectCategory' that takes a 'BuildContext' as a parameter.
+
   void _selectCategory(BuildContext context) {
-    //Here context is not availbale globally that's why we have to use "BuildContext context". So that we can pass context as a value to push
+    // Using the 'Navigator' to navigate to a new screen.
     Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => MealsScreen(title: "Some title", meals: []),
-        ));
+      // The 'context' is necessary for navigation, indicating the current build context.
+      context,
+      // Creating a new MaterialPageRoute for the navigation.
+      MaterialPageRoute(
+        // The 'builder' property is a function that returns the widget for the new screen.
+        builder: (context) => MealsScreen(
+          // Creating an instance of the 'MealsScreen' widget with specific parameters.
+          title:
+              "Some title", // Setting the title property of the 'MealsScreen'.
+          meals: [], // Setting the meals property of the 'MealsScreen'.
+        ),
+      ),
+    );
   }
 
   @override
@@ -35,7 +55,11 @@ class categoriesScreen extends StatelessWidget {
           children: [
             // availableCategories.map((category) => CategoryGridItem(category: category)).toList()
             for (final category in availableCategories)
-              CategoryGridItem(category: category),
+              CategoryGridItem(
+                  category: category,
+                  onSelectCategory: () {
+                    _selectCategory(context);
+                  }),
           ]),
     );
   }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:multiscreen_and_navigation_prac/Screens/categories.dart';
-import 'package:multiscreen_and_navigation_prac/Screens/meals.dart';
-import 'package:multiscreen_and_navigation_prac/data/dummyData.dart';
 
 final theme = ThemeData(
   useMaterial3: true,
@@ -22,7 +20,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: theme,
-      home: MealsScreen(title: "check", meals: dummyMeals),
+      home: categoriesScreen(),
     );
   }
 }
