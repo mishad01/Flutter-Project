@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:multiscreen_and_navigation_prac/Screens/meals.dart';
 import 'package:multiscreen_and_navigation_prac/data/dummyData.dart';
 import 'package:multiscreen_and_navigation_prac/widget/Category_Grid_Item.dart';
 
 class categoriesScreen extends StatelessWidget {
   const categoriesScreen({super.key});
+
+  void _selectCategory(BuildContext context) {
+    //Here context is not availbale globally that's why we have to use "BuildContext context". So that we can pass context as a value to push
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MealsScreen(title: "Some title", meals: []),
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
