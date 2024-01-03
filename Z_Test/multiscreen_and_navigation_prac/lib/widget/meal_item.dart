@@ -87,7 +87,7 @@ class MealItem extends StatelessWidget {
                           ),
                           MealIeamTrait(
                             icon: Icons.work,
-                            label: '$ComplexityText  min',
+                            label: ComplexityText,
                           ),
                           const SizedBox(
                             width: 12,
