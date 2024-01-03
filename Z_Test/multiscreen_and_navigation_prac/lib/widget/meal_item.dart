@@ -6,10 +6,14 @@ import 'package:multiscreen_and_navigation_prac/widget/meal_Item_trait.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealItem extends StatelessWidget {
-  const MealItem({super.key, required this.meal, required this.onSelectMeal});
+  const MealItem({
+    super.key,
+    required this.meal,
+    required this.onSelectMeal,
+  });
 
   final Meal meal;
-  final void Function(BuildContext context, Meal meal) onSelectMeal;
+  final void Function(Meal meal) onSelectMeal;
 
   String get ComplexityText {
     return meal.complexity.name[0].toUpperCase() +
@@ -59,7 +63,7 @@ class MealItem extends StatelessWidget {
                     children: [
                       Text(
                         meal.title,
-                        maxLines: 2,
+                        maxLines: 3,
                         textAlign: TextAlign.center,
                         softWrap: true,
                         // Passing Data to the Target Screen

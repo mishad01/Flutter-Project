@@ -1,6 +1,6 @@
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:multiscreen_and_navigation_prac/Screens/meals.dart';
+import 'package:multiscreen_and_navigation_prac/Screens/mealsScreen.dart';
 import 'package:multiscreen_and_navigation_prac/data/dummyData.dart';
 import 'package:multiscreen_and_navigation_prac/model/categoryModel.dart';
 import 'package:multiscreen_and_navigation_prac/widget/Category_Grid_Item.dart';
