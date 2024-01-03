@@ -32,11 +32,20 @@ class CategoryGridItem extends StatelessWidget {
             end: Alignment.topRight,
           ),
         ),
-        child: Text(
-          category.title,
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                color: Theme.of(context).colorScheme.onBackground,
-              ),
+        child: Column(
+          children: [
+            Text(
+              category.title,
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.onBackground,
+                  ),
+            ),
+            Icon(
+              category.icon,
+              size: 40, // Set the size of the icon as per your requirement
+              color: Theme.of(context).colorScheme.onBackground,
+            ),
+          ],
         ),
       ),
     );

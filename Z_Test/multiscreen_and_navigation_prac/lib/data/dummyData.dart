@@ -7,52 +7,53 @@ const availableCategories = [
     id: 'c1',
     title: 'Italian',
     color: Colors.purple,
+    icon: Icons.local_pizza_outlined,
   ),
   Category(
     id: 'c2',
     title: 'Quick & Easy',
     color: Colors.red,
+    icon: Icons.restaurant,
   ),
   Category(
     id: 'c3',
     title: 'Hamburgers',
     color: Colors.orange,
+    icon: Icons.lunch_dining,
   ),
   Category(
-    id: 'c4',
-    title: 'German',
-    color: Colors.amber,
-  ),
+      id: 'c4', title: 'German', color: Colors.amber, icon: Icons.food_bank),
   Category(
     id: 'c5',
-    title: 'Light & Lovely',
+    title: 'Light Lovely',
     color: Colors.blue,
+    icon: Icons.coffee,
   ),
   Category(
     id: 'c6',
     title: 'Exotic',
     color: Colors.green,
+    icon: Icons.public,
   ),
   Category(
     id: 'c7',
     title: 'Breakfast',
     color: Colors.lightBlue,
+    icon: Icons.free_breakfast,
   ),
   Category(
     id: 'c8',
     title: 'Asian',
     color: Colors.lightGreen,
+    icon: Icons.restaurant,
   ),
   Category(
     id: 'c9',
     title: 'French',
     color: Colors.pink,
+    icon: Icons.cake,
   ),
-  Category(
-    id: 'c10',
-    title: 'Summer',
-    color: Colors.teal,
-  ),
+  Category(id: 'c10', title: 'Summer', color: Colors.teal, icon: Icons.cake),
 ];
 const dummyMeals = [
   Meal(
