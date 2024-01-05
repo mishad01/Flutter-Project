@@ -129,7 +129,7 @@ class _NewExpanse extends State<NewExpense> {
                   //Spacer(),
                   TextButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        Navigator.pop(contextt);
                       },
                       child: const Text('Cancel')),
                   ElevatedButton(
