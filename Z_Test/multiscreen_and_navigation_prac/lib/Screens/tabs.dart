@@ -37,11 +37,10 @@ class _TabScreen extends State<TabsScreen> {
       bottomNavigationBar: BottomNavigationBar(
         onTap: selectPage,
         currentIndex: selectedPageIndex,
-        items: [
-          const BottomNavigationBarItem(
+        items: const [
+          BottomNavigationBarItem(
               icon: Icon(Icons.set_meal), label: "Categories"),
-          const BottomNavigationBarItem(
-              icon: Icon(Icons.star), label: "Favourite")
+          BottomNavigationBarItem(icon: Icon(Icons.star), label: "Favourite")
         ],
       ),
     );
