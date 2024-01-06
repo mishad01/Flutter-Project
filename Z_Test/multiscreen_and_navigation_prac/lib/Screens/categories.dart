@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:multiscreen_and_navigation_prac/Screens/mealsScreen.dart';
 import 'package:multiscreen_and_navigation_prac/data/dummyData.dart';
 import 'package:multiscreen_and_navigation_prac/model/categoryModel.dart';
+import 'package:multiscreen_and_navigation_prac/model/mealModel.dart';
 import 'package:multiscreen_and_navigation_prac/widget/Category_Grid_Item.dart';
 
 class categoriesScreen extends StatelessWidget {
-  const categoriesScreen({super.key});
+  const categoriesScreen({
+    super.key,
+    required this.onToggleFavourite,
+  });
 
   //This is a method named '_selectCategory' that takes a 'BuildContext' as a parameter.
   // void _selectCategory(BuildContext context) {
@@ -26,6 +30,7 @@ class categoriesScreen extends StatelessWidget {
   //     ),
   //   );
   // }
+  final void Function(Meal meal) onToggleFavourite;
 
   void _selectCategory(BuildContext context, Category category) {
     final filteredMeals = dummyMeals
@@ -38,6 +43,7 @@ class categoriesScreen extends StatelessWidget {
         builder: (context) => MealsScreen(
           title: category.title,
           meals: filteredMeals,
+          onToggleFavourite: onToggleFavourite,
         ),
       ),
     );
