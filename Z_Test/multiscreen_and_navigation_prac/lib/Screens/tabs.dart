@@ -25,6 +25,13 @@ class _TabScreen extends State<TabsScreen> {
     );
   }
 
+  void setScreen(String identifier) {
+    if (identifier == 'filters') {
+    } else {
+      Navigator.of(context).pop();
+    }
+  }
+
   void toggleMealFavouriteStatus(Meal meal) {
     final bool isExisting = favouriteMeals.contains(meal);
 
@@ -64,7 +71,7 @@ class _TabScreen extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(activePageTitile),
       ),
-      drawer: MainDrawer(),
+      drawer: MainDrawer(onSelectScreen: setScreen),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         onTap: selectPage,
