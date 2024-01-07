@@ -61,7 +61,7 @@ class MainDrawer extends StatelessWidget {
                   ),
             ),
             onTap: () {
-              onSelectScreen('melas');
+              onSelectScreen('meals');
             },
           ),
           ListTile(

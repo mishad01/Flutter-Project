@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multiscreen_and_navigation_prac/Screens/categories.dart';
+import 'package:multiscreen_and_navigation_prac/Screens/filters.dart';
 import 'package:multiscreen_and_navigation_prac/Screens/mealsScreen.dart';
 import 'package:multiscreen_and_navigation_prac/model/mealModel.dart';
 import 'package:multiscreen_and_navigation_prac/widget/main_drawer.dart';
@@ -25,8 +26,18 @@ class _TabScreen extends State<TabsScreen> {
     );
   }
 
+  void selectPage(int index) {
+    setState(() {
+      selectedPageIndex = index;
+    });
+  }
+
   void setScreen(String identifier) {
     if (identifier == 'filters') {
+      //Navigator.of(context).pop();
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => const FilterScreen(),
+      ));
     } else {
       Navigator.of(context).pop();
     }
@@ -44,12 +55,6 @@ class _TabScreen extends State<TabsScreen> {
       favouriteMeals.add(meal);
       showInfoMessage("Marked as favourite");
     }
-  }
-
-  void selectPage(int index) {
-    setState(() {
-      selectedPageIndex = index;
-    });
   }
 
   @override

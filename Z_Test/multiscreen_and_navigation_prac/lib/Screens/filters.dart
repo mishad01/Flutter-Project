@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:multiscreen_and_navigation_prac/Screens/tabs.dart';
+import 'package:multiscreen_and_navigation_prac/widget/main_drawer.dart';
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({super.key});
@@ -16,6 +18,18 @@ class _FilterScreenState extends State<FilterScreen> {
       appBar: AppBar(
         title: const Text("Your Filters"),
       ),
+      // drawer: MainDrawer(
+      //   onSelectScreen: (identifier) {
+      //     Navigator.of(context).pop();
+      //     if (identifier == "meals") {
+      //       Navigator.of(context).pushReplacement(
+      //         MaterialPageRoute(
+      //           builder: (context) => TabsScreen(),
+      //         ),
+      //       );
+      //     }
+      //   },
+      // ),
       body: Column(
         children: [
           SwitchListTile(
@@ -30,14 +44,14 @@ class _FilterScreenState extends State<FilterScreen> {
               style: Theme.of(context)
                   .textTheme
                   .titleLarge!
-                  .copyWith(color: Theme.of(context).colorScheme.background),
+                  .copyWith(color: Theme.of(context).colorScheme.onBackground),
             ),
             subtitle: Text(
               'Only include glutten-free meals',
               style: Theme.of(context)
                   .textTheme
                   .labelMedium!
-                  .copyWith(color: Theme.of(context).colorScheme.background),
+                  .copyWith(color: Theme.of(context).colorScheme.onBackground),
             ),
             activeColor: Theme.of(context).colorScheme.tertiary,
             contentPadding: const EdgeInsets.only(left: 34, right: 22),
