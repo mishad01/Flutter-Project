@@ -6,7 +6,7 @@ import 'package:multiscreen_and_navigation_prac/model/mealModel.dart';
 import 'package:multiscreen_and_navigation_prac/widget/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
-  TabsScreen({super.key});
+  const TabsScreen({super.key});
   @override
   State<TabsScreen> createState() {
     return _TabScreen();
@@ -35,7 +35,7 @@ class _TabScreen extends State<TabsScreen> {
   void setScreen(String identifier) {
     if (identifier == 'filters') {
       //Navigator.of(context).pop();
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
+      Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => const FilterScreen(),
       ));
     } else {
