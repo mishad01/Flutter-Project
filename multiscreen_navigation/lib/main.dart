@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:multiscreen_navigation/model/meals_Screen.dart';
+import 'package:multiscreen_navigation/data/dummy_data.dart';
+import 'package:multiscreen_navigation/screens/meals_Screen.dart';
 import 'package:multiscreen_navigation/screens/categories_Screen.dart';
 
 final theme = ThemeData(
@@ -20,7 +21,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: theme,
-      home: mealsScreen(title: "Test", meals: []),
+      home: categoriesScreen(),
     );
   }
 }
