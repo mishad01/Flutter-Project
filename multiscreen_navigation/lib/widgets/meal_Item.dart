@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+//import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multiscreen_navigation/model/mealModel.dart';
 import 'package:multiscreen_navigation/widgets/meal_item_trait.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -8,8 +8,11 @@ class mealIteam extends StatelessWidget {
   const mealIteam({
     super.key,
     required this.meal,
+    required this.onSelectMeal,
   });
   final Meal meal;
+  final void Function(Meal meal)
+      onSelectMeal; //It will be which I tapped as an input
 
   String get ComplexityText {
     return meal.complexity.name[0].toUpperCase() +
@@ -29,7 +32,9 @@ class mealIteam extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       elevation: 2,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          onSelectMeal(meal);
+        },
         child: Stack(children: [
           FadeInImage(
             placeholder: MemoryImage(kTransparentImage),
@@ -64,6 +69,7 @@ class mealIteam extends StatelessWidget {
                     height: 12,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       MealIeamTrait(
                         icon: Icons.schedule,
