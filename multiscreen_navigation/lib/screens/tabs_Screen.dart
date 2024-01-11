@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multiscreen_navigation/model/mealModel.dart';
 import 'package:multiscreen_navigation/screens/categories_Screen.dart';
 import 'package:multiscreen_navigation/screens/meals_Screen.dart';
 
@@ -12,6 +13,16 @@ class TabScreen extends StatefulWidget {
 
 class _TabScreenState extends State<TabScreen> {
   int _selectedPageIndex = 0;
+  final List<Meal> favouriteMeal = [];
+
+  void _toggleMealFvouriteStatus(Meal meal) {
+    final isExisting = favouriteMeal.contains(meal);
+    if (isExisting) {
+      favouriteMeal.remove(meal);
+    } else {
+      favouriteMeal.add(meal);
+    }
+  }
 
   void selectPage(int ind) {
     setState(() {
