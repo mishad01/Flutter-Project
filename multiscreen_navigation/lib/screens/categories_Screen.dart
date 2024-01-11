@@ -35,6 +35,7 @@ class categoriesScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: GridView(
+          padding: const EdgeInsets.all(24),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: 3 / 2,
