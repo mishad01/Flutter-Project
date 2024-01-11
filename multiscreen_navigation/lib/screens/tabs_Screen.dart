@@ -13,14 +13,14 @@ class TabScreen extends StatefulWidget {
 
 class _TabScreenState extends State<TabScreen> {
   int _selectedPageIndex = 0;
-  final List<Meal> favouriteMeal = [];
+  final List<Meal> _favouriteMeal = [];
 
   void _toggleMealFvouriteStatus(Meal meal) {
-    final isExisting = favouriteMeal.contains(meal);
+    final isExisting = _favouriteMeal.contains(meal);
     if (isExisting) {
-      favouriteMeal.remove(meal);
+      _favouriteMeal.remove(meal);
     } else {
-      favouriteMeal.add(meal);
+      _favouriteMeal.add(meal);
     }
   }
 
@@ -32,11 +32,16 @@ class _TabScreenState extends State<TabScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Widget activePage = categoriesScreen();
+    Widget activePage = categoriesScreen(
+      onToggleFavourite: _toggleMealFvouriteStatus,
+    );
     var activePageTitle = 'Categories';
 
     if (_selectedPageIndex == 1) {
-      activePage = mealsScreen(title: 'Fav', meals: []);
+      activePage = mealsScreen(
+        meals: _favouriteMeal,
+        onToggleFavourite: _toggleMealFvouriteStatus,
+      );
       activePageTitle = 'Your Favourite';
     }
     return Scaffold(

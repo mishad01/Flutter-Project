@@ -6,48 +6,48 @@ import 'package:multiscreen_navigation/widgets/meal_Item.dart';
 class mealsScreen extends StatelessWidget {
   const mealsScreen({
     super.key,
-    required this.title,
+    this.title,
     required this.meals,
+    required this.onToggleFavourite,
   });
 
-  final String title;
+  final String? title;
   final List<Meal> meals;
+  final void Function(Meal meal) onToggleFavourite;
 
   void selectMeal(BuildContext context, Meal meal) {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => mealDetailsScreen(meal: meal),
+      builder: (context) => mealDetailsScreen(
+        meal: meal,
+        onToggleFavourite: onToggleFavourite,
+      ),
     ));
   }
 
   @override
   Widget build(BuildContext context) {
-    Widget content = ListView.builder(
-        itemBuilder: (context, index) => Text(meals[index].title));
-
-    if (meals.isEmpty) {
-      content = Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Uh oh ... nothing heree!',
-              style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
-                  ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Text(
-              'Try selecting a different category!',
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
-                  ),
-            ),
-          ],
-        ),
-      );
-    }
+    Widget content = Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Uh oh ... nothing heree!',
+            style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                  color: Theme.of(context).colorScheme.onBackground,
+                ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          Text(
+            'Try selecting a different category!',
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  color: Theme.of(context).colorScheme.onBackground,
+                ),
+          ),
+        ],
+      ),
+    );
 
     if (meals.isNotEmpty) {
       content = ListView.builder(
@@ -60,8 +60,12 @@ class mealsScreen extends StatelessWidget {
         ),
       );
     }
+
+    if (title == null) {
+      return content;
+    }
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(title: Text(title!)),
       body: content,
     );
   }
