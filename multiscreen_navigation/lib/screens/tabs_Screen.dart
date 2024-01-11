@@ -21,10 +21,10 @@ class _TabScreenState extends State<TabScreen> {
       setState(() {
         _favouriteMeal.remove(meal);
       });
-      showInfoMessage("Meals is now longer a favourite");
+      showInfoMessage("Meals is now longer a favourite. ");
     } else {
       _favouriteMeal.add(meal);
-      showInfoMessage("Meals added to favourite");
+      showInfoMessage("Meals added to favourite.");
     }
   }
 
