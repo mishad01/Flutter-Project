@@ -4,7 +4,7 @@ import 'package:multiscreen_navigation/screens/categories_Screen.dart';
 import 'package:multiscreen_navigation/screens/meals_Screen.dart';
 
 class TabScreen extends StatefulWidget {
-  TabScreen({super.key});
+  const TabScreen({super.key});
   @override
   State<TabScreen> createState() {
     return _TabScreenState();
@@ -18,9 +18,13 @@ class _TabScreenState extends State<TabScreen> {
   void _toggleMealFvouriteStatus(Meal meal) {
     final isExisting = _favouriteMeal.contains(meal);
     if (isExisting) {
-      _favouriteMeal.remove(meal);
+      setState(() {
+        _favouriteMeal.remove(meal);
+      });
+      showInfoMessage("Meals is now longer a favourite");
     } else {
       _favouriteMeal.add(meal);
+      showInfoMessage("Meals added to favourite");
     }
   }
 
@@ -28,6 +32,12 @@ class _TabScreenState extends State<TabScreen> {
     setState(() {
       _selectedPageIndex = ind;
     });
+  }
+
+  void showInfoMessage(String message) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 
   @override
