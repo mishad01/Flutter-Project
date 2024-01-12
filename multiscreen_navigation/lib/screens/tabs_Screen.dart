@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:multiscreen_navigation/model/mealModel.dart';
 import 'package:multiscreen_navigation/screens/categories_Screen.dart';
 import 'package:multiscreen_navigation/screens/meals_Screen.dart';
+import 'package:multiscreen_navigation/widgets/main_Drawer.dart';
 
 class TabScreen extends StatefulWidget {
   const TabScreen({super.key});
@@ -34,6 +35,13 @@ class _TabScreenState extends State<TabScreen> {
     });
   }
 
+  void _setScreen(String identifier) {
+    if (identifier == 'filters') {
+    } else {
+      Navigator.pop(context);
+    }
+  }
+
   void showInfoMessage(String message) {
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context)
@@ -58,6 +66,7 @@ class _TabScreenState extends State<TabScreen> {
         appBar: AppBar(
           title: Text(activePageTitle),
         ),
+        drawer: mainDrawer(onSelectScreen: _setScreen),
         body: activePage,
         bottomNavigationBar: BottomNavigationBar(
           onTap: selectPage,
