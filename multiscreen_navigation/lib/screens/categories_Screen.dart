@@ -10,11 +10,13 @@ class categoriesScreen extends StatelessWidget {
   categoriesScreen({
     super.key,
     required this.onToggleFavourite,
+    required this.availableMeals,
   });
   final void Function(Meal meal) onToggleFavourite;
+  final List<Meal> availableMeals;
 
   void selectCategory(BuildContext context, Category category) {
-    final filteredMeals = dummyMeals
+    final filteredMeals = availableMeals
         .where((element) => element.categories.contains(category.id))
         .toList(); //After click if we wanna go on a specific screen we use this
 
