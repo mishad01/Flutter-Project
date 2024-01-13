@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:multiscreen_and_navigation_prac/Screens/tabs.dart';
 import 'package:multiscreen_and_navigation_prac/widget/main_drawer.dart';
@@ -10,11 +12,16 @@ enum Filter {
 }
 
 class FilterScreen extends StatefulWidget {
-  const FilterScreen({super.key});
+  const FilterScreen({
+    super.key,
+    required this.currentFilters,
+  });
   @override
   State<FilterScreen> createState() {
     return _FilterScreenState();
   }
+
+  final Map<Filter, bool> currentFilters;
 }
 
 class _FilterScreenState extends State<FilterScreen> {
@@ -22,6 +29,17 @@ class _FilterScreenState extends State<FilterScreen> {
   var lactosFreeFilterSet = false;
   var vegetarianFreeFilterSet = false;
   var veganFilterSet = false;
+
+  @override
+  void initState() {
+    _glutenFreeFilterSet = widget.currentFilters[Filter.glutenFree]!;
+    lactosFreeFilterSet = widget.currentFilters[Filter.lactosFree]!;
+    veganFilterSet = widget.currentFilters[Filter.vegan]!;
+    veganFilterSet = widget.currentFilters[Filter.vegetarian]!;
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

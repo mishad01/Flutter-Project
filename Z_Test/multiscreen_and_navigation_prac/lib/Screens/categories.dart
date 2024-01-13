@@ -10,6 +10,7 @@ class categoriesScreen extends StatelessWidget {
   const categoriesScreen({
     super.key,
     required this.onToggleFavourite,
+    required this.availableMeals,
   });
 
   //This is a method named '_selectCategory' that takes a 'BuildContext' as a parameter.
@@ -31,9 +32,10 @@ class categoriesScreen extends StatelessWidget {
   //   );
   // }
   final void Function(Meal meal) onToggleFavourite;
+  final List<Meal> availableMeals;
 
   void _selectCategory(BuildContext context, Category category) {
-    final filteredMeals = dummyMeals
+    final filteredMeals = availableMeals
         .where((meal) => meal.categories.contains(category.id))
         .toList();
     //Here context is not availbale globally that's why we have to use "BuildContext context". So that we can pass context as a value to push
