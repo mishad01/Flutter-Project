@@ -21,8 +21,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: theme,
-      home: categoriesScreen(
-          onToggleFavourite: onToggleFavourite, availableMeals: availableMeals),
+      home: TabsScreen(),
     );
   }
 }
