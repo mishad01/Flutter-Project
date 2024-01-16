@@ -16,6 +16,10 @@ class FiltersNotifier extends StateNotifier<Map<Filter, bool>> {
           Filter.vegan: false,
         });
 
+  void setFilters(Map<Filter, bool> choosenFilters) {
+    state = choosenFilters;
+  }
+
   void setFilter(Filter filter, bool isActive) {
     //state[filter] = isActive; //is not allowes because we are mutating state
     //[... spread operator] This ... copies the existing maps key-value pairs
