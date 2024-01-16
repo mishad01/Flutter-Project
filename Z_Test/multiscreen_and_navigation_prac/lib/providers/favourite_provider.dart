@@ -5,7 +5,8 @@ import 'package:multiscreen_and_navigation_prac/model/mealModel.dart';
 
 class FavouriteMealsNotfier extends StateNotifier<List<Meal>> {
   // Define a Riverpod StateNotifier class to manage a list of favorite meals
-  FavouriteMealsNotfier() : super([]);
+  FavouriteMealsNotfier()
+      : super([]); //Because of list class inside super WE used []
 
   // Method to toggle the favorite status of a meal
 
