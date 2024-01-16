@@ -9,18 +9,18 @@ class FavouriteMealsNotfier extends StateNotifier<List<Meal>> {
 
   // Method to toggle the favorite status of a meal
 
-  void ToggleMealFavouriteStatus(Meal meal) {
+  bool ToggleMealFavouriteStatus(Meal meal) {
     // Check if the meal is already in the list of favorites
     final mealsFavourite = state.contains(meal);
 
     // If the meal is already a favorite, remove it from the list
     if (mealsFavourite) {
       state = state.where((mealnew) => mealnew.id != meal.id).toList();
+      return false;
     } else {
-      state = [
-        ...state,
-        meal
-      ]; //... state, it will pull out all the element from the list and add the element in new list ,meal is a new element
+      //... state, it will pull out all the element from the list and add the element in new list ,meal is a new element
+      state = [...state, meal];
+      return true;
     }
   }
 }

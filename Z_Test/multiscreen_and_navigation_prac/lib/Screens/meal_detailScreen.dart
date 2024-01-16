@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:multiscreen_and_navigation_prac/model/mealModel.dart';
+import 'package:multiscreen_and_navigation_prac/providers/favourite_provider.dart';
 
-class MealDetailsScreen extends StatelessWidget {
+class MealDetailsScreen extends ConsumerWidget {
   const MealDetailsScreen({
     super.key,
     required this.meal,
@@ -10,14 +12,24 @@ class MealDetailsScreen extends StatelessWidget {
   final Meal meal;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text(meal.title),
         actions: [
           IconButton(
             onPressed: () {
-              onToggleFavourite(meal);
+              final wasAdded = ref
+                  .read(favouriteMealProvider.notifier)
+                  .ToggleMealFavouriteStatus(meal);
+              ScaffoldMessenger.of(context).clearSnackBars();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(wasAdded
+                      ? 'Added to Favourite.'
+                      : 'Removed from Favourite.'),
+                ),
+              );
             },
             icon: Icon(Icons.star),
           ),
