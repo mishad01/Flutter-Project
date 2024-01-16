@@ -4,6 +4,7 @@ import 'package:multiscreen_and_navigation_prac/Screens/filters.dart';
 import 'package:multiscreen_and_navigation_prac/Screens/mealsScreen.dart';
 import 'package:multiscreen_and_navigation_prac/data/dummyData.dart';
 import 'package:multiscreen_and_navigation_prac/model/mealModel.dart';
+import 'package:multiscreen_and_navigation_prac/providers/favourite_provider.dart';
 import 'package:multiscreen_and_navigation_prac/providers/meals_provider.dart';
 import 'package:multiscreen_and_navigation_prac/widget/main_drawer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -60,19 +61,19 @@ class _TabScreen extends ConsumerState<TabsScreen> {
     }
   }
 
-  void toggleMealFavouriteStatus(Meal meal) {
-    final bool isExisting = favouriteMeals.contains(meal);
+  // void toggleMealFavouriteStatus(Meal meal) {
+  //   final bool isExisting = favouriteMeals.contains(meal);
 
-    if (isExisting) {
-      setState(() {
-        favouriteMeals.remove(meal);
-      });
-      showInfoMessage("Meal is no longer a favourite");
-    } else {
-      favouriteMeals.add(meal);
-      showInfoMessage("Marked as favourite");
-    }
-  }
+  //   if (isExisting) {
+  //     setState(() {
+  //       favouriteMeals.remove(meal);
+  //     });
+  //     showInfoMessage("Meal is no longer a favourite");
+  //   } else {
+  //     favouriteMeals.add(meal);
+  //     showInfoMessage("Marked as favourite");
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -95,15 +96,14 @@ class _TabScreen extends ConsumerState<TabsScreen> {
       },
     ).toList();
     Widget activePage = categoriesScreen(
-      onToggleFavourite: toggleMealFavouriteStatus,
       availableMeals: availableMeals,
     );
     var activePageTitile = 'Categories';
 
     if (selectedPageIndex == 1) {
+      final FavouriteMeals = ref.watch(favouriteMealProvider);
       activePage = MealsScreen(
-        meals: favouriteMeals,
-        onToggleFavourite: toggleMealFavouriteStatus,
+        meals: FavouriteMeals,
       );
       activePageTitile = 'Your Favourite';
     }
