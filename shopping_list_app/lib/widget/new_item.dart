@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_list_app/data/categories.dart';
 
 class NewItem extends StatefulWidget {
   NewItem({super.key});
@@ -30,6 +31,38 @@ class _NewItem extends State<NewItem> {
               validator: (value) {
                 return 'Demo..';
               },
+            ),
+            Row(
+              children: [
+                TextFormField(
+                  decoration: InputDecoration(
+                    label: Text('Quantity'),
+                  ),
+                  initialValue: '1',
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                //If we wanna convert a map into list then we use ".entries"
+                DropdownButtonFormField(items: [
+                  for (final category in categories.entries)
+                    DropdownMenuItem(
+                        value: category.value,
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 16,
+                              height: 16,
+                              color: category.value.color,
+                            ),
+                            SizedBox(
+                              width: 6,
+                            ),
+                            Text(category.value.title),
+                          ],
+                        ))
+                ], onChanged: (value) {})
+              ],
             ),
           ],
         )),
