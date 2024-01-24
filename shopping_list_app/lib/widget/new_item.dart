@@ -33,35 +33,40 @@ class _NewItem extends State<NewItem> {
               },
             ),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                TextFormField(
-                  decoration: InputDecoration(
-                    label: Text('Quantity'),
+                Expanded(
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      label: Text('Quantity'),
+                    ),
+                    initialValue: '1',
                   ),
-                  initialValue: '1',
                 ),
                 SizedBox(
                   width: 8,
                 ),
                 //If we wanna convert a map into list then we use ".entries"
-                DropdownButtonFormField(items: [
-                  for (final category in categories.entries)
-                    DropdownMenuItem(
-                        value: category.value,
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 16,
-                              height: 16,
-                              color: category.value.color,
-                            ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                            Text(category.value.title),
-                          ],
-                        ))
-                ], onChanged: (value) {})
+                Expanded(
+                  child: DropdownButtonFormField(items: [
+                    for (final category in categories.entries)
+                      DropdownMenuItem(
+                          value: category.value,
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 16,
+                                height: 16,
+                                color: category.value.color,
+                              ),
+                              SizedBox(
+                                width: 6,
+                              ),
+                              Text(category.value.title),
+                            ],
+                          ))
+                  ], onChanged: (value) {}),
+                )
               ],
             ),
           ],
