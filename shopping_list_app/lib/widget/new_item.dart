@@ -22,14 +22,14 @@ class _NewItem extends State<NewItem> {
           children: [
             //
             //"Textfileld or TextFormField" is widget used for diplaying an input field where user can type and enter some values
-            TextField(
+            TextFormField(
               maxLength: 50,
               decoration: InputDecoration(
                 label: Text('Name'),
               ),
-              // validator: (value) {
-              //   return 'Demo..';
-              // },
+              validator: (value) {
+                return 'Demo..';
+              },
             ),
           ],
         )),
