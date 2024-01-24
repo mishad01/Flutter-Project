@@ -16,8 +16,23 @@ class _NewItem extends State<NewItem> {
         title: const Text('Add a new item '),
       ),
       body: Padding(
-        padding: EdgeInsets.all(12),
-        child: Text('test'),
+        padding: const EdgeInsets.all(12),
+        child: Form(
+            child: Column(
+          children: [
+            //
+            //"Textfileld or TextFormField" is widget used for diplaying an input field where user can type and enter some values
+            TextField(
+              maxLength: 50,
+              decoration: InputDecoration(
+                label: Text('Name'),
+              ),
+              // validator: (value) {
+              //   return 'Demo..';
+              // },
+            ),
+          ],
+        )),
       ),
     );
   }
