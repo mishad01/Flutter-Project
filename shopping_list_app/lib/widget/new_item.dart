@@ -30,8 +30,13 @@ class _NewItem extends State<NewItem> {
               ),
               validator: (value) {
                 //.trim(): This is a method that removes leading and trailing whitespaces from the string.
-                if (value == null || value.isEmpty || value.trim().length == 1)
-                  return null;
+                if (value == null ||
+                    value.isEmpty ||
+                    value.trim().length <= 1 ||
+                    value.trim().length > 15) {
+                  return 'Must be between 1 and 15 characters';
+                }
+                return null;
               },
             ),
             Row(
