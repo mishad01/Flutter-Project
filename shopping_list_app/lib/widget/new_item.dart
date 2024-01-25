@@ -48,6 +48,16 @@ class _NewItem extends State<NewItem> {
                       label: Text('Quantity'),
                     ),
                     initialValue: '1',
+                    validator: (value) {
+                      //int.tryParse(value): This is a method commonly used in programming languages like C# to attempt to convert a string (value) to an integer.
+                      if (value == null ||
+                          value.isEmpty ||
+                          int.tryParse(value) == null ||
+                          int.tryParse(value)! <= 0) {
+                        return 'Must be between 1 and 15 characters';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 SizedBox(
