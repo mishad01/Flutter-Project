@@ -29,7 +29,9 @@ class _NewItem extends State<NewItem> {
                 label: Text('Name'),
               ),
               validator: (value) {
-                return 'Demo..';
+                //.trim(): This is a method that removes leading and trailing whitespaces from the string.
+                if (value == null || value.isEmpty || value.trim().length == 1)
+                  return null;
               },
             ),
             Row(
@@ -51,20 +53,21 @@ class _NewItem extends State<NewItem> {
                   child: DropdownButtonFormField(items: [
                     for (final category in categories.entries)
                       DropdownMenuItem(
-                          value: category.value,
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 16,
-                                height: 16,
-                                color: category.value.color,
-                              ),
-                              SizedBox(
-                                width: 6,
-                              ),
-                              Text(category.value.title),
-                            ],
-                          ))
+                        value: category.value,
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 16,
+                              height: 16,
+                              color: category.value.color,
+                            ),
+                            SizedBox(
+                              width: 6,
+                            ),
+                            Text(category.value.title),
+                          ],
+                        ),
+                      )
                   ], onChanged: (value) {}),
                 )
               ],
