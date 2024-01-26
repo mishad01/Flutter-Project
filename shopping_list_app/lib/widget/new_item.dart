@@ -62,7 +62,7 @@ class _NewItem extends State<NewItem> {
                             value.isEmpty ||
                             int.tryParse(value) == null ||
                             int.tryParse(value)! <= 0) {
-                          return 'Must be valid position number-';
+                          return 'Must be valid position number--';
                         }
                         return null;
                       },
