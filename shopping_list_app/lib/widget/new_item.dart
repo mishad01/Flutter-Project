@@ -10,6 +10,12 @@ class NewItem extends StatefulWidget {
 }
 
 class _NewItem extends State<NewItem> {
+  final _formKey = GlobalKey<FormState>();
+
+  void savedItem() {
+    _formKey.currentState!.validate();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +25,7 @@ class _NewItem extends State<NewItem> {
       body: Padding(
         padding: const EdgeInsets.all(12),
         child: Form(
+          key: _formKey,
           child: Column(
             children: [
               //
@@ -47,6 +54,7 @@ class _NewItem extends State<NewItem> {
                       decoration: InputDecoration(
                         label: Text('Quantity'),
                       ),
+                      keyboardType: TextInputType.number,
                       initialValue: '1',
                       validator: (value) {
                         //int.tryParse(value): This is a method commonly used in programming languages like C# to attempt to convert a string (value) to an integer.
@@ -54,7 +62,7 @@ class _NewItem extends State<NewItem> {
                             value.isEmpty ||
                             int.tryParse(value) == null ||
                             int.tryParse(value)! <= 0) {
-                          return 'Must be between 1 and 15 characters';
+                          return 'Must be valid position number-';
                         }
                         return null;
                       },
@@ -94,7 +102,7 @@ class _NewItem extends State<NewItem> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(onPressed: () {}, child: Text('Reset')),
-                  ElevatedButton(onPressed: () {}, child: Text('Add Item'))
+                  ElevatedButton(onPressed: savedItem, child: Text('Add Item'))
                 ],
               )
             ],
