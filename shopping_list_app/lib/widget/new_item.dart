@@ -99,7 +99,7 @@ class _NewItem extends State<NewItem> {
                 children: [
                   TextButton(
                       onPressed: () {
-                        //_formKey.currentState!.reset();
+                        _formKey.currentState!.reset();
                       },
                       child: Text('Reset')),
                   ElevatedButton(onPressed: () {}, child: Text('Add Item'))
