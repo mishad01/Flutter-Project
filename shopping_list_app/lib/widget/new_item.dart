@@ -12,13 +12,13 @@ class NewItem extends StatefulWidget {
 class _NewItem extends State<NewItem> {
   final _formKey = GlobalKey<FormState>();
   var _enteredName = '';
-  // void savedItem() {
-  //   if (_formKey.currentState!.validate()) {
-  //     //If validate return true then this "_formKey.currentState!.save();" will execute
-  //     _formKey.currentState!.save();
-  //     print(_enteredName);
-  //   }
-  // }
+  void savedItem() {
+    if (_formKey.currentState!.validate()) {
+      //If validate return true then this "_formKey.currentState!.save();" will execute
+      _formKey.currentState!.save();
+      print(_enteredName);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
