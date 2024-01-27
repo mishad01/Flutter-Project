@@ -23,7 +23,7 @@ class _GroceryList extends State<GroceryList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        // backgroundColor: Colors.green,
         title: Text('Your Groceries'),
         actions: [IconButton(onPressed: addItem, icon: Icon(Icons.add))],
       ),
