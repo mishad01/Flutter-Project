@@ -46,9 +46,9 @@ class _NewItem extends State<NewItem> {
                   return null;
                 },
                 onSaved: (newValue) {
-                  // if (newValue == null) {
-                  //   return;
-                  // }
+                  if (newValue == null) {
+                    return;
+                  }
                   _enteredName = newValue!;
                 },
               ),
