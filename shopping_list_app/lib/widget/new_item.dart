@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_list_app/data/categories.dart';
+import 'package:shopping_list_app/model/categories_model.dart';
 
 class NewItem extends StatefulWidget {
   NewItem({super.key});
@@ -12,6 +13,8 @@ class NewItem extends StatefulWidget {
 class _NewItem extends State<NewItem> {
   final _formKey = GlobalKey<FormState>();
   var _enteredName = '';
+  var _enteredQuanity = 1;
+  var _selectedCategory = categories[Categories.vegetables]!;
   void savedItem() {
     if (_formKey.currentState!.validate()) {
       //If validate return true then this "_formKey.currentState!.save();" will execute
@@ -57,10 +60,11 @@ class _NewItem extends State<NewItem> {
                 children: [
                   Expanded(
                     child: TextFormField(
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         label: Text('Quantity'),
                       ),
-                      initialValue: '1',
+                      initialValue: _enteredQuanity.toString(),
                       validator: (value) {
                         if (value == null ||
                             int.tryParse(value) == null ||
@@ -69,28 +73,42 @@ class _NewItem extends State<NewItem> {
                         }
                         return null;
                       },
+                      onSaved: (value) {
+                        //int.parse(value); it will convert string to a number
+                        _enteredQuanity = int.parse(value!);
+                      },
                     ),
                   ),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   Expanded(
-                    child: DropdownButtonFormField(items: [
-                      for (final category in categories.entries)
-                        DropdownMenuItem(
-                          value: category.value,
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 16,
-                                height: 16,
-                                color: category.value.color,
+                    child: DropdownButtonFormField(
+                        value: _selectedCategory,
+                        items: [
+                          for (final category in categories.entries)
+                            DropdownMenuItem(
+                              value: category.value,
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 16,
+                                    height: 16,
+                                    color: category.value.color,
+                                  ),
+                                  const SizedBox(
+                                    width: 6,
+                                  ),
+                                  Text(category.value.title),
+                                ],
                               ),
-                              const SizedBox(
-                                width: 6,
-                              ),
-                              Text(category.value.title),
-                            ],
-                          ),
-                        ),
-                    ], onChanged: (value) {}),
+                            ),
+                        ],
+                        onChanged: (value) {
+                          setState(() {
+                            _selectedCategory = value!;
+                          });
+                        }),
                   )
                 ],
               ),
@@ -102,7 +120,10 @@ class _NewItem extends State<NewItem> {
                         _formKey.currentState!.reset();
                       },
                       child: Text('Reset')),
-                  ElevatedButton(onPressed: savedItem, child: Text('Add Item'))
+                  ElevatedButton(
+                    onPressed: savedItem,
+                    child: Text('Add Item'),
+                  ),
                 ],
               )
             ],
