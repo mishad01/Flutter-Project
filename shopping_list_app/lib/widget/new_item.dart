@@ -22,7 +22,9 @@ class _NewItem extends State<NewItem> {
     if (_formKey.currentState!.validate()) {
       //If validate return true then this "_formKey.currentState!.save();" will execute
       _formKey.currentState!.save();
-
+      //Uri (Uniform Resource Identifier) using the http constructor in Flutter. This Uri is used to represent a Uniform Resource Locator (URL).
+      final url = Uri.http('flutter-prep-761b5-default-rtdb.firebaseio.com/');
+      http.post(url);
       Navigator.of(context).pop(
         GroceryItem(
             id: DateTime.now().toString(),
