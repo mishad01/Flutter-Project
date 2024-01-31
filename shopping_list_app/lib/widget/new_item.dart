@@ -37,15 +37,15 @@ class _NewItem extends State<NewItem> {
           body: json.encode({
             'name': _enteredName,
             'quantity': _enteredQuanity,
-            'category': _selectedCategory
+            'category': _selectedCategory.title,
           }));
-      Navigator.of(context).pop(
-        GroceryItem(
-            id: DateTime.now().toString(),
-            name: _enteredName,
-            quantity: _enteredQuanity,
-            category: _selectedCategory),
-      );
+      // Navigator.of(context).pop(
+      //     // GroceryItem(
+      //     //     id: DateTime.now().toString(),
+      //     //     name: _enteredName,
+      //     //     quantity: _enteredQuanity,
+      //     //     category: _selectedCategory),
+      //     );
     }
   }
 
