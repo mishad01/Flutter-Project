@@ -21,12 +21,12 @@ class _NewItem extends State<NewItem> {
   var _enteredQuanity = 1;
   var _selectedCategory = categories[Categories.vegetables]!;
 
-  void _saveItem() {
+  void _saveItem() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       final url = Uri.https('flutter-prep-761b5-default-rtdb.firebaseio.com',
           'shopping-list.json');
-      http.post(
+      final response = await http.post(
         url,
         headers: {
           'Content-Type': 'application/json',
@@ -39,7 +39,17 @@ class _NewItem extends State<NewItem> {
           },
         ),
       );
-      // Navigator.of(context).pop();
+      //Status Code
+      //201 = tells everything works
+      //404,5xx = tells something went wrong
+      print(response.body);
+      print(response.statusCode);
+
+      //context.mounted: The mounted property of the BuildContext is a boolean value that indicates whether the associated widget is currently part of the widget tree. If a widget is "mounted," it means that it is currently active and has not been removed or disposed of.
+      if (!context.mounted) {
+        return;
+      }
+      Navigator.of(context).pop(); //Pop screen and go back
     }
   }
 
