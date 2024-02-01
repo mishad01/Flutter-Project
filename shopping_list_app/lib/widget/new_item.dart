@@ -20,32 +20,26 @@ class _NewItem extends State<NewItem> {
   var _enteredName = '';
   var _enteredQuanity = 1;
   var _selectedCategory = categories[Categories.vegetables]!;
-  void savedItem() {
+
+  void _saveItem() {
     if (_formKey.currentState!.validate()) {
-      //If validate return true then this "_formKey.currentState!.save();" will execute
       _formKey.currentState!.save();
-      //Uri (Uniform Resource Identifier) using the http constructor in Flutter. This Uri is used to represent a Uniform Resource Locator (URL).
-      final url = Uri.http('flutter-prep-761b5-default-rtdb.firebaseio.com/',
+      final url = Uri.https('flutter-prep-761b5-default-rtdb.firebaseio.com',
           'shopping-list.json');
-
-      /*http.post(url, ...) - This is calling the post method from the http package, which is commonly used for making HTTP POST requests. url is the URL where the POST request will be sent.
-       headers: {'ContentType': 'application/json'} - This specifies the headers for the HTTP request. In this case, it is setting the Content-Type header to indicate that the request body is in JSON format.
-       body: json.encode({...}) - This is setting the request body. It's using the json.encode method to convert a Dart Map (containing 'name', 'quantity', and 'category') into a JSON-encoded string. The resulting JSON string will be sent as the payload of the POST request.*/
-
-      http.post(url,
-          headers: {'ContentType': 'applicatio/json'},
-          body: json.encode({
+      http.post(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: json.encode(
+          {
             'name': _enteredName,
             'quantity': _enteredQuanity,
             'category': _selectedCategory.title,
-          }));
-      // Navigator.of(context).pop(
-      //     // GroceryItem(
-      //     //     id: DateTime.now().toString(),
-      //     //     name: _enteredName,
-      //     //     quantity: _enteredQuanity,
-      //     //     category: _selectedCategory),
-      //     );
+          },
+        ),
+      );
+      // Navigator.of(context).pop();
     }
   }
 
@@ -147,7 +141,7 @@ class _NewItem extends State<NewItem> {
                       },
                       child: Text('Reset')),
                   ElevatedButton(
-                    onPressed: savedItem,
+                    onPressed: _saveItem,
                     child: Text('Add Item'),
                   ),
                 ],
