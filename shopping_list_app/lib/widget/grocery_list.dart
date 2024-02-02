@@ -18,6 +18,7 @@ class _GroceryList extends State<GroceryList> {
   List<GroceryItem> _groceryItem = [];
 
   var _isLoading = true;
+  String? _error;
 
   @override
   void initState() {
@@ -29,6 +30,13 @@ class _GroceryList extends State<GroceryList> {
     final url = Uri.https(
         'flutter-prep-761b5-default-rtdb.firebaseio.com', 'shopping-list.json');
     final response = await http.get(url);
+
+    if (response.statusCode >= 400) {
+      setState(() {
+        _error = 'Failed to fetch data. Please Try again latter';
+      });
+    }
+
     // print(response.body);
     final Map<String, dynamic> listData = jsonDecode(response.body);
 
@@ -78,10 +86,11 @@ class _GroceryList extends State<GroceryList> {
 
   Widget build(BuildContext context) {
     Widget content = const Center(
-        child: Text(
-      'No Items added yet',
-      style: TextStyle(fontSize: 15),
-    ));
+      child: Text(
+        'No Items added yet',
+        style: TextStyle(fontSize: 15),
+      ),
+    );
 
     if (_isLoading) {
       content = const Center(
@@ -110,6 +119,11 @@ class _GroceryList extends State<GroceryList> {
       );
     }
 
+    if (_error != null) {
+      content = Center(
+        child: Text(_error!),
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: Colors.green,
