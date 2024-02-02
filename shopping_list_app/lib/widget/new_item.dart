@@ -42,14 +42,23 @@ class _NewItem extends State<NewItem> {
       //Status Code
       //201 = tells everything works
       //404,5xx = tells something went wrong
-      print(response.body);
-      print(response.statusCode);
+      // print(response.body);
+      // print(response.statusCode);
+
+      final Map<String, dynamic> resData = jsonDecode(response.body);
 
       //context.mounted: The mounted property of the BuildContext is a boolean value that indicates whether the associated widget is currently part of the widget tree. If a widget is "mounted," it means that it is currently active and has not been removed or disposed of.
       if (!context.mounted) {
         return;
       }
-      Navigator.of(context).pop(); //Pop screen and go back
+      Navigator.of(context).pop(
+        GroceryItem(
+          id: resData['name'],
+          category: _selectedCategory,
+          name: _enteredName,
+          quantity: _enteredQuanity,
+        ),
+      ); //Pop screen and go back
     }
   }
 
