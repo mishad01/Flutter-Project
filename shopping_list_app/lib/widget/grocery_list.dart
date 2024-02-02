@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shopping_list_app/data/categories.dart';
-import 'package:shopping_list_app/model/categories_model.dart';
 import 'package:shopping_list_app/model/groceryItems_model.dart';
 import 'package:shopping_list_app/widget/new_item.dart';
 import 'package:http/http.dart' as http;
@@ -17,6 +16,8 @@ class GroceryList extends StatefulWidget {
 
 class _GroceryList extends State<GroceryList> {
   List<GroceryItem> _groceryItem = [];
+
+  var _isLoading = true;
 
   @override
   void initState() {
@@ -47,6 +48,7 @@ class _GroceryList extends State<GroceryList> {
     }
     setState(() {
       _groceryItem = loadedItems;
+      _isLoading = false;
     });
   }
 
@@ -75,11 +77,17 @@ class _GroceryList extends State<GroceryList> {
   }
 
   Widget build(BuildContext context) {
-    Widget content = Center(
+    Widget content = const Center(
         child: Text(
       'No Items added yet',
       style: TextStyle(fontSize: 15),
     ));
+
+    if (_isLoading) {
+      content = const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
 
     if (_groceryItem.isNotEmpty) {
       content = ListView.builder(
