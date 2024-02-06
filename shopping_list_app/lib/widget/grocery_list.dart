@@ -158,7 +158,7 @@ class _GroceryList extends State<GroceryList> {
         title: Text('Your Groceries'),
         actions: [IconButton(onPressed: addItem, icon: Icon(Icons.add))],
       ),
-      body: content,
+      body: FutureBuilder(future: future, builder: builder),
     );
   }
 }
