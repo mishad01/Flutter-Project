@@ -16,7 +16,7 @@ class _GroceryList extends State<GroceryList> {
         title: Text('Your Groceries'),
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.add))],
       ),
-      body: Center(child: Text("Hello Worlds")),
+      body: Text("Hello Worlds"),
     );
   }
 }
