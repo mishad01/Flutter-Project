@@ -12,11 +12,12 @@ class _GroceryList extends State<GroceryList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Your Groceries'),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.add))],
-      ),
-      body: Text("Hello Worlds"),
-    );
+        appBar: AppBar(
+          title: Text('Your Groceries'),
+          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.add))],
+        ),
+        body: ListView.builder(
+          itemBuilder: (context, index) => ListTile(),
+        ));
   }
 }
