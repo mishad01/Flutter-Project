@@ -10,6 +10,14 @@ class NewItem extends StatefulWidget {
 }
 
 class _NewItem extends State<NewItem> {
+  //The GlobalKey is parameterized with the type FormState, which indicates that it will be associated with the state of a Form widget. FormState is the class that holds the state of the Form widget, including form data and validation.
+  final _fromkey = GlobalKey<FormState>();
+
+  void _saveItem() {
+    //_fromKey.currentState!.validate(); is saying: "Access the current state of the form associated with the _fromKey key, and then trigger the validation process for all the form fields within that form." This is commonly used when you want to validate user input in a form before proceeding with a form submission or any other action dependent on valid input
+    _fromkey.currentState!.validate();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,6 +25,7 @@ class _NewItem extends State<NewItem> {
         title: Text('Add new Item'),
       ),
       body: Form(
+        key: _fromkey,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -74,7 +83,7 @@ class _NewItem extends State<NewItem> {
                                   height: 16,
                                   color: category.value.color,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 Text(category.value.title),
@@ -87,20 +96,22 @@ class _NewItem extends State<NewItem> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                    onPressed: () {},
-                    child: Text('Reset'),
+                    onPressed: () {
+                      _fromkey.currentState!.reset();
+                    },
+                    child: const Text('Reset'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8,
                   ),
-                  ElevatedButton(onPressed: () {}, child: Text('Add'))
+                  ElevatedButton(onPressed: _saveItem, child: const Text('Add'))
                 ],
               )
             ],
