@@ -26,6 +26,15 @@ class _NewItem extends State<NewItem> {
                 decoration: const InputDecoration(
                   label: Text('Name'),
                 ),
+                validator: (value) {
+                  //value.trim(): This removes any leading or trailing whitespace from the
+                  if (value == null ||
+                      value.trim().length <= 1 ||
+                      value.trim().length > 15) {
+                    return 'Must be between 1 and 15 characters';
+                  }
+                  return null;
+                },
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -37,9 +46,19 @@ class _NewItem extends State<NewItem> {
                         label: Text('Quantitiy'),
                       ),
                       initialValue: '1',
+                      validator: (value) {
+                        /*tryParse(value): This is a method call on the int type. The tryParse method attempts to parse the string value as an integer.If value can be successfully parsed into an integer, the method returns true, indicating success, and the parsed integer value is usually assigned to a variable.
+                         If value cannot be parsed into an integer, the method returns false, */
+                        if (value == null ||
+                            int.tryParse(value) == null ||
+                            int.parse(value)! <= 0) {
+                          return 'Must be valid position number';
+                        }
+                        return null;
+                      },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8,
                   ),
                   Expanded(
