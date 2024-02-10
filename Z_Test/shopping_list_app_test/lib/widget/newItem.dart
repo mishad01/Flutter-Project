@@ -32,6 +32,7 @@ class _NewItem extends State<NewItem> {
                 children: [
                   Expanded(
                     child: TextFormField(
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         label: Text('Quantitiy'),
                       ),
@@ -65,6 +66,22 @@ class _NewItem extends State<NewItem> {
                       onChanged: (value) {},
                     ),
                   )
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: Text('Reset'),
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  ElevatedButton(onPressed: () {}, child: Text('Add'))
                 ],
               )
             ],
