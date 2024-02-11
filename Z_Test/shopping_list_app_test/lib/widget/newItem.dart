@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_list_app_test/data/categories_data.dart';
+import 'package:shopping_list_app_test/model/categories_model.dart';
 
 class NewItem extends StatefulWidget {
   NewItem({super.key});
@@ -12,10 +13,16 @@ class NewItem extends StatefulWidget {
 class _NewItem extends State<NewItem> {
   //The GlobalKey is parameterized with the type FormState, which indicates that it will be associated with the state of a Form widget. FormState is the class that holds the state of the Form widget, including form data and validation.
   final _fromkey = GlobalKey<FormState>();
+  var _enteredName = '';
+  var _enteredQuantity = 1;
+  var _selectedCategory = categories[Categories.carbs];
+  var _isSending = false;
 
   void _saveItem() {
     //_fromKey.currentState!.validate(); is saying: "Access the current state of the form associated with the _fromKey key, and then trigger the validation process for all the form fields within that form." This is commonly used when you want to validate user input in a form before proceeding with a form submission or any other action dependent on valid input
-    _fromkey.currentState!.validate();
+    if (_fromkey.currentState!.validate()) {
+      _fromkey.currentState!.save();
+    }
   }
 
   @override
@@ -44,6 +51,9 @@ class _NewItem extends State<NewItem> {
                   }
                   return null;
                 },
+                onSaved: (newValue) {
+                  _enteredName = newValue!;
+                },
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -54,7 +64,7 @@ class _NewItem extends State<NewItem> {
                       decoration: const InputDecoration(
                         label: Text('Quantitiy'),
                       ),
-                      initialValue: '1',
+                      initialValue: _enteredQuantity.toString(),
                       validator: (value) {
                         /*tryParse(value): This is a method call on the int type. The tryParse method attempts to parse the string value as an integer.If value can be successfully parsed into an integer, the method returns true, indicating success, and the parsed integer value is usually assigned to a variable.
                          If value cannot be parsed into an integer, the method returns false, */
@@ -64,6 +74,10 @@ class _NewItem extends State<NewItem> {
                           return 'Must be valid position number';
                         }
                         return null;
+                      },
+                      onSaved: (newValue) {
+                        //int.parse(value) it will throw an error and int.tryparse(value) returns null
+                        _enteredQuantity = int.parse(newValue!);
                       },
                     ),
                   ),
