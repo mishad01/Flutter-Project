@@ -15,7 +15,7 @@ class _NewItem extends State<NewItem> {
   final _fromkey = GlobalKey<FormState>();
   var _enteredName = '';
   var _enteredQuantity = 1;
-  var _selectedCategory = categories[Categories.carbs];
+  var _selectedCategory = categories[Categories.dairy];
   var _isSending = false;
 
   void _saveItem() {
@@ -86,6 +86,7 @@ class _NewItem extends State<NewItem> {
                   ),
                   Expanded(
                     child: DropdownButtonFormField(
+                      value: _selectedCategory,
                       items: [
                         for (final category in categories.entries)
                           DropdownMenuItem(
@@ -105,7 +106,9 @@ class _NewItem extends State<NewItem> {
                             ),
                           ),
                       ],
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        _selectedCategory = value;
+                      },
                     ),
                   )
                 ],
