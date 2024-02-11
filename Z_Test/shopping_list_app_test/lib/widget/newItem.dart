@@ -22,6 +22,9 @@ class _NewItem extends State<NewItem> {
     //_fromKey.currentState!.validate(); is saying: "Access the current state of the form associated with the _fromKey key, and then trigger the validation process for all the form fields within that form." This is commonly used when you want to validate user input in a form before proceeding with a form submission or any other action dependent on valid input
     if (_fromkey.currentState!.validate()) {
       _fromkey.currentState!.save();
+      print(_enteredName);
+      print(_enteredName);
+      print(_selectedCategory);
     }
   }
 
