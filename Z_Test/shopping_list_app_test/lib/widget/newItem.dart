@@ -117,7 +117,7 @@ class _NewItem extends State<NewItem> {
                           ),
                       ],
                       onChanged: (value) {
-                        _selectedCategory = value;
+                        _selectedCategory = value!;
                       },
                     ),
                   )
