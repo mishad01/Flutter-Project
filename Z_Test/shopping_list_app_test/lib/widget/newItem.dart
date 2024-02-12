@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_list_app_test/data/categories_data.dart';
 import 'package:shopping_list_app_test/model/categories_model.dart';
+import 'package:shopping_list_app_test/model/groceryItems_model.dart';
 
 class NewItem extends StatefulWidget {
   NewItem({super.key});
@@ -15,16 +16,22 @@ class _NewItem extends State<NewItem> {
   final _fromkey = GlobalKey<FormState>();
   var _enteredName = '';
   var _enteredQuantity = 1;
-  var _selectedCategory = categories[Categories.dairy];
+  var _selectedCategory = categories[Categories.dairy]!;
   var _isSending = false;
 
   void _saveItem() {
     //_fromKey.currentState!.validate(); is saying: "Access the current state of the form associated with the _fromKey key, and then trigger the validation process for all the form fields within that form." This is commonly used when you want to validate user input in a form before proceeding with a form submission or any other action dependent on valid input
     if (_fromkey.currentState!.validate()) {
       _fromkey.currentState!.save();
-      print(_enteredName);
-      print(_enteredName);
-      print(_selectedCategory);
+
+      Navigator.of(context).pop(
+        GroceryItem(
+          id: DateTime.now().toString(),
+          name: _enteredName,
+          quantity: _enteredQuantity,
+          category: _selectedCategory,
+        ),
+      );
     }
   }
 
