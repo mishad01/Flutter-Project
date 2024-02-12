@@ -19,6 +19,13 @@ class _GroceryList extends State<GroceryList> {
         builder: (context) => NewItem(),
       ),
     );
+
+    if (newItem == null) {
+      return;
+    }
+    setState(() {
+      _groceryItems.add(newItem);
+    });
   }
 
   @override
@@ -29,15 +36,15 @@ class _GroceryList extends State<GroceryList> {
         actions: [IconButton(onPressed: addItem, icon: Icon(Icons.add))],
       ),
       body: ListView.builder(
-        itemCount: groceryItems.length,
+        itemCount: _groceryItems.length,
         itemBuilder: (context, index) => ListTile(
-          title: Text(groceryItems[index].name),
+          title: Text(_groceryItems[index].name),
           leading: Container(
             width: 24,
             height: 24,
-            color: groceryItems[index].category.color,
+            color: _groceryItems[index].category.color,
           ),
-          trailing: Text(groceryItems[index].quantity.toString()),
+          trailing: Text(_groceryItems[index].quantity.toString()),
         ),
       ),
     );
