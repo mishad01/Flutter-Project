@@ -30,12 +30,10 @@ class _GroceryList extends State<GroceryList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Your Groceries'),
-        actions: [IconButton(onPressed: addItem, icon: Icon(Icons.add))],
-      ),
-      body: ListView.builder(
+    Widget content = const Center(child: Text('No items added yet.'));
+
+    if (_groceryItems.isNotEmpty) {
+      content = ListView.builder(
         itemCount: _groceryItems.length,
         itemBuilder: (context, index) => ListTile(
           title: Text(_groceryItems[index].name),
@@ -44,9 +42,31 @@ class _GroceryList extends State<GroceryList> {
             height: 24,
             color: _groceryItems[index].category.color,
           ),
-          trailing: Text(_groceryItems[index].quantity.toString()),
+          trailing: Text(
+            _groceryItems[index].quantity.toString(),
+          ),
         ),
+      );
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Your Groceries'),
+        actions: [IconButton(onPressed: addItem, icon: Icon(Icons.add))],
       ),
+      body: content,
+      // ListView.builder(
+      //   itemCount: _groceryItems.length,
+      //   itemBuilder: (context, index) => ListTile(
+      //     title: Text(_groceryItems[index].name),
+      //     leading: Container(
+      //       width: 24,
+      //       height: 24,
+      //       color: _groceryItems[index].category.color,
+      //     ),
+      //     trailing: Text(_groceryItems[index].quantity.toString()),
+      //   ),
+      // ),
     );
   }
 }
