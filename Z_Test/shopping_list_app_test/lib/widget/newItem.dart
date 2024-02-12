@@ -43,7 +43,7 @@ class _NewItem extends State<NewItem> {
               TextFormField(
                 maxLength: 50,
                 decoration: const InputDecoration(
-                  label: Text('Name'),
+                  label: Text('Namee'),
                 ),
                 validator: (value) {
                   //value.trim(): This removes any leading or trailing whitespace from the
