@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_list_app_test/data/categories_data.dart';
 import 'package:shopping_list_app_test/model/categories_model.dart';
 import 'package:shopping_list_app_test/model/groceryItems_model.dart';
+import 'package:http/http.dart' as http;
 
 class NewItem extends StatefulWidget {
   NewItem({super.key});
