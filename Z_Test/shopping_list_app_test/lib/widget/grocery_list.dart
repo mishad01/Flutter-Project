@@ -28,6 +28,12 @@ class _GroceryList extends State<GroceryList> {
     });
   }
 
+  void removeItem(GroceryItem item) {
+    setState(() {
+      _groceryItems.remove(item);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget content = const Center(child: Text('No items added yet.'));
@@ -37,7 +43,7 @@ class _GroceryList extends State<GroceryList> {
         itemCount: _groceryItems.length,
         itemBuilder: (context, index) => Dismissible(
           onDismissed: (direction) {
-            _groceryItems.remove(index);
+            removeItem(_groceryItems[index]);
           },
           key: ValueKey(_groceryItems[index].id),
           child: ListTile(
