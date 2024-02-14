@@ -30,18 +30,26 @@ class _NewItem extends State<NewItem> {
       final url = Uri.https('flutter-prep-761b5-default-rtdb.firebaseio.com',
           'shopping-list.json');
 
+      // http.post(
+      //   url,
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: json.encode(
+      //     {
+      //       'name': _enteredName,
+      //       'quantity': _enteredQuantity,
+      //       'category': _selectedCategory.title,
+      //     },
+      //   ),
+      // );
+
       http.post(
         url,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: json.encode(
-          {
-            'name': _enteredName,
-            'quantity': _enteredQuantity,
-            'category': _selectedCategory.title,
-          },
-        ),
+        headers: {'Content - Type': 'Application/json'},
+        body: {
+          'name ' : 
+        }
       );
 
       // Navigator.of(context).pop(
