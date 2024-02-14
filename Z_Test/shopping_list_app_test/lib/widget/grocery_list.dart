@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:shopping_list_app_test/data/categories_data.dart';
 import 'package:shopping_list_app_test/data/dummyItem.dart';
 import 'package:shopping_list_app_test/model/categories_model.dart';
 import 'package:shopping_list_app_test/model/groceryItems_model.dart';
@@ -16,7 +17,7 @@ class GroceryList extends StatefulWidget {
 }
 
 class _GroceryList extends State<GroceryList> {
-  final List<GroceryItem> _groceryItems = [];
+  List<GroceryItem> _groceryItems = [];
   @override
   void initState() {
     // TODO: implement initState
@@ -25,23 +26,33 @@ class _GroceryList extends State<GroceryList> {
   }
 
   void _loadItems() async {
-    final url = Uri.https(
-        'flutter-prep-761b5-default-rtdb.firebaseio.com', 'shopping-list.json');
+    final url = Uri.https('flutter-prep2-7352f-default-rtdb.firebaseio.com',
+        'shopping-list.json');
     final response = await http.get(url);
 
-    final Map<String, Map<String, dynamic>> listData =
-        json.decode(response.body);
+    // final Map<String, Map<String, dynamic>> listData =
+    //     json.decode(response.body);
+    final Map<String, dynamic> listData = json.decode(response.body);
 
     final List<GroceryItem> _loaddedItem = [];
 
-    // for (final item in listData.entries) {
-    //   final category = Categories
-    //   _loaddedItem.add(GroceryItem(
-    //       id: item.key,
-    //       name: item.value['name'],
-    //       quantity: item.value['quantiy'],
-    //       category: Category(title, color)));
-    // }
+    for (final item in listData.entries) {
+      final category = categories.entries
+          .firstWhere(
+              (catItemt) => catItemt.value.title == item.value['category'])
+          .value;
+
+      _loaddedItem.add(
+        GroceryItem(
+            id: item.key,
+            name: item.value['name'],
+            quantity: item.value['quantiy'],
+            category: category),
+      );
+    }
+    setState(() {
+      _groceryItems = _loaddedItem;
+    });
   }
 
   void addItem() async {
