@@ -32,8 +32,8 @@ class _GroceryList extends State<GroceryList> {
 
     // final Map<String, Map<String, dynamic>> listData =
     //     json.decode(response.body);
-    final Map<String, dynamic> listData = json.decode(response.body);
 
+    final Map<String, dynamic> listData = json.decode(response.body);
     final List<GroceryItem> _loaddedItem = [];
 
     for (final item in listData.entries) {
@@ -46,7 +46,7 @@ class _GroceryList extends State<GroceryList> {
         GroceryItem(
             id: item.key,
             name: item.value['name'],
-            quantity: item.value['quantiy'],
+            quantity: item.value['quantity'],
             category: category),
       );
     }
