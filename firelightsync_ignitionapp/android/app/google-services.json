@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "616332745011",
-    "project_id": "fir-iot-b3f2d",
-    "storage_bucket": "fir-iot-b3f2d.appspot.com"
+    "project_number": "876107845026",
+    "project_id": "fir-iot-bae89",
+    "storage_bucket": "fir-iot-bae89.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:616332745011:android:ba3e9d98e0bba5ce1a0646",
+        "mobilesdk_app_id": "1:876107845026:android:5b29e592d234f3519db6fb",
         "android_client_info": {
           "package_name": "com.example.firelightsync_ignitionapp"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBanVukhwTlgvkyRuGoOdRKoAiYBcqlo6c"
+          "current_key": "AIzaSyBBBLElc7CoGzC8sgCfh6iPnWi1I2OT19k"
         }
       ],
       "services": {

@@ -1,0 +1,68 @@
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  MyApp({super.key});
+  @override
+  State<MyApp> createState() {
+    return _MyAppState();
+  }
+}
+
+class _MyAppState extends State<MyApp> {
+  bool On = false;
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Flutter Iot App '),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              On
+                  ? const Icon(
+                      Icons.lightbulb,
+                      size: 70,
+                      color: Colors.amber,
+                    )
+                  : const Icon(
+                      Icons.lightbulb_outline,
+                      size: 70,
+                      color: Colors.amber,
+                    ),
+              const SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                  onPressed: () {},
+                  style: On
+                      ? TextButton.styleFrom(backgroundColor: Colors.green)
+                      : TextButton.styleFrom(backgroundColor: Colors.red),
+                  child: On
+                      ? const Text(
+                          'Turn On',
+                          style: TextStyle(color: Colors.white),
+                        )
+                      : const Text(
+                          'Turn Off',
+                          style: TextStyle(color: Colors.white),
+                        )),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

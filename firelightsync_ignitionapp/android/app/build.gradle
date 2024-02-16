@@ -4,8 +4,6 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
-apply plugin: 'com.google.gms.google-services'  // Move this line outside the plugins block
-
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -66,7 +64,4 @@ flutter {
     source '../..'
 }
 
-dependencies {
-    implementation platform('com.google.firebase:firebase-bom:32.7.2')
-    implementation 'com.google.firebase:firebase-analytics'
-}
+dependencies {}
