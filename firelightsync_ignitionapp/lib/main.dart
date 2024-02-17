@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool On = false;
+  final dbR = FirebaseDatabase.instance.ref();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -46,19 +48,27 @@ class _MyAppState extends State<MyApp> {
                 height: 10,
               ),
               ElevatedButton(
-                  onPressed: () {},
-                  style: On
-                      ? TextButton.styleFrom(backgroundColor: Colors.green)
-                      : TextButton.styleFrom(backgroundColor: Colors.red),
-                  child: On
-                      ? const Text(
-                          'Turn On',
-                          style: TextStyle(color: Colors.white),
-                        )
-                      : const Text(
-                          'Turn Off',
-                          style: TextStyle(color: Colors.white),
-                        )),
+                onPressed: () {
+                  dbR.child("Light").set(
+                    {"Switch ": !On},
+                  );
+                  setState(() {
+                    On = !On;
+                  });
+                },
+                style: On
+                    ? TextButton.styleFrom(backgroundColor: Colors.green)
+                    : TextButton.styleFrom(backgroundColor: Colors.red),
+                child: On
+                    ? const Text(
+                        'Turn On',
+                        style: TextStyle(color: Colors.white),
+                      )
+                    : const Text(
+                        'Turn Off',
+                        style: TextStyle(color: Colors.white),
+                      ),
+              ),
             ],
           ),
         ),
