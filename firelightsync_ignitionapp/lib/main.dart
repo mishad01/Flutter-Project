@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
               ElevatedButton(
                 onPressed: () {
                   dbR.child("Light").set(
-                    {"Switch ": !On},
+                    {"Switch": !On},
                   );
                   setState(() {
                     On = !On;
