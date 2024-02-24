@@ -29,4 +29,4 @@ class UserPlacesNotfier extends StateNotifier<List<Place>> {
 
 final UserPlacesProvider =
     StateNotifierProvider<UserPlacesNotfier, List<Place>>(
-        (ref) => UserPlacesNotfier());
+        (ref) => UserPlacesNotfier(),);irsa
