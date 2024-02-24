@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(fontSize: 20, color: Colors.grey.shade800),
                   ),
                   Text(
-                    'FireLightSync Ignation \App',
+                    'FireLightSync Ignition \App',
                     style: GoogleFonts.bebasNeue(fontSize: 50),
                   ),
                 ],
