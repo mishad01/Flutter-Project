@@ -1,19 +1,31 @@
+import 'package:favourite_places_app/providers/user_places.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AddPlaceScreen extends StatefulWidget {
+class AddPlaceScreen extends ConsumerStatefulWidget {
   AddPlaceScreen({
     super.key,
     // required this.onTap,
   });
   // void Function() onTap;
   @override
-  State<StatefulWidget> createState() {
+  ConsumerState<AddPlaceScreen> createState() {
     return _AddPlaceScreen();
   }
 }
 
-class _AddPlaceScreen extends State<AddPlaceScreen> {
+class _AddPlaceScreen extends ConsumerState<AddPlaceScreen> {
   final _titleController = TextEditingController();
+
+  void _savePlace() {
+    final enteredText = _titleController.text;
+    if (enteredText.isEmpty) {
+      return;
+    }
+
+    ref.read(UserPlacesProvider.notifier).addPlace(enteredText);
+    Navigator.of(context).pop();
+  }
 
   @override
   void dispose() {
