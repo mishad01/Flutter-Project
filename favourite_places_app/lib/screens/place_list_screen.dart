@@ -1,3 +1,4 @@
+import 'package:favourite_places_app/widget/places_list_widget.dart';
 import 'package:flutter/material.dart';
 
 class PlaceListScreen extends StatefulWidget {
@@ -16,6 +17,7 @@ class _PlaceListScreen extends State<PlaceListScreen> {
         title: Text('Your Place'),
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.add))],
       ),
+      body: PlaceListWidget(places: []),
     );
   }
 }
