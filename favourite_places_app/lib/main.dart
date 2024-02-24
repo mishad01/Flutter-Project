@@ -2,6 +2,7 @@ import 'package:favourite_places_app/screens/place_detail_screen.dart';
 import 'package:favourite_places_app/screens/place_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final colorScheme = ColorScheme.fromSeed(
@@ -27,7 +28,7 @@ final theme = ThemeData().copyWith(
   ),
 );
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
