@@ -1,21 +1,26 @@
+import 'package:favourite_places_app/screens/add_place_screen.dart';
 import 'package:favourite_places_app/widget/places_list_widget.dart';
 import 'package:flutter/material.dart';
 
-class PlaceListScreen extends StatefulWidget {
+class PlaceListScreen extends StatelessWidget {
   PlaceListScreen({super.key});
-  @override
-  State<StatefulWidget> createState() {
-    return _PlaceListScreen();
-  }
-}
 
-class _PlaceListScreen extends State<PlaceListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Your Place'),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.add))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddPlaceScreen(),
+                    ));
+              },
+              icon: Icon(Icons.add))
+        ],
       ),
       body: PlaceListWidget(places: []),
     );

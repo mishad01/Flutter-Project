@@ -20,6 +20,7 @@ class PlaceListWidget extends StatelessWidget {
       ));
     }
     return ListView.builder(
+      itemCount: places.length,
       itemBuilder: (context, index) => ListTile(
         title: Text(
           places[index].title,
