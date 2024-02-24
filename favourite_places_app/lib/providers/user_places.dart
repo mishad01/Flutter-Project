@@ -11,4 +11,7 @@ class UserPlacesNotfier extends StateNotifier<List<Place>> {
 } //Now we have a method that will update the state
 
 //Now we need to set provider
-final UserPlacesProvider = StateNotifierProvider((ref) => UserPlacesNotfier());
+final UserPlacesProvider =
+    StateNotifierProvider<UserPlacesNotfier, List<Place>>(
+  (ref) => UserPlacesNotfier(),
+);
