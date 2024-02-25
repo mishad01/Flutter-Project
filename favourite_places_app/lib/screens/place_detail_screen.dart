@@ -1,19 +1,26 @@
+import 'package:favourite_places_app/model/place.dart';
 import 'package:flutter/material.dart';
 
-class PlaceDetailScreen extends StatefulWidget {
-  PlaceDetailScreen({super.key});
-  @override
-  State<StatefulWidget> createState() {
-    return _PlaceDetailScreen();
-  }
-}
-
-class _PlaceDetailScreen extends State<PlaceDetailScreen> {
+class PlaceDetailScreen extends StatelessWidget {
+  PlaceDetailScreen({
+    super.key,
+    required this.place,
+  });
+  final Place place;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Place'),
+        title: Text(place.title),
+      ),
+      body: Center(
+        child: Text(
+          place.title,
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge!
+              .copyWith(color: Theme.of(context).colorScheme.onBackground),
+        ),
       ),
     );
   }

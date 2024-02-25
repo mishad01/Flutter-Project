@@ -1,4 +1,5 @@
 import 'package:favourite_places_app/model/place.dart';
+import 'package:favourite_places_app/screens/place_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class PlaceListWidget extends StatelessWidget {
@@ -29,6 +30,11 @@ class PlaceListWidget extends StatelessWidget {
               .titleMedium!
               .copyWith(color: Theme.of(context).colorScheme.onBackground),
         ),
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => PlaceDetailScreen(place: places[index]),
+          ));
+        },
       ),
     );
   }
