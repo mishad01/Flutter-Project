@@ -1,10 +1,34 @@
+import 'package:favourite_places_practice/provider/user_places.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AddPlaceScreen extends StatelessWidget {
+class AddPlaceScreen extends ConsumerStatefulWidget {
   AddPlaceScreen({super.key});
   @override
+  ConsumerState<AddPlaceScreen> createState() {
+    return _AddPlaceScreen();
+  }
+}
+
+class _AddPlaceScreen extends ConsumerState<AddPlaceScreen> {
+  final _titleController = TextEditingController();
+
+  void _savePlace() {
+    final _enteredText = _titleController.text;
+    if (_enteredText.isEmpty) {
+      return;
+    }
+    ref.read(UserPlacesProvider.notifier).addPlace(_enteredText);
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final _titleController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Place'),
