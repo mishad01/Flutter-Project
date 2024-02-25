@@ -19,6 +19,7 @@ class _AddPlaceScreen extends ConsumerState<AddPlaceScreen> {
       return;
     }
     ref.read(UserPlacesProvider.notifier).addPlace(_enteredText);
+    Navigator.pop(context);
   }
 
   @override
@@ -48,7 +49,7 @@ class _AddPlaceScreen extends ConsumerState<AddPlaceScreen> {
                 height: 15,
               ),
               ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: _savePlace,
                   icon: Icon(Icons.add),
                   label: Text('Add Place'))
             ],

@@ -1,6 +1,7 @@
 import 'package:favourite_places_practice/screens/place.dart';
 import 'package:favourite_places_practice/widget/price_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final colorScheme = ColorScheme.fromSeed(
@@ -26,7 +27,7 @@ final theme = ThemeData().copyWith(
   ),
 );
 void main() {
-  runApp(MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
