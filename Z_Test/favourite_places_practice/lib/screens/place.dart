@@ -25,7 +25,7 @@ class Place extends ConsumerWidget {
           )
         ],
       ),
-      body: PlaceListWidget(place: userPlaces),
+      body: PlaceListWidget(places: userPlaces),
     );
   }
 }

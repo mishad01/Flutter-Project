@@ -1,15 +1,16 @@
 import 'package:favourite_places_practice/model/place.dart';
+import 'package:favourite_places_practice/screens/place_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class PlaceListWidget extends StatelessWidget {
-  PlaceListWidget({super.key, required this.place});
-  final List<Place> place;
+  PlaceListWidget({super.key, required this.places});
+  final List<Place> places;
   @override
   Widget build(BuildContext context) {
-    if (place.isEmpty) {
+    if (places.isEmpty) {
       return Center(
         child: Text(
-          'No places added yet',
+          'No placess added yet',
           style: Theme.of(context)
               .textTheme
               .titleMedium!
@@ -18,15 +19,24 @@ class PlaceListWidget extends StatelessWidget {
       );
     }
     return ListView.builder(
-      itemCount: place.length,
+      itemCount: places.length,
       itemBuilder: (context, index) => ListTile(
         title: Text(
-          place[index].title,
+          places[index].title,
           style: Theme.of(context)
               .textTheme
               .titleMedium!
               .copyWith(color: Theme.of(context).colorScheme.onBackground),
         ),
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => PlaceDetailsScreen(
+                place: places[index],
+              ),
+            ),
+          );
+        },
       ),
     );
   }
