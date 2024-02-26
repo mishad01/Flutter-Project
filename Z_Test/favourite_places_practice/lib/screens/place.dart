@@ -25,7 +25,10 @@ class Place extends ConsumerWidget {
           )
         ],
       ),
-      body: PlaceListWidget(places: userPlaces),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: PlaceListWidget(places: userPlaces),
+      ),
     );
   }
 }
