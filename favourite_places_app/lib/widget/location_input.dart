@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 
@@ -12,9 +10,11 @@ class LocationInput extends StatefulWidget {
 }
 
 class _LocationInputState extends State<LocationInput> {
+  Location? _pickedLocation;
+  var _isGettingLocation = false;
+
   void _getCurrentLocation() async {
     Location location = Location();
-
     bool serviceEnabled;
     PermissionStatus permissionGranted;
     LocationData locationData;
@@ -34,12 +34,32 @@ class _LocationInputState extends State<LocationInput> {
         return;
       }
     }
+    setState(() {
+      _isGettingLocation = true;
+    });
 
     locationData = await location.getLocation();
+
+    setState(() {
+      _isGettingLocation = false;
+    });
+
+    print(locationData.latitude);
+    print(locationData.longitude);
   }
 
   @override
   Widget build(BuildContext context) {
+    Widget previewContent = const Text(
+      'No location choosen',
+      textAlign: TextAlign.center,
+      style: TextStyle(color: Colors.white),
+    );
+
+    if (_isGettingLocation) {
+      previewContent = const CircularProgressIndicator();
+    }
+
     return Column(
       children: [
         Container(
@@ -52,11 +72,7 @@ class _LocationInputState extends State<LocationInput> {
               color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
             ),
           ),
-          child: Text(
-            'No location choosen',
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white),
-          ),
+          child: previewContent,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -64,7 +80,7 @@ class _LocationInputState extends State<LocationInput> {
             TextButton.icon(
               icon: const Icon(Icons.location_on),
               label: const Text('Get Current Location'),
-              onPressed: () {},
+              onPressed: _getCurrentLocation,
             ),
             TextButton.icon(
               icon: const Icon(Icons.map),
