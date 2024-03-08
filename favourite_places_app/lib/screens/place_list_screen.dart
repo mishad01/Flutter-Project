@@ -13,7 +13,7 @@ class PlaceListScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Place'),
+        title: Text('Your Placee'),
         actions: [
           IconButton(
               onPressed: () {

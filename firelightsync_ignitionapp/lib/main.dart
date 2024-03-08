@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Flutterr Iot App '),
+          title: Text('Flutterr Iot Appp '),
         ),
         body: Center(
           child: Column(
