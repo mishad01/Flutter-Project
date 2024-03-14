@@ -20,10 +20,10 @@ class Place {
   Place({
     required this.title,
     required this.images,
-    //required this.location,
+    required this.location,
   }) : id = uuid.v4();
   final String title;
   final String id;
   final File images;
-  //final PlaceLocation location;
+  final PlaceLocation location;
 }
