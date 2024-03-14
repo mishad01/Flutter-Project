@@ -2,24 +2,26 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class SmartDeviceBox extends StatelessWidget {
   final String smartDeviceName;
   final String iconPath;
   final bool powerOn;
-  void Function(bool)? onChanged;
+  final void Function(bool)? onChanged;
 
   SmartDeviceBox({
-    super.key,
+    Key? key,
     required this.smartDeviceName,
     required this.iconPath,
     required this.powerOn,
     required this.onChanged,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final dbR = FirebaseDatabase.instance.ref();
+
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Container(
@@ -59,7 +61,10 @@ class SmartDeviceBox extends StatelessWidget {
                     angle: pi / 2,
                     child: CupertinoSwitch(
                       value: powerOn,
-                      onChanged: onChanged,
+                      onChanged: (newValue) {
+                        onChanged?.call(newValue);
+                        dbR.child("Light").set({"Switch": newValue});
+                      },
                     ),
                   ),
                 ],

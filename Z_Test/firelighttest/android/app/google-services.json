@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "930989100046",
+    "project_id": "fluttoriot",
+    "storage_bucket": "fluttoriot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930989100046:android:58f9a71079d8345eb2805f",
+        "android_client_info": {
+          "package_name": "com.example.firelight"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfnivpNmPqGsqIDfpUhNhklhMphqFwKwo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930989100046:android:46452015dd6c10beb2805f",
+        "android_client_info": {
+          "package_name": "com.example.firelightsync_ignitionapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfnivpNmPqGsqIDfpUhNhklhMphqFwKwo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930989100046:android:104bef456ae5ea14b2805f",
+        "android_client_info": {
+          "package_name": "com.example.firelighttest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfnivpNmPqGsqIDfpUhNhklhMphqFwKwo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
