@@ -22,38 +22,42 @@ class SmartDeviceBox extends StatelessWidget {
   Widget build(BuildContext context) {
     final dbR = FirebaseDatabase.instance.ref();
 
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24),
-          color: powerOn ? Colors.grey[900] : Color.fromARGB(44, 164, 167, 189),
-        ),
+    return Container(
+      margin: EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(24),
+        color: powerOn ? Colors.grey[900] : Color.fromARGB(44, 164, 167, 189),
+      ),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.width *
+            0.3, // Adjust the height as needed
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 25.0),
+          padding: EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // icon
-              Image.asset(
-                iconPath,
-                height: 65,
-                color: powerOn ? Colors.white : Colors.grey.shade700,
+              Expanded(
+                child: Image.asset(
+                  iconPath,
+                  width: MediaQuery.of(context).size.width *
+                      0.3, // Adjust the height as needed
+                  color: powerOn ? Colors.white : Colors.grey.shade700,
+                ),
               ),
 
               // smart device name + switch
               Row(
                 children: [
                   Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 25.0),
-                      child: Text(
-                        smartDeviceName,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: powerOn ? Colors.white : Colors.black,
-                        ),
+                    child: Text(
+                      smartDeviceName,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: MediaQuery.of(context).size.width *
+                            0.04, // Adjust the font size as needed
+                        color: powerOn ? Colors.white : Colors.black,
                       ),
                     ),
                   ),
