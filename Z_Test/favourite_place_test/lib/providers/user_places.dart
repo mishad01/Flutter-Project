@@ -14,7 +14,8 @@ class UserPlaceNotifier extends StateNotifier<List<Place>> {
 // Updating the state by creating a new list with the new place added to the beginning,
 // followed by the existing places.
 
-final UserPlaceProvider = StateNotifierProvider((ref) => UserPlaceNotifier());
+final UserPlaceProvider = StateNotifierProvider<UserPlaceNotifier, List<Place>>(
+    (ref) => UserPlaceNotifier());
 
 /*The StateNotifierProvider is a generic provider provided by the Riverpod library for managing state with state notifier classes.
  When you create a StateNotifierProvider,
