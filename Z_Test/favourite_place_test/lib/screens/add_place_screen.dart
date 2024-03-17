@@ -1,4 +1,5 @@
 import 'package:favourite_place_test/providers/user_places.dart';
+import 'package:favourite_place_test/widget/image_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -45,10 +46,13 @@ class _AddPlaceScreen extends ConsumerState<AddPlaceScreen> {
                 ),
               ),
               const SizedBox(height: 16),
+              ImageInput(),
+              const SizedBox(height: 16),
               ElevatedButton.icon(
-                  onPressed: _savedPlace,
-                  icon: const Icon(Icons.add),
-                  label: const Text('Add Place'))
+                onPressed: _savedPlace,
+                icon: const Icon(Icons.add),
+                label: const Text('Add Place'),
+              )
             ],
           ),
         ),
