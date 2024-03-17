@@ -1,6 +1,21 @@
+import 'package:favourite_place_test/model/place.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserPlaceNotifier extends StateNotifier {
+class UserPlaceNotifier extends StateNotifier<List<Place>> {
+  // Initializing the state with an empty list.
   UserPlaceNotifier() : super(const []);
-  // void addPlace
+  void addPlace(String title) {
+    final newPlace = Place(title: title);
+    state = [newPlace, ...state];
+  } //method which will update the state
 }
+// Method to add a new place to the list.
+// Creating a new Place object with the provided title.
+// Updating the state by creating a new list with the new place added to the beginning,
+// followed by the existing places.
+
+final UserPlaceProvider = StateNotifierProvider((ref) => UserPlaceNotifier());
+
+/*The StateNotifierProvider is a generic provider provided by the Riverpod library for managing state with state notifier classes.
+ When you create a StateNotifierProvider,
+you essentially create a wrapper around a state notifier class that allows other parts of your application to read and interact with the state managed by that notifier.*/
