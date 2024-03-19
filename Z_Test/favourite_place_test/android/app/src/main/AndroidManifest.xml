@@ -5,6 +5,8 @@
         android:label="favourite_place_test"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyA3J7tqEiKrtuD8we-79vle91XVDlFuAlI"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
