@@ -27,8 +27,40 @@ final UserPlaceProvider = StateNotifierProvider<UserPlaceNotifier, List<Place>>(
 you essentially create a wrapper around a state notifier class that allows other parts of your application to read and interact with the state managed by that notifier.*/
 */
 
+Future<Database> _getDataBase() async {
+  final dbPath = await sql.getDatabasesPath();
+  final db = await sql.openDatabase(
+    path.join(dbPath, 'places.db'),
+    onCreate: (db, version) {
+      return db.execute(
+          'CREATE TABLE user_places(id TEXT PRIMARY KEY,title TEXT,image TEXT, lat REAL,lng REAL, address TEXT)');
+    },
+    version: 1,
+  );
+  return db;
+}
+
 class UserPlaceNotifier extends StateNotifier<List<Place>> {
   UserPlaceNotifier() : super(const []);
+
+  void loadPlaces() async {
+    final db = await _getDataBase();
+    final data = await db.query('user_places');
+    final places = data
+        .map(
+          (row) => Place(
+            id: row['id'] as String,
+            title: row['title'] as String,
+            image: File(row['image'] as String),
+            location: PlaceLocation(
+                latitude: row['lat'] as double,
+                longitude: row['lng'] as double,
+                address: row['address'] as String),
+          ),
+        )
+        .toList();
+    state = places;
+  }
 
   void addPlace(String title, File image, PlaceLocation location) async {
     final appDir = await syspaths.getApplicationCacheDirectory();
@@ -37,13 +69,7 @@ class UserPlaceNotifier extends StateNotifier<List<Place>> {
 
     final newPlace =
         Place(title: title, image: copiedImage, location: location);
-
-    final dbPath = await sql.getDatabasesPath();
-    final db = await sql.openDatabase(path.join(dbPath, 'places.db'),
-        onCreate: (db, version) {
-      return db.execute(
-          'CREATE TABLE user_places(id TEXT PRIMARY KEY,title TEXT,image TEXT, lat REAL,lng REAL, address TEXT)');
-    }, version: 1);
+    final db = await _getDataBase();
     db.insert('user_places', {
       'id': newPlace.id,
       'title': newPlace.title,
