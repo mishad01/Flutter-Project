@@ -19,9 +19,9 @@ class ChatScreen extends StatelessWidget {
             ),
           )
         ],
-        title: Text('Flutter Chat'),
+        title: const Text('Flutter Chat'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Logged In'),
       ),
     );
