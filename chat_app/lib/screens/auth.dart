@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chat_app/widget/use_image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +7,9 @@ import 'package:flutter/material.dart';
 final _firebase = FirebaseAuth.instance;
 
 class AuthScreen extends StatefulWidget {
-  const AuthScreen({super.key});
+  const AuthScreen({
+    super.key,
+  });
 
   @override
   State<AuthScreen> createState() => _AuthScreenState();
@@ -16,13 +20,20 @@ class _AuthScreenState extends State<AuthScreen> {
   var _isLogin = true;
   var _enterdEmail = '';
   var _enterdPassword = '';
+  File? _selectedImage;
 
   void _submit() async {
     final isValid = _form.currentState!.validate();
 
-    if (!isValid) {
+    if (!isValid || !_isLogin && _selectedImage == null) {
       return;
     }
+    /*if (!isValid) {
+      return;
+    }
+    if (!_isLogin && _selectedImage == null) {
+      return;
+    }*/
     _form.currentState!.save();
 
     try {
@@ -76,7 +87,12 @@ class _AuthScreenState extends State<AuthScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          if (!_isLogin) UserImagePicker(),
+                          if (!_isLogin)
+                            UserImagePicker(
+                              onPickImage: (pickedImage) {
+                                _selectedImage = pickedImage;
+                              },
+                            ),
                           TextFormField(
                             decoration: const InputDecoration(
                               labelText: 'Email Address',
