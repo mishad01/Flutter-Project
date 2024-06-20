@@ -34,6 +34,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   TextFormField(
+                    controller: _emailTEController,
                     decoration: InputDecoration(
                         hintText: 'Email',
                         hintStyle: TextStyle(color: Colors.grey)),
@@ -42,6 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 2.h,
                   ),
                   TextFormField(
+                    controller: _firstNameTEController,
                     decoration: InputDecoration(
                         hintText: 'First Name',
                         hintStyle: TextStyle(color: Colors.grey)),
@@ -50,6 +52,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 2.h,
                   ),
                   TextFormField(
+                    controller: _lastNameTEController,
                     decoration: InputDecoration(
                         hintText: 'Last Name',
                         hintStyle: TextStyle(color: Colors.grey)),
@@ -58,7 +61,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 2.h,
                   ),
                   TextFormField(
-                    decoration: InputDecoration(
+                    controller: _passwordTEController,
+                    decoration: const InputDecoration(
                         hintText: 'Password',
                         hintStyle: TextStyle(color: Colors.grey)),
                   ),
