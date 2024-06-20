@@ -1,15 +1,20 @@
 import 'package:chat_mate/ui/auth/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class ChatMate extends StatelessWidget {
   const ChatMate({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: _lightThemeData(),
-      home: SplashScreen(),
-      debugShowCheckedModeBanner: false,
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return MaterialApp(
+          theme: _lightThemeData(),
+          home: SplashScreen(),
+          debugShowCheckedModeBanner: false,
+        );
+      },
     );
   }
 
