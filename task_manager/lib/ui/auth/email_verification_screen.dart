@@ -12,6 +12,7 @@ class EmailVerificationScreen extends StatefulWidget {
 }
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
+  final TextEditingController _emailTEController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +34,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               ),
               const SizedBox(height: 10),
               TextFormField(
+                controller: _emailTEController,
                 decoration: InputDecoration(hintText: 'Email'),
               ),
               const SizedBox(height: 10),
@@ -73,5 +75,11 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
         builder: (context) => PinVerificationScreen(),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _emailTEController.dispose();
+    super.dispose();
   }
 }
