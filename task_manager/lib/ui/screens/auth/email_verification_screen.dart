@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:task_manager/ui/auth/set_password_screen.dart';
+import 'package:task_manager/ui/screens/auth/pin_verification_screen.dart';
 import 'package:task_manager/ui/utility/app_colors.dart';
 import 'package:task_manager/ui/widgets/background_widgets.dart';
 
-class PinVerificationScreen extends StatefulWidget {
-  const PinVerificationScreen({super.key});
+class EmailVerificationScreen extends StatefulWidget {
+  const EmailVerificationScreen({super.key});
 
   @override
-  State<PinVerificationScreen> createState() => _PinVerificationScreenState();
+  State<EmailVerificationScreen> createState() =>
+      _EmailVerificationScreenState();
 }
 
-class _PinVerificationScreenState extends State<PinVerificationScreen> {
-  final TextEditingController _pinTEController = TextEditingController();
+class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
+  final TextEditingController _emailTEController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +24,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
             children: [
               const SizedBox(height: 160),
               Text(
-                'PIN Verification',
+                'Your Email Address',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 10),
@@ -33,11 +33,14 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                 style: Theme.of(context).textTheme.titleSmall,
               ),
               const SizedBox(height: 10),
-              _buildPinCodeTextField(context),
+              TextFormField(
+                controller: _emailTEController,
+                decoration: InputDecoration(hintText: 'Email'),
+              ),
               const SizedBox(height: 10),
               ElevatedButton(
-                onPressed: _onTapVerifyScreen,
-                child: Text('Verify'),
+                onPressed: _onTapNextScreen,
+                child: Icon(Icons.arrow_forward_ios_outlined),
               ),
               const SizedBox(height: 30),
               Center(
@@ -65,43 +68,18 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
     );
   }
 
-  PinCodeTextField _buildPinCodeTextField(BuildContext context) {
-    return PinCodeTextField(
-      length: 6,
-      obscureText: false,
-      animationType: AnimationType.fade,
-      pinTheme: PinTheme(
-        shape: PinCodeFieldShape.box,
-        borderRadius: BorderRadius.circular(5),
-        fieldHeight: 50,
-        fieldWidth: 40,
-        activeFillColor: Colors.white,
-        selectedFillColor: Colors.white,
-        inactiveFillColor: Colors.white,
-        selectedColor: AppColors.themeColor,
-      ),
-      animationDuration: Duration(milliseconds: 300),
-      backgroundColor: Colors.transparent,
-      enableActiveFill: true,
-      controller: _pinTEController,
-      appContext: context,
-      keyboardType: TextInputType.number,
-    );
-  }
-
-  void _onTapVerifyScreen() {
+  void _onTapNextScreen() {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => SetPasswordScreen(),
+        builder: (context) => PinVerificationScreen(),
       ),
     );
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    _emailTEController.dispose();
     super.dispose();
-    _pinTEController.dispose();
   }
 }
