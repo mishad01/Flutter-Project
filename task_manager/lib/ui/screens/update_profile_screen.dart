@@ -14,6 +14,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   final TextEditingController _lnTEController = TextEditingController();
   final TextEditingController _mobileTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
