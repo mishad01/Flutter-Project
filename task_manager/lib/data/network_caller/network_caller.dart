@@ -4,7 +4,7 @@ import 'package:http/http.dart';
 import 'package:task_manager/data/model/network_response.dart';
 
 class NetworkCaller {
-  static Future<NetworkResponse> _getRequest(String url) async {
+  static Future<NetworkResponse> getRequest(String url) async {
     try {
       Response response = await get(Uri.parse(url));
       if (response.statusCode == 200) {
@@ -27,7 +27,7 @@ class NetworkCaller {
     }
   }
 
-  static Future<NetworkResponse> _postRequest(String url,
+  static Future<NetworkResponse> postRequest(String url,
       {Map<String, dynamic>? body}) async {
     try {
       Response response = await post(

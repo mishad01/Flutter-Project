@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager/ui/screens/auth/email_verification_screen.dart';
+import 'package:task_manager/ui/screens/auth/sign_up_screen.dart';
 import 'package:task_manager/ui/screens/main_bottom_nav_screen.dart';
 import 'package:task_manager/ui/utility/app_colors.dart';
 import 'package:task_manager/ui/widgets/background_widgets.dart';
@@ -94,10 +95,17 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                         children: [
                           TextSpan(
-                              text: 'Sign Up',
-                              style: TextStyle(color: AppColors.themeColor),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {}),
+                            text: 'Sign Up',
+                            style: TextStyle(color: AppColors.themeColor),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SignUpScreen(),
+                                    ));
+                              },
+                          ),
                         ],
                       ),
                     ),
