@@ -19,7 +19,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
         child: Icon(Icons.add),
       ),
       backgroundColor: Colors.grey.shade300,
-      appBar: profileAppBar(),
+      appBar: profileAppBar(context),
       body: Padding(
         padding: const EdgeInsets.all(6.0),
         child: Column(

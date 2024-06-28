@@ -12,7 +12,7 @@ class _CancelledTaskScreenState extends State<CancelledTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: profileAppBar(),
+      appBar: profileAppBar(context),
       body: ListView.builder(
         itemCount: 5,
         itemBuilder: (context, index) {
