@@ -2,6 +2,7 @@ import 'package:chat_mate/ui/auth/set_password_screen.dart';
 import 'package:chat_mate/widgets/background_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:sizer/sizer.dart';
 
 class PinVerificationScreen extends StatefulWidget {
   const PinVerificationScreen({super.key});
@@ -26,7 +27,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 20,
+                    height: 20.h,
                   ),
                   Text(
                     'PIN Verification',
