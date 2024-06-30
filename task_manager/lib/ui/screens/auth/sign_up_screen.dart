@@ -1,7 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager/data/model/network_response.dart';
 import 'package:task_manager/data/network_caller/network_caller.dart';
 import 'package:task_manager/data/utilites/urls.dart';
+import 'package:task_manager/ui/screens/auth/sign_in_screen.dart';
 import 'package:task_manager/ui/utility/app_colors.dart';
 import 'package:task_manager/ui/utility/app_constants.dart';
 import 'package:task_manager/ui/widgets/background_widgets.dart';
@@ -144,6 +146,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 color: AppColors.themeColor,
                                 fontWeight: FontWeight.w400,
                               ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SignInScreen(),
+                                    ),
+                                    (route) => false,
+                                  );
+                                },
                             )
                           ]),
                     ),
