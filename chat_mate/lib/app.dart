@@ -2,8 +2,8 @@ import 'package:chat_mate/ui/auth/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class ChatMate extends StatelessWidget {
-  const ChatMate({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "824340368633",
+    "project_id": "text-message-3bfdf",
+    "storage_bucket": "text-message-3bfdf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824340368633:android:5a1c25af4cefdc843c6628",
+        "android_client_info": {
+          "package_name": "com.example.chat_mate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa9s-KP2YIh0_kun8i0g93ZJWSTQwvQeE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
