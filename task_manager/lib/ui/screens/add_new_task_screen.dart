@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/data/model/network_response.dart';
+import 'package:task_manager/data/network_caller/network_caller.dart';
+import 'package:task_manager/data/utilites/urls.dart';
 import 'package:task_manager/ui/widgets/background_widgets.dart';
+import 'package:task_manager/ui/widgets/centered_progress_indicetor.dart';
+import 'package:task_manager/ui/widgets/profile_app_bar.dart';
+import 'package:task_manager/ui/widgets/snack_bar_message.dart';
 
 class AddNewTaskScreen extends StatefulWidget {
   const AddNewTaskScreen({super.key});
@@ -12,11 +18,13 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
   final TextEditingController _subjectTEController = TextEditingController();
   final TextEditingController _descriptionTEController =
       TextEditingController();
-  GlobalKey<FormState> _formState = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formState = GlobalKey<FormState>();
+  bool _addNewTaskInProgress = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: profileAppBar(context),
       body: BackGroundWidgets(
         child: Padding(
           padding: const EdgeInsets.all(30.0),
@@ -26,7 +34,7 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 160),
+                  const SizedBox(height: 80),
                   Text(
                     'Add New Task',
                     style: Theme.of(context).textTheme.titleLarge,
@@ -35,27 +43,38 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
                   TextFormField(
                     controller: _subjectTEController,
                     decoration: InputDecoration(hintText: 'Subject'),
+                    validator: (value) {
+                      if (value?.trim().isEmpty ?? true) {
+                        return 'Enter your subject';
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
                     maxLines: 5,
                     controller: _descriptionTEController,
                     decoration: InputDecoration(hintText: 'Description'),
+                    validator: (value) {
+                      if (value?.trim().isEmpty ?? true) {
+                        return 'Enter your Description correctly';
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (_formState.currentState!.validate()) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => AddNewTaskScreen(),
-                          ),
-                        );
-                      }
-                    },
-                    child: const Icon(
-                      Icons.arrow_forward_ios_outlined,
+                  Visibility(
+                    visible: _addNewTaskInProgress == false,
+                    replacement: const CenteredProgressIndicetor(),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formState.currentState!.validate()) {
+                          _addNewTask();
+                        }
+                      },
+                      child: const Icon(
+                        Icons.arrow_forward_ios_outlined,
+                      ),
                     ),
                   ),
                 ],
@@ -67,14 +86,42 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
     );
   }
 
-  // void _onTapConfirmPassword() {
-  //   Navigator.push(
-  //     context,
-  //     MaterialPageRoute(
-  //       builder: (context) => SignUpScreen(),
-  //     ),
-  //   );
-  // }
+  Future<void> _addNewTask() async {
+    _addNewTaskInProgress = true;
+    if (mounted) {
+      setState(() {});
+    }
+
+    Map<String, dynamic> requestData = {
+      "title": _subjectTEController.text.trim(),
+      "description": _descriptionTEController.text.trim(),
+      "status": "New"
+    };
+    NetworkResponse response = await NetworkCaller.postRequest(
+      Urls.createTask,
+      body: requestData,
+    );
+    _addNewTaskInProgress = false;
+    if (mounted) {
+      setState(() {});
+    }
+    if (response.isSuccess) {
+      _clearTextFields();
+      if (mounted) {
+        showSnackBarMessage(context, 'New Task Added');
+      } else {
+        // This 'else' should be for the 'if (response.isSuccess)' condition
+        if (mounted) {
+          showSnackBarMessage(context, 'New Task add failed !', true);
+        }
+      }
+    }
+  }
+
+  void _clearTextFields() {
+    _subjectTEController.clear();
+    _descriptionTEController.clear();
+  }
 
   @override
   void dispose() {
