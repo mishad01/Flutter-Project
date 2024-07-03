@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/data/model/network_response.dart';
+import 'package:task_manager/data/model/task_by_status_count_wrapper_model.dart';
+import 'package:task_manager/data/model/task_count_by_status_model.dart';
 import 'package:task_manager/data/model/task_list_wrapper.dart';
 import 'package:task_manager/data/model/task_model.dart';
 import 'package:task_manager/data/network_caller/network_caller.dart';
@@ -19,12 +21,15 @@ class NewTaskScreen extends StatefulWidget {
 
 class _NewTaskScreenState extends State<NewTaskScreen> {
   bool _getNewTaskInProgress = false;
+  bool _getTaskCountInProgress = false;
   List<TaskModel> newTaskList = [];
+  List<TaskCountByStatusModel> taskCountByStatusList = [];
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    _getTaskCountByStatus();
     _getNewTasks();
   }
 
@@ -44,6 +49,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
               child: RefreshIndicator(
                 onRefresh: () async {
                   _getNewTasks();
+                  _getTaskCountByStatus();
                 },
                 child: ListView.builder(
                   itemCount: newTaskList.length,
@@ -76,16 +82,39 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
     );
   }
 
-  SingleChildScrollView _buildSummarySection() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          TaskSummaryCard(title: 'New Task', count: '12'),
-          TaskSummaryCard(title: 'Completed', count: '12'),
-          TaskSummaryCard(title: 'Progress', count: '12'),
-          TaskSummaryCard(title: 'Cancled', count: '12'),
-        ],
+  // SingleChildScrollView _buildSummarySection() {
+  //   return SingleChildScrollView(
+  //     scrollDirection: Axis.horizontal,
+  //     child: Row(
+  //       children: [
+  //         TaskSummaryCard(title: 'New Task', count: '12'),
+  //         TaskSummaryCard(title: 'Completed', count: '12'),
+  //         TaskSummaryCard(title: 'Progress', count: '12'),
+  //         TaskSummaryCard(title: 'Cancled', count: '12'),
+  //       ],
+  //     ),
+  //   );
+  // }
+  Widget _buildSummarySection() {
+    return Visibility(
+      visible: _getTaskCountInProgress == false,
+      replacement: SizedBox(
+          height: 100,
+          child: Center(
+            child: CircularProgressIndicator(),
+          )),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: taskCountByStatusList.map(
+            (e) {
+              return TaskSummaryCard(
+                title: (e.sId ?? 'Unknown').toUpperCase(),
+                count: e.sum.toString(),
+              );
+            },
+          ).toList(),
+        ),
       ),
     );
   }
@@ -107,6 +136,30 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
       }
     }
     _getNewTaskInProgress = false;
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> _getTaskCountByStatus() async {
+    _getTaskCountInProgress = true;
+    if (mounted) {
+      setState(() {});
+    }
+    NetworkResponse response =
+        await NetworkCaller.getRequest(Urls.taskStatusCount);
+    if (response.isSuccess) {
+      TaskCountByStatusWrapperModel taskCountByStatusWrapperModel =
+          TaskCountByStatusWrapperModel.fromJson(response.responseData);
+      taskCountByStatusList =
+          taskCountByStatusWrapperModel.taskCountByStatusList ?? [];
+    } else {
+      if (mounted) {
+        showSnackBarMessage(context,
+            response.errorMessage ?? 'Get new task count by failed! Try again');
+      }
+    }
+    _getTaskCountInProgress = false;
     if (mounted) {
       setState(() {});
     }

@@ -1,15 +1,21 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:task_manager/app.dart';
 import 'package:task_manager/data/model/network_response.dart';
 import 'package:task_manager/ui/controller/auth_controller.dart';
+import 'package:task_manager/ui/screens/auth/sign_in_screen.dart';
 
 class NetworkCaller {
   static Future<NetworkResponse> getRequest(String url) async {
     try {
+      debugPrint(url);
       Response response = await get(Uri.parse(url),
           headers: {'token': AuthController.accessToken});
+
+      debugPrint(response.statusCode.toString());
+      debugPrint(response.body);
       if (response.statusCode == 200) {
         final decodedData = jsonDecode(response.body);
         return NetworkResponse(
@@ -17,6 +23,12 @@ class NetworkCaller {
           isSuccess: true,
           responseData: decodedData,
           errorMessage: null,
+        );
+      } else if (response.statusCode == 401) {
+        redirectToLogin();
+        return NetworkResponse(
+          statusCode: response.statusCode,
+          isSuccess: false,
         );
       } else {
         return NetworkResponse(
@@ -54,6 +66,12 @@ class NetworkCaller {
           responseData: decodedData,
           errorMessage: null,
         );
+      } else if (response.statusCode == 401) {
+        redirectToLogin();
+        return NetworkResponse(
+          statusCode: response.statusCode,
+          isSuccess: false,
+        );
       } else {
         return NetworkResponse(
           statusCode: response.statusCode,
@@ -67,6 +85,17 @@ class NetworkCaller {
         errorMessage: e.toString(),
       );
     }
+  }
+
+  static Future<void> redirectToLogin() async {
+    await AuthController.clearAllData();
+    Navigator.pushAndRemoveUntil(
+      TaskManager.navigatorKey.currentContext!,
+      MaterialPageRoute(
+        builder: (context) => SignInScreen(),
+      ),
+      (route) => false,
+    );
   }
   /*Future<NetworkResponse> getRequest(String url) async {
     try {
