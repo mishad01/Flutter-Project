@@ -55,6 +55,10 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                   itemCount: newTaskList.length,
                   itemBuilder: (context, index) {
                     return TaskItem(
+                      onUpdateTask: () {
+                        _getNewTasks();
+                        _getTaskCountByStatus();
+                      },
                       taskModel: newTaskList[index],
                     );
                   },
