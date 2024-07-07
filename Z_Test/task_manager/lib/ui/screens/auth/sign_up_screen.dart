@@ -120,10 +120,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 16),
                     Visibility(
-                      visible: _registrationInProgress == false,
-                      replacement: const Center(
-                        child: CircularProgressIndicator(),
-                      ),
+                      visible: !_registrationInProgress,
+                      replacement: Center(child: CircularProgressIndicator()),
                       child: ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
@@ -168,7 +166,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void register() async {
-    _registrationInProgress = false;
+    _registrationInProgress = true;
     if (mounted) {
       setState(() {});
     }
@@ -184,6 +182,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     NetworkResponse response =
         await NetworkCaller.postRequest(Urls.registration, body: requestInput);
     _registrationInProgress = false;
+    if (mounted) {
+      setState(() {});
+    }
     if (response.isSuccess) {
       _clearTextFields();
       if (mounted) {
