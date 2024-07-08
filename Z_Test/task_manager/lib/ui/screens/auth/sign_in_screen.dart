@@ -1,13 +1,16 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:task_manager/data/model/login_model.dart';
 import 'package:task_manager/data/model/network_response.dart';
 import 'package:task_manager/data/network_caller/network_caller.dart';
 import 'package:task_manager/data/utilities/urls.dart';
+import 'package:task_manager/ui/controllers/auth_controller.dart';
 import 'package:task_manager/ui/screens/auth/email_verification_screen.dart';
 import 'package:task_manager/ui/screens/auth/sign_up_screen.dart';
 import 'package:task_manager/ui/screens/main_bottom_nav_screen.dart';
 import 'package:task_manager/ui/utility/app_colors.dart';
 import 'package:task_manager/ui/widgets/background_widget.dart';
+import 'package:task_manager/ui/widgets/center_circular_progress_indicator.dart';
 import 'package:task_manager/ui/widgets/snak_bar_message.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -68,9 +71,13 @@ class _SignInScreenState extends State<SignInScreen> {
                       },
                     ),
                     const SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: _onTapNextButton,
-                      child: const Icon(Icons.arrow_circle_right_outlined),
+                    Visibility(
+                      visible: _signInProgress == false,
+                      replacement: CenterCircularProgressIndicator(),
+                      child: ElevatedButton(
+                        onPressed: _onTapNextButton,
+                        child: const Icon(Icons.arrow_circle_right_outlined),
+                      ),
                     ),
                     const SizedBox(height: 36),
                     Center(
@@ -131,6 +138,9 @@ class _SignInScreenState extends State<SignInScreen> {
     if (mounted) setState(() {});
 
     if (response.isSuccess) {
+      LoginModel loginModel = LoginModel.fromJson(response.responseData);
+      await AuthController.saveUserAccessToken(loginModel.token!);
+      await AuthController.saveUserData(loginModel.userModel!);
       Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context) => MainBottomNavScreen()));
     } else {

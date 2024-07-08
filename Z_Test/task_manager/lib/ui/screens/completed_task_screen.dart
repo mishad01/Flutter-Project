@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/ui/widgets/task_item.dart';
 
 class CompletedTaskScreen extends StatefulWidget {
   const CompletedTaskScreen({super.key});
@@ -15,7 +14,7 @@ class _CompletedTaskScreenState extends State<CompletedTaskScreen> {
       body: ListView.builder(
         itemCount: 5,
         itemBuilder: (context, index) {
-          return const TaskItem();
+          // return const TaskItem();
         },
       ),
     );
