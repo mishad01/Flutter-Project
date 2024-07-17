@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:task_manager/data/model/network_response.dart';
+import 'package:task_manager/data/network_caller/network_caller.dart';
+import 'package:task_manager/data/utilites/urls.dart';
 import 'package:task_manager/ui/screens/auth/set_password_screen.dart';
 import 'package:task_manager/ui/utility/app_colors.dart';
 import 'package:task_manager/ui/widgets/background_widgets.dart';
+import 'package:task_manager/ui/widgets/centered_progress_indicetor.dart';
+import 'package:task_manager/ui/widgets/snack_bar_message.dart';
 
 class PinVerificationScreen extends StatefulWidget {
-  const PinVerificationScreen({super.key});
+  const PinVerificationScreen({super.key, required this.email});
+  final String email;
 
   @override
   State<PinVerificationScreen> createState() => _PinVerificationScreenState();
@@ -13,6 +19,7 @@ class PinVerificationScreen extends StatefulWidget {
 
 class _PinVerificationScreenState extends State<PinVerificationScreen> {
   final TextEditingController _pinTEController = TextEditingController();
+  bool _otpVerificationInProgress = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,9 +42,13 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
               const SizedBox(height: 10),
               _buildPinCodeTextField(context),
               const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: _onTapVerifyScreen,
-                child: Text('Verify'),
+              Visibility(
+                visible: _otpVerificationInProgress == false,
+                replacement: CenteredProgressIndicetor(),
+                child: ElevatedButton(
+                  onPressed: _onTapVerifyScreen,
+                  child: Text('Verify'),
+                ),
               ),
               const SizedBox(height: 30),
               Center(
@@ -90,12 +101,33 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
   }
 
   void _onTapVerifyScreen() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => SetPasswordScreen(),
-      ),
-    );
+    _verifyOTP(_pinTEController.text);
+  }
+
+  Future<void> _verifyOTP(String otp) async {
+    _otpVerificationInProgress = true;
+    if (mounted) {
+      setState(() {});
+    }
+    NetworkResponse response =
+        await NetworkCaller.getRequest(Urls.verifyOtp(widget.email, otp));
+    _otpVerificationInProgress = false;
+    if (mounted) {
+      setState(() {});
+    }
+    if (response.isSuccess && response.responseData['status'] == 'success') {
+      if (mounted) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SetPasswordScreen()),
+        );
+      }
+    } else {
+      if (mounted) {
+        showSnackBarMessage(context,
+            response.errorMessage ?? 'OTP Verification failed! Try again');
+      }
+    }
   }
 
   @override

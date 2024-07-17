@@ -23,6 +23,7 @@ class TaskItem extends StatefulWidget {
 class _TaskItemState extends State<TaskItem> {
   bool _deleteInProgress = false;
   bool _editInProgress = false;
+
   String dropDownValue = '';
   List<String> statusList = [
     'New',
@@ -75,27 +76,7 @@ class _TaskItemState extends State<TaskItem> {
                     Visibility(
                       visible: _editInProgress == false,
                       replacement: CenteredProgressIndicetor(),
-                      child: PopupMenuButton<String>(
-                          icon: const Icon(Icons.edit),
-                          onSelected: (String selectedValue) {
-                            dropDownValue = selectedValue;
-                            if (mounted) {
-                              setState(() {});
-                            }
-                          },
-                          itemBuilder: (BuildContext context) {
-                            return statusList.map((String value) {
-                              return PopupMenuItem<String>(
-                                value: value,
-                                child: ListTile(
-                                  title: Text(value),
-                                  trailing: dropDownValue == value
-                                      ? const Icon(Icons.done)
-                                      : null,
-                                ),
-                              );
-                            }).toList();
-                          }),
+                      child: _buildEditButton(),
                     )
                   ],
                 )
@@ -105,6 +86,27 @@ class _TaskItemState extends State<TaskItem> {
         ),
       ),
     );
+  }
+
+  Widget _buildEditButton() {
+    return PopupMenuButton<String>(
+        icon: const Icon(Icons.edit),
+        onSelected: (String selectedValue) {
+          dropDownValue = selectedValue;
+          _updateTask(dropDownValue);
+        },
+        itemBuilder: (BuildContext context) {
+          return statusList.map((String value) {
+            return PopupMenuItem<String>(
+              value: value,
+              child: ListTile(
+                title: Text(value),
+                trailing:
+                    dropDownValue == value ? const Icon(Icons.done) : null,
+              ),
+            );
+          }).toList();
+        });
   }
 
   Future<void> _deleteTask() async {
@@ -123,6 +125,29 @@ class _TaskItemState extends State<TaskItem> {
       }
     }
     _deleteInProgress = false;
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> _updateTask(String status) async {
+    _editInProgress = true;
+    if (mounted) {
+      setState(() {});
+    }
+    NetworkResponse response = await NetworkCaller.getRequest(
+        Urls.updateTask(widget.taskModel.sId!, status));
+    if (response.isSuccess) {
+      widget.onUpdateTask();
+    } else {
+      if (mounted) {
+        showSnackBarMessage(
+            context,
+            response.errorMessage ??
+                'Get update task status failed! Try again');
+      }
+    }
+    _editInProgress = false;
     if (mounted) {
       setState(() {});
     }
