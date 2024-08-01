@@ -52,6 +52,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       decoration: InputDecoration(
                         hintText: 'Email',
                         hintStyle: TextStyle(color: Colors.grey),
+                        errorStyle: TextStyle(color: Colors.white),
                       ),
                       validator: (value) {
                         if (value?.trim().isEmpty ?? true) {
@@ -67,6 +68,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       decoration: InputDecoration(
                         hintText: 'Password',
                         hintStyle: TextStyle(color: Colors.grey),
+                        errorStyle: TextStyle(color: Colors.white),
                       ),
                       validator: (value) {
                         if (value?.trim().isEmpty ?? true) {

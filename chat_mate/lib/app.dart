@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
   ThemeData _lightThemeData() {
     return ThemeData(
       inputDecorationTheme: const InputDecorationTheme(
+
         filled: true,
         fillColor: Colors.white,
         border: OutlineInputBorder(borderSide: BorderSide.none),

@@ -10,6 +10,7 @@ import 'package:task_manager/data/network_caller/network_caller.dart';
 import 'package:task_manager/data/utilities/urls.dart';
 import 'package:task_manager/ui/screens/add_new_task_screen.dart';
 import 'package:task_manager/ui/utility/app_colors.dart';
+import 'package:task_manager/ui/widgets/center_circular_progress_indicator.dart';
 import 'package:task_manager/ui/widgets/snak_bar_message.dart';
 import 'package:task_manager/ui/widgets/task_item.dart';
 import 'package:task_manager/ui/widgets/task_summary_card.dart';
@@ -51,12 +52,16 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                 },
                 child: Visibility(
                   visible: _getNewTaskInProgress == false,
-                  replacement: CircularProgressIndicator(),
+                  replacement: CenterCircularProgressIndicator(),
                   child: ListView.builder(
                     itemCount: newTaskList.length,
                     itemBuilder: (context, index) {
                       return TaskItem(
                         taskModel: newTaskList[index],
+                        onUpdateTask: () {
+                          _getNewTask();
+                          _getTaskCountByStatus();
+                        },
                       );
                     },
                   ),

@@ -119,7 +119,9 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
       if (mounted) {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SetPasswordScreen()),
+          MaterialPageRoute(
+              builder: (context) =>
+                  SetPasswordScreen(email: widget.email, otp: otp)),
         );
       }
     } else {
