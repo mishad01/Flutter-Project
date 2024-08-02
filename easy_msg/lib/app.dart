@@ -18,14 +18,26 @@ class EasyMsg extends StatelessWidget {
         GetPage(name: '/signIn', page: () => SignInScreen()),
         GetPage(name: '/signUp', page: () => SignUpScreen())
       ],
-      theme: ThemeData(
-        inputDecorationTheme: const InputDecorationTheme(
-          fillColor: Colors.white,
-          filled: true,
-          border: OutlineInputBorder(borderSide: BorderSide.none),
-          hintStyle:
-              TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
+      theme: buildThemeData(),
+    );
+  }
+
+  ThemeData buildThemeData() {
+    return ThemeData(
+      inputDecorationTheme: const InputDecorationTheme(
+        fillColor: Colors.white,
+        filled: true,
+        border: OutlineInputBorder(borderSide: BorderSide.none),
+        hintStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+            //padding: EdgeInsets.symmetric(vertical: 12),
+            //fixedSize: Size.fromWidth(double.maxFinite),
+            //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            //backgroundColor: AppColor.themeColor,
+            //foregroundColor: Colors.white,
+            ),
       ),
     );
   }
