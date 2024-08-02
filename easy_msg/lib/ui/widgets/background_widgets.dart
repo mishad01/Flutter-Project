@@ -15,6 +15,7 @@ class BackgroundWidgets extends StatelessWidget {
         Image.asset(
           AssetPath.backgroundImg,
           height: double.infinity,
+          width: double.infinity,
           fit: BoxFit.cover,
         ),
         child
