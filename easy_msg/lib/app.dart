@@ -32,12 +32,12 @@ class EasyMsg extends StatelessWidget {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-            //padding: EdgeInsets.symmetric(vertical: 12),
-            //fixedSize: Size.fromWidth(double.maxFinite),
-            //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            //backgroundColor: AppColor.themeColor,
-            //foregroundColor: Colors.white,
-            ),
+          //padding: EdgeInsets.symmetric(vertical: 12),
+          //fixedSize: Size.fromWidth(double.maxFinite),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          //backgroundColor: AppColor.themeColor,
+          //foregroundColor: Colors.white,
+        ),
       ),
     );
   }
