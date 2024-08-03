@@ -22,7 +22,7 @@ class _SignInScreenState extends State<SignInScreen> {
   String _enteredEmail = '';
   String _enteredPassword = '';
 
-  void _submit() async {
+  /*void _submit() async {
     final isValid = _formState.currentState!.validate();
     // if (isValid) {
     //   _formState.currentState!.save();
@@ -58,6 +58,24 @@ class _SignInScreenState extends State<SignInScreen> {
         Get.closeAllSnackbars();
         Get.snackbar(error.message ?? 'Unknown Error', 'Authentication Failed');
       }
+    }
+  }*/
+  void _submitSignIn() async {
+    final form = _formState.currentState;
+    if (form != null && form.validate()) {
+      form.save();
+      try {
+        if (_isLogin) {
+          final userCredential = await _firebase.signInWithEmailAndPassword(
+              email: _enteredEmail, password: _enteredPassword);
+          print(userCredential);
+        }
+      } on FirebaseAuthException catch (error) {
+        Get.closeAllSnackbars();
+        Get.snackbar(error.message ?? 'Unknown Error', 'Authentication Failed');
+      }
+    } else {
+      Get.snackbar('Form Error', 'Please complete the form correctly');
     }
   }
 
@@ -127,7 +145,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           width: 90,
                           child: ElevatedButton(
                             onPressed: () {
-                              _submit();
+                              _submitSignIn();
                             },
                             child: Text('Login'),
                           ),

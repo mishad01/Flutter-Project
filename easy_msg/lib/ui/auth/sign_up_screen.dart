@@ -22,8 +22,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   String _enteredEmail = '';
   String _enteredPassword = '';
-  //var _isAuthenticating = false;
-
+  bool _isAuthenticating = false;
+  bool _isLogin = true;
   void _submitSignUp() {
     final isValid = _formState.currentState!.validate();
     if (!isValid) {
