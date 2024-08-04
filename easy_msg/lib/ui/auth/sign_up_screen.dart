@@ -1,3 +1,4 @@
+import 'package:easy_msg/services/firebase_auth_services.dart';
 import 'package:easy_msg/ui/utility/asset_path.dart';
 import 'package:easy_msg/ui/widgets/background_widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,8 +20,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _lastNameTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _formState = GlobalKey<FormState>();
+  final FirebaseAuthServices _auth = FirebaseAuthServices();
 
-  String _enteredEmail = '';
+  /*String _enteredEmail = '';
   String _enteredPassword = '';
   bool _isAuthenticating = false;
   bool _isLogin = true;
@@ -41,7 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       Get.closeAllSnackbars();
       Get.snackbar(error.message ?? 'Unknown Error', 'Authentication Failed');
     }
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +77,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               return "Enter Email Correctly";
                             }
                           },
-                          onSaved: (newValue) {
-                            _enteredEmail = newValue!;
-                          },
+                          // onSaved: (newValue) {
+                          //   _enteredEmail = newValue!;
+                          // },
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -129,15 +131,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               return "Enter password Correctly";
                             }
                           },
-                          onSaved: (newValue) {
-                            _enteredPassword = newValue!;
-                          },
+                          // onSaved: (newValue) {
+                          //   _enteredPassword = newValue!;
+                          // },
                         ),
                       ),
                       const SizedBox(height: 20),
                       ElevatedButton(
                           onPressed: () {
-                            _submitSignUp();
+                            signUp();
                           },
                           child: Text('Sign Up'))
                     ],
@@ -151,9 +153,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
+  void signUp()async{
+    String email = _emailTEController.text;
+    String password = _passwordTEController.text;
+    User? user = await _auth.signUpWithEmailAndPassword(email, password);
+    if(user!=null){
+      Get.snackbar('Sign Up', 'User is successfully created');
+      Get.offNamed("/signIn");
+    }else{
+      Get.snackbar('Error', 'Some error Occurred');
+    }
+  }
   @override
   void dispose() {
     // TODO: implement dispose
+    super.dispose();
     _emailTEController.dispose();
     _firstNameTEController.dispose();
     _lastNameTEController.dispose();

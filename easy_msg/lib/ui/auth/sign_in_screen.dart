@@ -1,3 +1,4 @@
+import 'package:easy_msg/services/firebase_auth_services.dart';
 import 'package:easy_msg/ui/utility/asset_path.dart';
 import 'package:easy_msg/ui/widgets/background_widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,9 +19,10 @@ class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _formState = GlobalKey<FormState>();
-  bool _isLogin = false;
+  final FirebaseAuthServices _auth = FirebaseAuthServices();
+  /*bool _isLogin = false;
   String _enteredEmail = '';
-  String _enteredPassword = '';
+  String _enteredPassword = '';*/
 
   /*void _submit() async {
     final isValid = _formState.currentState!.validate();
@@ -60,7 +62,7 @@ class _SignInScreenState extends State<SignInScreen> {
       }
     }
   }*/
-  void _submitSignIn() async {
+  /*void _submitSignIn() async {
     final form = _formState.currentState;
     if (form != null && form.validate()) {
       form.save();
@@ -77,7 +79,7 @@ class _SignInScreenState extends State<SignInScreen> {
     } else {
       Get.snackbar('Form Error', 'Please complete the form correctly');
     }
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -114,9 +116,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                 return "Enter Email Correctly";
                               }
                             },
-                            onSaved: (newValue) {
-                              _enteredEmail = newValue!;
-                            },
+                            // onSaved: (newValue) {
+                            //   _enteredEmail = newValue!;
+                            // },
                           ),
                         ),
                         const SizedBox(height: 10),
@@ -134,9 +136,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                 return "Enter Email Correctly";
                               }
                             },
-                            onSaved: (newValue) {
-                              _enteredPassword = newValue!;
-                            },
+                            // onSaved: (newValue) {
+                            //   _enteredPassword = newValue!;
+                            // },
                           ),
                         ),
                         const SizedBox(height: 15),
@@ -145,7 +147,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           width: 90,
                           child: ElevatedButton(
                             onPressed: () {
-                              _submitSignIn();
+                              signIn();
                             },
                             child: Text('Login'),
                           ),
@@ -182,9 +184,35 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
+  void signIn() async {
+    String email = _emailTEController.text;
+    String password = _passwordTEController.text;
+    User? user = await _auth.signInWithEmailAndPassword(email, password);
+    if (user != null) {
+      Get.offNamed("/chatScreen");
+      /*Get.snackbar(
+        'Welcome',
+        '',
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        margin: EdgeInsets.symmetric(horizontal: 16),
+      );*/
+    } else {
+      Get.snackbar('Error', 'Some error Occurred',
+          backgroundColor: Colors.red,
+          titleText: const Text(
+            'Error',
+            style: TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
+          ),
+          messageText: const Text('Some error occurred',
+              style: TextStyle(fontSize: 14, color: Colors.white)));
+    }
+  }
+
   @override
   void dispose() {
     // TODO: implement dispose
+    super.dispose();
     _emailTEController.dispose();
     _passwordTEController.dispose();
   }

@@ -1,5 +1,6 @@
 import 'package:easy_msg/ui/utility/asset_path.dart';
 import 'package:easy_msg/ui/widgets/background_widgets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,6 +21,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _moveToNextScreen() async {
     await Future.delayed(Duration(seconds: 3));
+    final isUserLoggedIn = FirebaseAuth.instance.authStateChanges();
+    print(isUserLoggedIn);
     if (mounted) {
       Get.offNamed("/signIn");
     }
