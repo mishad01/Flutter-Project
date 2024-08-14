@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "399949831975",
+    "project_id": "easy-msg-4f807",
+    "storage_bucket": "easy-msg-4f807.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399949831975:android:67f881c6bc6d4e3ae71302",
+        "android_client_info": {
+          "package_name": "com.example.easy_msg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1pnuMreidK5_z156LchbgdVwswd2C1Sk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

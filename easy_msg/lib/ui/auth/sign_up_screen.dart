@@ -1,6 +1,6 @@
 import 'package:easy_msg/services/firebase_auth_services.dart';
-import 'package:easy_msg/ui/utility/asset_path.dart';
 import 'package:easy_msg/ui/widgets/background_widgets.dart';
+import 'package:easy_msg/ui/widgets/user_image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -58,11 +58,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   key: _formState,
                   child: Column(
                     children: [
-                      Image.asset(
-                        AssetPath.signUp,
-                        height: 250,
-                        width: 250,
-                      ),
+                      // Image.asset(
+                      //   AssetPath.signUp,
+                      //   height: 250,
+                      //   width: 250,
+                      // ),
+                      const SizedBox(height: 120),
+                      UserImagePicker(),
                       SizedBox(
                         height: 50,
                         width: 350,
@@ -153,17 +155,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  void signUp()async{
+  void signUp() async {
     String email = _emailTEController.text;
     String password = _passwordTEController.text;
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
-    if(user!=null){
+    if (user != null) {
       Get.snackbar('Sign Up', 'User is successfully created');
       Get.offNamed("/signIn");
-    }else{
+    } else {
       Get.snackbar('Error', 'Some error Occurred');
     }
   }
+
   @override
   void dispose() {
     // TODO: implement dispose
