@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:easy_msg/services/firebase_auth_services.dart';
 import 'package:easy_msg/ui/widgets/background_widgets.dart';
 import 'package:easy_msg/ui/widgets/user_image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,6 +24,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _formState = GlobalKey<FormState>();
   final FirebaseAuthServices _auth = FirebaseAuthServices();
+  File? _selectedImage;
 
   /*String _enteredEmail = '';
   String _enteredPassword = '';
@@ -64,7 +68,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       //   width: 250,
                       // ),
                       const SizedBox(height: 120),
-                      UserImagePicker(),
+                      UserImagePicker(
+                        onPickedImage: (pickedImage) {
+                          _selectedImage = pickedImage;
+                        },
+                      ),
                       SizedBox(
                         height: 50,
                         width: 350,
@@ -155,15 +163,68 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
+  /*void signUp() async {
+    String email = _emailTEController.text;
+    String password = _passwordTEController.text;
+
+    User? user = await _auth.signUpWithEmailAndPassword(email, password);
+
+    if (user != null && _selectedImage != null) {
+      Get.snackbar('Sign Up', 'User is successfully created');
+      Get.offNamed("/signIn");
+
+      final storageRef = FirebaseStorage.instance
+          .ref()
+          .child('user_images')
+          .child('${user.uid}.jpg');
+
+      await storageRef.putFile(_selectedImage!);
+      final imageUrl = await storageRef.getDownloadURL();
+      print(imageUrl);
+    } else {
+      Get.snackbar('Error', 'Some error Occurred');
+    }
+  }*/
   void signUp() async {
     String email = _emailTEController.text;
     String password = _passwordTEController.text;
+
+    // Sign up the user
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
-    if (user != null) {
+
+    // Check if the user is created and an image is selected
+    if (user != null && _selectedImage != null) {
+      // Notify the user of successful sign up
       Get.snackbar('Sign Up', 'User is successfully created');
-      Get.offNamed("/signIn");
+
+      // Get a reference to the location in Firebase Storage
+      final storageRef = FirebaseStorage.instance
+          .ref()
+          .child('user_images')
+          .child('${user.uid}.jpg');
+
+      try {
+        // Upload the selected image to Firebase Storage
+        await storageRef.putFile(_selectedImage!);
+
+        // Retrieve the image's download URL
+        final imageUrl = await storageRef.getDownloadURL();
+
+        // Optional: Print the image URL or store it in Firestore
+        print('Image uploaded. Download URL: $imageUrl');
+
+        // Optionally, update the user's profile with the image URL
+        await user.updatePhotoURL(imageUrl);
+
+        // Navigate to another screen (e.g., sign-in)
+        Get.offNamed("/signIn");
+      } catch (error) {
+        Get.snackbar('Upload Error', 'Failed to upload image: $error');
+        print('Failed to upload image: $error');
+      }
     } else {
-      Get.snackbar('Error', 'Some error Occurred');
+      // Handle the error when user creation or image selection fails
+      Get.snackbar('Error', 'Some error occurred');
     }
   }
 

@@ -96,6 +96,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     width: 350,
                     child: Column(
                       children: [
+                        const SizedBox(height: 60),
                         Padding(
                           padding: const EdgeInsets.all(40.0),
                           child: Image.asset(
