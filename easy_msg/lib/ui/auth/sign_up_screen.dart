@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_msg/services/firebase_auth_services.dart';
 import 'package:easy_msg/ui/widgets/background_widgets.dart';
 import 'package:easy_msg/ui/widgets/user_image_picker.dart';
@@ -189,6 +190,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
       await storageRef.putFile(_selectedImage!);
       final imageUrl = await storageRef.getDownloadURL();
       print(imageUrl);
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+        'username': '',
+        'email': email,
+        'image_url': imageUrl,
+      });
     } else {
       Get.snackbar('Error', 'Some error Occurred');
     }
