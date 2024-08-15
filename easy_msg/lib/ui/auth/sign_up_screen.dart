@@ -178,7 +178,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
-    if (user != null && _selectedImage != nullchec) {
+    if (user != null && _selectedImage != null) {
       Get.snackbar('Sign Up', 'User is successfully created');
       Get.offAllNamed("/signIn");
 
