@@ -20,7 +20,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _emailTEController = TextEditingController();
-  final TextEditingController _firstNameTEController = TextEditingController();
+  final TextEditingController _userNameTEController = TextEditingController();
   final TextEditingController _lastNameTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _formState = GlobalKey<FormState>();
@@ -99,9 +99,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: 50,
                         width: 350,
                         child: TextFormField(
-                          controller: _firstNameTEController,
+                          controller: _userNameTEController,
                           decoration: const InputDecoration(
-                            hintText: 'First Name',
+                            hintText: 'Username',
                             hintStyle: TextStyle(color: Colors.grey),
                           ),
                           validator: (value) {
@@ -111,7 +111,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      /*const SizedBox(height: 20),
                       SizedBox(
                         height: 50,
                         width: 350,
@@ -127,7 +127,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             }
                           },
                         ),
-                      ),
+                      ),*/
                       const SizedBox(height: 20),
                       SizedBox(
                         height: 50,
@@ -178,7 +178,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
-    if (user != null && _selectedImage != null) {
+    if (user != null && _selectedImage != nullchec) {
       Get.snackbar('Sign Up', 'User is successfully created');
       Get.offAllNamed("/signIn");
 
@@ -191,7 +191,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       final imageUrl = await storageRef.getDownloadURL();
       print(imageUrl);
       await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
-        'username': '',
+        'username': _userNameTEController.text,
         'email': email,
         'image_url': imageUrl,
       });
@@ -250,7 +250,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     // TODO: implement dispose
     super.dispose();
     _emailTEController.dispose();
-    _firstNameTEController.dispose();
+    _userNameTEController.dispose();
     _lastNameTEController.dispose();
     _passwordTEController.dispose();
   }
