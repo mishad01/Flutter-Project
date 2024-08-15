@@ -190,7 +190,7 @@ class _SignInScreenState extends State<SignInScreen> {
     String password = _passwordTEController.text;
     User? user = await _auth.signInWithEmailAndPassword(email, password);
     if (user != null) {
-      Get.offNamed("/chatScreen");
+      Get.offAllNamed("/chatScreen");
       /*Get.snackbar(
         'Welcome',
         '',

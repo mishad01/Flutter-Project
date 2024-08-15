@@ -25,6 +25,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> _formState = GlobalKey<FormState>();
   final FirebaseAuthServices _auth = FirebaseAuthServices();
   File? _selectedImage;
+  bool signUpInProgress = false;
 
   /*String _enteredEmail = '';
   String _enteredPassword = '';
@@ -147,11 +148,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      ElevatedButton(
-                          onPressed: () {
-                            signUp();
-                          },
-                          child: Text('Sign Up'))
+                      Visibility(
+                        visible: signUpInProgress == false,
+                        replacement: CircularProgressIndicator(),
+                        child: ElevatedButton(
+                            onPressed: () {
+                              signUp();
+                            },
+                            child: Text('Sign Up')),
+                      )
                     ],
                   ),
                 ),
@@ -163,7 +168,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  /*void signUp() async {
+  void signUp() async {
+    setState(() {
+      signUpInProgress = true;
+    });
     String email = _emailTEController.text;
     String password = _passwordTEController.text;
 
@@ -171,7 +179,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     if (user != null && _selectedImage != null) {
       Get.snackbar('Sign Up', 'User is successfully created');
-      Get.offNamed("/signIn");
+      Get.offAllNamed("/signIn");
 
       final storageRef = FirebaseStorage.instance
           .ref()
@@ -184,8 +192,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
     } else {
       Get.snackbar('Error', 'Some error Occurred');
     }
-  }*/
-  void signUp() async {
+    setState(() {
+      signUpInProgress = false;
+    });
+  }
+  /*void signUp() async {
     String email = _emailTEController.text;
     String password = _passwordTEController.text;
 
@@ -226,7 +237,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       // Handle the error when user creation or image selection fails
       Get.snackbar('Error', 'Some error occurred');
     }
-  }
+  }*/
 
   @override
   void dispose() {
