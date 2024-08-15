@@ -1,3 +1,5 @@
+import 'package:easy_msg/ui/widgets/chat_message.dart';
+import 'package:easy_msg/ui/widgets/new_message.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,7 +28,12 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ],
       ),
-      //body:
+      body: const Column(
+        children: [
+          Expanded(child: ChatMessage()),
+          NewMessage(),
+        ],
+      ),
     );
   }
 }

@@ -36,6 +36,9 @@ class EasyMsg extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
       ),
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: const Color.fromARGB(255, 63, 17, 177),
+      ),
     );
   }
 }
