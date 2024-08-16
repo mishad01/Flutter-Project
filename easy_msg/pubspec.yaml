@@ -41,6 +41,7 @@ dependencies:
   firebase_storage: ^12.1.2
   image_picker: ^1.1.2
   cloud_firestore: ^5.2.1
+  flutter_chat_bubble: ^2.0.2
 
 dev_dependencies:
   flutter_test:
