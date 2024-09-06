@@ -39,18 +39,22 @@ class OnBoardingScreen extends StatelessWidget {
                     'Fall in Love with Coffee in Blissful Delight!',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white),
+                      fontSize: 32,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                      letterSpacing: 0.5,
+                    ),
                   ),
                   const Gap(8),
                   const Text(
                     'Welcome to our cozy coffee corner, where every cup is a delightful for you.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w200,
-                        color: Colors.white),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w200,
+                      color: Colors.white,
+                      //letterSpacing: 0.5,
+                    ),
                   ),
                   const Gap(50),
                   ElevatedButton(
