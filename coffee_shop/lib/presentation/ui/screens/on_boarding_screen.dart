@@ -18,11 +18,14 @@ class OnBoardingScreen extends StatelessWidget {
             right: 0,
             bottom: 0,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 24),
-              decoration: BoxDecoration(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
                     Colors.transparent,
+                    Color(0xff050505),
+                    Color(0xff050505),
+                    Color(0xff050505),
                     Color(0xff050505),
                   ],
                   begin: Alignment.topCenter,
@@ -32,7 +35,7 @@ class OnBoardingScreen extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
+                  const Text(
                     'Fall in Love with Coffee in Blissful Delight!',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -40,8 +43,8 @@ class OnBoardingScreen extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                         color: Colors.white),
                   ),
-                  Gap(8),
-                  Text(
+                  const Gap(8),
+                  const Text(
                     'Welcome to our cozy coffee corner, where every cup is a delightful for you.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -49,8 +52,27 @@ class OnBoardingScreen extends StatelessWidget {
                         fontWeight: FontWeight.w200,
                         color: Colors.white),
                   ),
-                  Gap(8),
-                  ElevatedButton(onPressed: () {}, child: Text('Get Started'))
+                  const Gap(50),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xffC67C4E),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      /*padding:
+                          EdgeInsets.symmetric(horizontal: 24, vertical: 25),*/
+                      minimumSize: Size(327, 56),
+                    ),
+                    child: Text(
+                      'Get Started',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                  const Gap(50),
                 ],
               ),
             ),
