@@ -62,10 +62,8 @@ class OnBoardingScreen extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xffC67C4E),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(16),
                       ),
-                      /*padding:
-                          EdgeInsets.symmetric(horizontal: 24, vertical: 25),*/
                       minimumSize: Size(327, 56),
                     ),
                     child: Text(
