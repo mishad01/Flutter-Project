@@ -1,3 +1,4 @@
+import 'package:coffee_shop/presentation/ui/utils/app_colors.dart';
 import 'package:coffee_shop/presentation/ui/utils/assets_path.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -60,7 +61,7 @@ class OnBoardingScreen extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffC67C4E),
+                      backgroundColor: AppColors.themeColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),

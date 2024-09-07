@@ -1,4 +1,5 @@
 import 'package:coffee_shop/presentation/ui/screens/home_screen.dart';
+import 'package:coffee_shop/presentation/ui/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -101,7 +102,7 @@ class _MainBottomNavBarState extends State<MainBottomNavBar> {
                               height: 5,
                               width: 10,
                               decoration: BoxDecoration(
-                                color: const Color(0xffC67C4E),
+                                color: AppColors.themeColor,
                                 borderRadius: BorderRadius.circular(18),
                               ),
                             )
