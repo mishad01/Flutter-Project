@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:coffee_shop/presentation/ui/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -10,6 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  TextEditingController searchCofferTEController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -20,15 +22,15 @@ class _HomeScreenState extends State<HomeScreen> {
             buildBackground(),
             const Gap(68),
             Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
-                  Gap(68),
+                  Gap(40),
                   buildHeader(),
                   Gap(15),
                   buildSearch(),
-                  Gap(68),
-                  //buildBanner(),
+                  //Gap(),
+                  buildBanner(),
                   Gap(68),
                 ],
               ),
@@ -44,6 +46,40 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  /*Widget buildBanner() {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(16),
+      child: Image.asset(
+        AssetPath.banner1,
+        width: double.infinity,
+        height: 140,
+        scale: 2,
+        fit: BoxFit.values[1],
+      ),
+    );
+  }*/
+  Widget buildBannerName(String value) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(16),
+      child: Image.asset(
+        'assets/images/banner$value.png',
+        width: double.infinity,
+        height: 140,
+        scale: 2,
+        fit: BoxFit.values[1],
+      ),
+    );
+  }
+
+  Widget buildBanner() {
+    return CarouselSlider(items: [
+      buildBannerName('1'),
+      buildBannerName('2'),
+      buildBannerName('3'),
+      buildBannerName('4'),
+    ], options: CarouselOptions(viewportFraction: 1));
+  }
+
   Widget buildSearch() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 1),
@@ -55,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   borderRadius: BorderRadius.circular(12),
                   color: Color(0xff2A2A2A)),
               height: 52,
-              child: const Row(
+              child: Row(
                 children: [
                   ImageIcon(
                     AssetImage('assets/images/ic_search.png'),
@@ -64,10 +100,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Expanded(
                     child: TextField(
+                      controller: searchCofferTEController,
                       decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(15),
+                          border: InputBorder.none,
                           hintText: 'Search coffee',
-                          hintStyle: TextStyle(color: Colors.white)),
+                          hintStyle:
+                              TextStyle(color: Colors.white54, fontSize: 14)),
                     ),
                   ),
                 ],
