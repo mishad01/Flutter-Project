@@ -17,9 +17,9 @@ class Coffee {
       required this.price});
 }
 
-final ListGridCoffe = [
+final listGridCoffe = [
   Coffee(
-    image: 'assets/coffee1.png',
+    image: 'assets/images/coffee1.png',
     name: 'Coffee Mocha',
     type: 'Deep Foam',
     rate: 4.8,
@@ -29,7 +29,7 @@ final ListGridCoffe = [
     price: 100,
   ),
   Coffee(
-    image: 'assets/coffee2.png',
+    image: 'assets/images/coffee2.png',
     name: 'Flat White',
     type: 'Espresso',
     rate: 4.8,
@@ -39,7 +39,7 @@ final ListGridCoffe = [
     price: 3.53,
   ),
   Coffee(
-    image: 'assets/coffee3.png',
+    image: 'assets/images/coffee3.png',
     name: 'Mocha Fusi',
     type: 'Ice/Hot',
     rate: 4.8,
@@ -49,7 +49,7 @@ final ListGridCoffe = [
     price: 7.53,
   ),
   Coffee(
-    image: 'assets/coffee4.png',
+    image: 'assets/images/coffee4.png',
     name: 'Caffe Panna',
     type: 'Ice/Hot',
     rate: 4.8,
