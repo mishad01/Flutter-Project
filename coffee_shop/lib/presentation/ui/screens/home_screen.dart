@@ -1,7 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:coffee_shop/controller/home_controller.dart';
+import 'package:coffee_shop/data_model/coffe.dart';
 import 'package:coffee_shop/presentation/ui/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   TextEditingController searchCofferTEController = TextEditingController();
+  String categoriesSelected = 'All Coffee';
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -31,16 +35,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   buildSearch(),
                   //Gap(),
                   buildBanner(),
-                  Gap(68),
                 ],
               ),
             ),
           ],
         ),
+        //const Gap(20),
+        buildCategories(),
         const Gap(20),
-        //buildCategories()
-        const Gap(20),
-        //buildFridCoffee()
+        buildFridCoffee(),
         const Gap(20),
       ],
     );
@@ -65,19 +68,97 @@ class _HomeScreenState extends State<HomeScreen> {
         'assets/images/banner$value.png',
         width: double.infinity,
         height: 140,
-        scale: 2,
         fit: BoxFit.values[1],
       ),
     );
   }
 
+  Widget buildCategories() {
+    final categories = [
+      'All Coffee',
+      'Machiato',
+      'Latte',
+      'Americano',
+    ];
+    return SizedBox(
+      height: 30,
+      child: ListView.builder(
+        itemCount: categories.length,
+        scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
+        itemBuilder: (context, index) {
+          String category = categories[index];
+          bool isActive = categoriesSelected == category;
+          return GestureDetector(
+            onTap: () {
+              categoriesSelected = category;
+              setState(() {});
+            },
+            child: Container(
+              margin: EdgeInsets.only(
+                  left: index == 0 ? 24 : 8,
+                  right: index == categories.length - 1 ? 24 : 8),
+              decoration: BoxDecoration(
+                  color: isActive
+                      ? AppColors.themeColor
+                      : Colors.white38.withOpacity(0.35),
+                  borderRadius: BorderRadius.circular(6)),
+              padding: EdgeInsets.symmetric(horizontal: 8),
+              alignment: Alignment.center,
+              child: Text(
+                categories[index],
+                style: TextStyle(
+                    fontWeight: isActive ? FontWeight.w600 : FontWeight.w600,
+                    fontSize: 14,
+                    color: isActive ? Colors.white : Colors.grey),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
   Widget buildBanner() {
-    return CarouselSlider(items: [
-      buildBannerName('1'),
-      buildBannerName('2'),
-      buildBannerName('3'),
-      buildBannerName('4'),
-    ], options: CarouselOptions(viewportFraction: 1));
+    final controller = Get.put(HomeController());
+    return Column(
+      children: [
+        CarouselSlider(
+          items: [
+            buildBannerName('1'),
+            buildBannerName('5'),
+            buildBannerName(''),
+            buildBannerName('4'),
+          ],
+          options: CarouselOptions(
+            viewportFraction: 1,
+            onPageChanged: (index, reason) =>
+                controller.updatePageIndicator(index),
+          ),
+        ),
+        //SizedBox(height: 10),
+        Obx(
+          () => Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for (int i = 0; i < 5; i++)
+                Container(
+                  height: 7,
+                  width: 20,
+                  margin: EdgeInsets.only(right: 8),
+                  decoration: BoxDecoration(
+                    color: controller.carousalCurrentIndex.value == i
+                        ? AppColors.themeColor
+                        : Colors.grey,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.grey),
+                  ),
+                )
+            ],
+          ),
+        ),
+      ],
+    );
   }
 
   Widget buildSearch() {
@@ -179,6 +260,21 @@ class _HomeScreenState extends State<HomeScreen> {
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
         ),
+      ),
+    );
+  }
+
+  Widget buildFridCoffee() {
+    return SizedBox(
+      height: 100,
+      child: GridView.builder(
+        itemCount: 10,
+        gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          Coffee coffee = ListGridCoffe[index];
+        },
       ),
     );
   }
