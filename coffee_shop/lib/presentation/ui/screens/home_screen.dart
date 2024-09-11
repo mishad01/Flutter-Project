@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:coffee_shop/controller/home_controller.dart';
 import 'package:coffee_shop/data_model/coffe.dart';
+import 'package:coffee_shop/presentation/ui/screens/detail_screen.dart';
 import 'package:coffee_shop/presentation/ui/utils/app_colors.dart';
 import 'package:coffee_shop/presentation/ui/utils/assets_path.dart';
 import 'package:flutter/material.dart';
@@ -279,101 +280,123 @@ class _HomeScreenState extends State<HomeScreen> {
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         Coffee coffee = listGridCoffe[index];
-        return Container(
-          padding: const EdgeInsets.fromLTRB(8, 8, 8, 12),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(18),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.asset(
-                      coffee.image,
-                      height: 135,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
+        return GestureDetector(
+          onTap: () {
+            Get.to(() => DetailScreen());
+          },
+          child: Container(
+            padding: const EdgeInsets.fromLTRB(8, 8, 8, 12),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(18),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        coffee.image,
+                        height: 135,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                      padding: EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topRight,
-                          end: Alignment.bottomLeft,
-                          colors: [
-                            Color(0x111111).withOpacity(0.5),
-                            Color(0x313131).withOpacity(0.3),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Container(
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: [
+                              Color(0x111111).withOpacity(0.5),
+                              Color(0x313131).withOpacity(0.3),
+                            ],
+                          ),
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(12),
+                            bottomLeft: Radius.circular(24),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Image.asset(
+                              AssetPath.icStarFilled,
+                              height: 12,
+                              width: 12,
+                            ),
+                            Gap(10),
+                            Text(
+                              '${coffee.rate}',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600),
+                            )
                           ],
                         ),
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(12),
-                          bottomLeft: Radius.circular(24),
+                      ),
+                    ),
+                  ],
+                ),
+                Text(
+                  coffee.name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Text(
+                  coffee.type,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      NumberFormat.currency(
+                        decimalDigits: 2,
+                        locale: 'en_US',
+                        symbol: '\$',
+                      ).format(coffee.price),
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Container(
+                      height: 32,
+                      width: 32,
+                      //alignment: Alignment.,
+                      decoration: BoxDecoration(
+                          color: AppColors.themeColor,
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Center(
+                        child: Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 16,
                         ),
                       ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Image.asset(
-                            AssetPath.icStarFilled,
-                            height: 12,
-                            width: 12,
-                          ),
-                          Gap(10),
-                          Text(
-                            '${coffee.rate}',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600),
-                          )
-                        ],
-                      ),
                     ),
-                  ),
-                ],
-              ),
-              Text(
-                coffee.name,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Text(
-                coffee.type,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Row(
-                children: [
-                  Text(
-                    NumberFormat.currency(
-                      decimalDigits: 2,
-                      locale: 'en_US',
-                      symbol: '\$',
-                    ).format(coffee.price),
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              )
-            ],
+                  ],
+                )
+              ],
+            ),
           ),
         );
       },
