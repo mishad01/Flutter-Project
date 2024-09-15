@@ -29,7 +29,7 @@ final listGridCoffe = [
     price: 100,
   ),
   Coffee(
-    image: 'assets/images/coffee2.png',
+    image: 'assets/images/coffee3.png',
     name: 'Flat White',
     type: 'Espresso',
     rate: 4.8,
@@ -39,7 +39,7 @@ final listGridCoffe = [
     price: 3.53,
   ),
   Coffee(
-    image: 'assets/images/coffee3.png',
+    image: 'assets/images/coffee2.png',
     name: 'Mocha Fusi',
     type: 'Ice/Hot',
     rate: 4.8,

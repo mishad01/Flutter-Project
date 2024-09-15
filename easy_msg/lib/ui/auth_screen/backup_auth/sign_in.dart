@@ -1,4 +1,5 @@
 import 'package:easy_msg/ui/utility/asset_path.dart';
+import 'package:easy_msg/ui/widgets/background_widgets.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -16,7 +17,8 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+        body: BackgroundWidgets(
+      child: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(20),
           child: Column(
@@ -24,7 +26,13 @@ class _SignInState extends State<SignIn> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Image.asset(AssetPath.signIn),
+                child: Center(
+                  child: Image.asset(
+                    AssetPath.signIn,
+                    height: 230,
+                    width: 230,
+                  ),
+                ),
               ),
               const SizedBox(height: 10),
               const Text('Email Address'),
@@ -78,6 +86,6 @@ class _SignInState extends State<SignIn> {
           ),
         ),
       ),
-    );
+    ));
   }
 }

@@ -9,8 +9,8 @@ class AssetPath {
   static const String bean = '$_image/bean.png';
   static const String bg = '$_image/bg.png';
   static const String bike = '$_image/bike.png';
-  static const String coffee1 = '$_image/coffee1.png';
-  static const String coffee2 = '$_image/coffee2.png';
+  static const String coffee1 = '$_image/coffee11.png';
+  static const String coffee2 = '$_image/coffee22.png';
   static const String coffee3 = '$_image/coffee3.png';
   static const String coffee4 = '$_image/coffee4.png';
   static const String icArrowDown = '$_image/ic_arrow_down.png';
