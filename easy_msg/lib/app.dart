@@ -1,3 +1,4 @@
+import 'package:easy_msg/controller_binder.dart';
 import 'package:easy_msg/ui/auth_screen/backup_auth/sign_in.dart';
 import 'package:easy_msg/ui/auth_screen/sign_in_screen.dart';
 import 'package:easy_msg/ui/auth_screen/sign_up_screen.dart';
@@ -14,6 +15,7 @@ class EasyMsg extends StatelessWidget {
     return GetMaterialApp(
       // home: AuthStateHandler(), //
       initialRoute: '/',
+      initialBinding: ControllerBinder(),
       getPages: [
         GetPage(name: '/', page: () => const SignIn()),
         GetPage(name: '/signIn', page: () => const SignInScreen()),

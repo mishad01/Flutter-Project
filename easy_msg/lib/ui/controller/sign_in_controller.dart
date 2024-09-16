@@ -1,24 +1,29 @@
 import 'package:easy_msg/services/firebase_auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SignInController {
-  final FirebaseAuthServices auth = FirebaseAuthServices();
-  Future<void> signIn(String email, String password) async {
-    User? user = await auth.signInWithEmailAndPassword(email, password);
+class SignInController extends GetxController {
+  final FirebaseAuthServices _auth = FirebaseAuthServices();
+
+  bool _signInApiInProgress = false;
+  String _errorMessage = '';
+
+  bool get signInApiInProgress => _signInApiInProgress;
+
+  String get errorMessage => _errorMessage;
+
+  Future<bool> signIn(String email, String password) async {
+    bool isSuccess = false;
+    _signInApiInProgress = true;
+    update();
+    User? user = await _auth.signInWithEmailAndPassword(email, password);
     if (user != null) {
-      Get.offNamed('/chatScreen');
+      isSuccess = true;
     } else {
-      Get.snackbar('Error', 'Some error has occurred',
-          backgroundColor: Colors.red,
-          titleText: const Text(
-            'Error',
-            style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
-          ),
-          messageText: const Text('Some error occurred',
-              style: TextStyle(fontSize: 14, color: Colors.white)));
+      _errorMessage = 'Something went wrong';
     }
+    _signInApiInProgress = false;
+    update();
+    return isSuccess;
   }
 }
