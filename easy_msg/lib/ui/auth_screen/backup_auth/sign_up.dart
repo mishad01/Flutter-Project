@@ -1,5 +1,6 @@
 import 'package:easy_msg/ui/utility/asset_path.dart';
 import 'package:easy_msg/ui/widgets/background_widgets.dart';
+import 'package:easy_msg/ui/widgets/user_image_picker.dart';
 import 'package:flutter/material.dart';
 
 class signUp extends StatefulWidget {
@@ -25,9 +26,9 @@ class _signUpState extends State<signUp> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 20),
+              const SizedBox(height: 28),
               SizedBox(
-                height: 160,
+                height: 100,
                 child: Image.asset(
                   AssetPath.signIn,
                   height: 180,
@@ -41,7 +42,7 @@ class _signUpState extends State<signUp> {
                       fontWeight: FontWeight.bold,
                       color: Colors.white)),
               const SizedBox(height: 5),
-              Container(
+              /*Container(
                 width: 300,
                 alignment: Alignment.center,
                 child: const Text(
@@ -54,9 +55,13 @@ class _signUpState extends State<signUp> {
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     )),
+              ),*/
+              UserImagePicker(
+                onPickedImage: (pickedImage) {
+                  //_selectedImage = pickedImage;
+                },
               ),
-
-              const SizedBox(height: 20),
+              //const SizedBox(height: 20),
               // const SizedBox(height: 5),
               TextFieldColumn(),
               ElevatedButton(
