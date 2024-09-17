@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_msg/services/firebase_auth_services.dart';
+import 'package:easy_msg/ui/controller/sign_up_controller.dart';
 import 'package:easy_msg/ui/widgets/background_widgets.dart';
 import 'package:easy_msg/ui/widgets/user_image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -50,6 +51,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
       Get.snackbar(error.message ?? 'Unknown Error', 'Authentication Failed');
     }
   }*/
+  void initState() {
+    super.initState();
+    // Initialize the SignInController
+    Get.put(SignUpController());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -149,15 +155,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      Visibility(
-                        visible: signUpInProgress == false,
-                        replacement: CircularProgressIndicator(),
-                        child: ElevatedButton(
-                            onPressed: () {
-                              signUp();
-                            },
-                            child: Text('Sign Up')),
-                      )
+                      GetBuilder<SignUpController>(builder: (signUpController) {
+                        return Visibility(
+                          visible:
+                              !signUpController.signUpApiInProgress == false,
+                          replacement: CircularProgressIndicator(),
+                          child: ElevatedButton(
+                              onPressed: _signUp, child: Text('Sign Up')),
+                        );
+                      })
                     ],
                   ),
                 ),
@@ -169,7 +175,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  void signUp() async {
+  void _signUp() async {
     setState(() {
       signUpInProgress = true;
     });

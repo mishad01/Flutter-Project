@@ -20,6 +20,13 @@ class _SignInState extends State<SignIn> {
   //final FirebaseAuthServices _auth = FirebaseAuthServices();
   bool _obsecureText = true;
   @override
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the SignInController
+    Get.put(SignInController());
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         body: BackgroundWidgets(
@@ -43,7 +50,7 @@ class _SignInState extends State<SignIn> {
                 ),
                 const Text('Login Here',
                     style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 35,
                         fontWeight: FontWeight.bold,
                         color: Colors.white)),
                 const SizedBox(height: 20),
@@ -57,19 +64,26 @@ class _SignInState extends State<SignIn> {
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black)),
+                          color: Colors.black87)),
                 ),
                 const SizedBox(height: 20),
                 // const SizedBox(height: 5),
                 TextFormField(
                   controller: _emailTEController,
                   decoration: InputDecoration(
-                    hintText: 'Email',
-                    hintStyle: TextStyle(color: Colors.grey),
-                    /*enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Colors.grey[400] ?? Colors.grey)),*/
-                  ),
+                      hintText: 'Email',
+                      hintStyle: TextStyle(color: Colors.grey)),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your email';
+                    }
+                    if (!RegExp(
+                            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                        .hasMatch(value)) {
+                      return 'Please enter a valid email';
+                    }
+                    return null;
+                  },
                 ),
                 //const SizedBox(height: 15),
                 /*Row(
@@ -106,6 +120,15 @@ class _SignInState extends State<SignIn> {
                             ? Icon(Icons.visibility)
                             : Icon(Icons.visibility_off)),
                   ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your password';
+                    }
+                    if (value.length < 6) {
+                      return 'Password must be at least 6 characters';
+                    }
+                    return null;
+                  },
                 ),
                 Align(
                   alignment: Alignment.topRight,
@@ -135,7 +158,9 @@ class _SignInState extends State<SignIn> {
                   );
                 }),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed('/2');
+                  },
                   child: Text('Create New Account',
                       style: TextStyle(
                           fontSize: 14,

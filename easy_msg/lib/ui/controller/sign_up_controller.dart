@@ -8,11 +8,23 @@ import 'package:get/get.dart';
 
 class SignUpController extends GetxController {
   final FirebaseAuthServices _auth = FirebaseAuthServices();
-  File? _selectedImage;
-  bool signUpInProgress = false;
-  Future<void> signUp(String email, String userName, String password) async {
-    signUpInProgress = true;
+
+  String _errorMessage = '';
+  bool _signUpApiProgress = false;
+
+  // Getters for exposing the private variables
+  bool get signUpApiInProgress => _signUpApiProgress;
+  String get errorMessage => _errorMessage;
+
+  Future<bool> signUp(String email, String userName, String password,
+      File? _selectedImage) async {
+    bool isSuccess = false;
+    _signUpApiProgress = true;
+    update();
+
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
+    _signUpApiProgress = false;
+    update();
     if (user != null && _selectedImage != null) {
       Get.snackbar('Sign Up', 'User is successfully created');
       Get.offAllNamed("/signIn");
@@ -29,8 +41,12 @@ class SignUpController extends GetxController {
         'email': email,
         'image_url': imageUrl,
       });
+      return isSuccess;
     } else {
       Get.snackbar('Error', 'Some error Occurred');
     }
+    _signUpApiProgress = false;
+    update();
+    return isSuccess;
   }
 }

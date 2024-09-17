@@ -1,3 +1,5 @@
+import 'package:easy_msg/ui/auth_screen/backup_auth/sign_in.dart';
+import 'package:easy_msg/ui/controller/sign_in_controller.dart';
 import 'package:easy_msg/ui/widgets/chat_message.dart';
 import 'package:easy_msg/ui/widgets/new_message.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,9 +25,9 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    setUpPushNotification();
+    // Initialize the SignInController
+    Get.put(SignInController());
   }
 
   @override
@@ -38,8 +40,8 @@ class _ChatScreenState extends State<ChatScreen> {
             icon: Icon(Icons.logout),
             onPressed: () async {
               await FirebaseAuth.instance.signOut();
-              Get.offAllNamed(
-                  '/signIn'); // Ensure to navigate back to SignInScreen after logout
+              Get.off(() =>
+                  SignIn()); // Ensure to navigate back to SignInScreen after logout
             },
           ),
         ],
