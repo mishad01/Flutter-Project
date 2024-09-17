@@ -1,3 +1,4 @@
+/*
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -29,7 +30,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   File? _selectedImage;
   bool signUpInProgress = false;
 
-  /*String _enteredEmail = '';
+  */
+/*String _enteredEmail = '';
   String _enteredPassword = '';
   bool _isAuthenticating = false;
   bool _isLogin = true;
@@ -50,7 +52,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       Get.closeAllSnackbars();
       Get.snackbar(error.message ?? 'Unknown Error', 'Authentication Failed');
     }
-  }*/
+  }*/ /*
+
   void initState() {
     super.initState();
     // Initialize the SignInController
@@ -117,7 +120,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                         ),
                       ),
-                      /*const SizedBox(height: 20),
+                      */
+/*const SizedBox(height: 20),
                       SizedBox(
                         height: 50,
                         width: 350,
@@ -133,7 +137,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             }
                           },
                         ),
-                      ),*/
+                      ),*/ /*
+
                       const SizedBox(height: 20),
                       SizedBox(
                         height: 50,
@@ -208,7 +213,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       signUpInProgress = false;
     });
   }
-  /*void signUp() async {
+  */
+/*void signUp() async {
     String email = _emailTEController.text;
     String password = _passwordTEController.text;
 
@@ -249,7 +255,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       // Handle the error when user creation or image selection fails
       Get.snackbar('Error', 'Some error occurred');
     }
-  }*/
+  }*/ /*
+
 
   @override
   void dispose() {
@@ -261,3 +268,4 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _passwordTEController.dispose();
   }
 }
+*/

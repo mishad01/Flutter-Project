@@ -1,3 +1,4 @@
+/*
 import 'package:easy_msg/services/firebase_auth_services.dart';
 import 'package:easy_msg/ui/utility/asset_path.dart';
 import 'package:easy_msg/ui/widgets/background_widgets.dart';
@@ -20,11 +21,14 @@ class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _formState = GlobalKey<FormState>();
   final FirebaseAuthServices _auth = FirebaseAuthServices();
-  /*bool _isLogin = false;
+  */
+/*bool _isLogin = false;
   String _enteredEmail = '';
-  String _enteredPassword = '';*/
+  String _enteredPassword = '';*/ /*
 
-  /*void _submit() async {
+
+  */
+/*void _submit() async {
     final isValid = _formState.currentState!.validate();
     // if (isValid) {
     //   _formState.currentState!.save();
@@ -61,8 +65,10 @@ class _SignInScreenState extends State<SignInScreen> {
         Get.snackbar(error.message ?? 'Unknown Error', 'Authentication Failed');
       }
     }
-  }*/
-  /*void _submitSignIn() async {
+  }*/ /*
+
+  */
+/*void _submitSignIn() async {
     final form = _formState.currentState;
     if (form != null && form.validate()) {
       form.save();
@@ -79,7 +85,8 @@ class _SignInScreenState extends State<SignInScreen> {
     } else {
       Get.snackbar('Form Error', 'Please complete the form correctly');
     }
-  }*/
+  }*/ /*
+
 
   @override
   Widget build(BuildContext context) {
@@ -191,12 +198,14 @@ class _SignInScreenState extends State<SignInScreen> {
     User? user = await _auth.signInWithEmailAndPassword(email, password);
     if (user != null) {
       Get.offAllNamed("/chatScreen");
-      /*Get.snackbar(
+      */
+/*Get.snackbar(
         'Welcome',
         '',
         padding: EdgeInsets.symmetric(horizontal: 16),
         margin: EdgeInsets.symmetric(horizontal: 16),
-      );*/
+      );*/ /*
+
     } else {
       Get.snackbar('Error', 'Some error Occurred',
           backgroundColor: Colors.red,
@@ -218,3 +227,4 @@ class _SignInScreenState extends State<SignInScreen> {
     _passwordTEController.dispose();
   }
 }
+*/

@@ -1,7 +1,6 @@
 import 'package:easy_msg/controller_binder.dart';
 import 'package:easy_msg/ui/auth_screen/backup_auth/sign_in.dart';
 import 'package:easy_msg/ui/auth_screen/backup_auth/sign_up.dart';
-import 'package:easy_msg/ui/auth_screen/splash_screen.dart';
 import 'package:easy_msg/ui/chat_screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,9 +16,9 @@ class EasyMsg extends StatelessWidget {
       initialRoute: '/',
       initialBinding: ControllerBinder(),
       getPages: [
-        GetPage(name: '/', page: () => const SplashScreen()),
+        GetPage(name: '/', page: () => const SignUp()),
         GetPage(name: '/1', page: () => const SignIn()),
-        GetPage(name: '/2', page: () => const SignUp()),
+        //GetPage(name: '/2', page: () => const SignUp()),
         GetPage(name: '/5', page: () => const ChatScreen())
       ],
       theme: buildThemeData(),

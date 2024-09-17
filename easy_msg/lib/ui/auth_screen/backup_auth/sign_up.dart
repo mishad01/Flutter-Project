@@ -72,16 +72,22 @@ class _SignUpState extends State<SignUp> {
                 //const SizedBox(height: 20),
                 // const SizedBox(height: 5),
                 TextFieldColumn(),
-                ElevatedButton(
-                    onPressed: _submitForm,
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: Size(375, 50),
-                        backgroundColor: Color(0x343a40),
-                        foregroundColor: Colors.white),
-                    child: Text(
-                      'Sign Up',
-                      style: TextStyle(fontSize: 20),
-                    )),
+                GetBuilder<SignUpController>(builder: (signUpController) {
+                  return Visibility(
+                    visible: signUpController.signUpApiInProgress == false,
+                    replacement: Center(child: CircularProgressIndicator()),
+                    child: ElevatedButton(
+                        onPressed: _submitForm,
+                        style: ElevatedButton.styleFrom(
+                            minimumSize: Size(375, 50),
+                            backgroundColor: Color(0x343a40),
+                            foregroundColor: Colors.white),
+                        child: Text(
+                          'Sign Up',
+                          style: TextStyle(fontSize: 20),
+                        )),
+                  );
+                }),
                 TextButton(
                   onPressed: () {},
                   child: Text('Already Have an account',
@@ -158,7 +164,7 @@ class _SignUpState extends State<SignUp> {
           _userNameTEController.text,
           _passwordTEController.text,
           _selectedImage);
-      print('Checkingggg- ${result}');
+      print('Checkingggg RESULT IS- ${result}');
       if (result) {
         Get.offAll(() => SignIn());
       } else {

@@ -41,7 +41,7 @@ class SignUpController extends GetxController {
         'email': email,
         'image_url': imageUrl,
       });
-      return isSuccess;
+      isSuccess = true;
     } else {
       Get.snackbar('Error', 'Some error Occurred');
     }
