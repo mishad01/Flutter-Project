@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:easy_msg/ui/auth_screen/backup_auth/sign_in.dart';
 import 'package:easy_msg/ui/controller/sign_up_controller.dart';
 import 'package:easy_msg/ui/utility/asset_path.dart';
 import 'package:easy_msg/ui/widgets/background_widgets.dart';
@@ -50,20 +49,7 @@ class _SignUpState extends State<SignUp> {
                         fontWeight: FontWeight.bold,
                         color: Colors.white)),
                 const SizedBox(height: 5),
-                /*Container(
-                  width: 300,
-                  alignment: Alignment.center,
-                  child: const Text(
-                      'Create an account so you can explore all the existing jobs',
-                      maxLines: 2,
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      )),
-                ),*/
+
                 UserImagePicker(
                   onPickedImage: (pickedImage) {
                     _selectedImage = pickedImage;
@@ -165,13 +151,20 @@ class _SignUpState extends State<SignUp> {
           _passwordTEController.text,
           _selectedImage);
       print('Checkingggg RESULT IS- ${result}');
-      if (result) {
-        Get.offAll(() => SignIn());
-      } else {
+      if (!result) {
         if (mounted) {
           Get.snackbar('Error', 'Some issue occured');
         }
       }
     }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _emailTEController.dispose();
+    _userNameTEController.dispose();
+    _passwordTEController.dispose();
+    super.dispose();
   }
 }

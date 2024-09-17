@@ -27,7 +27,7 @@ class SignUpController extends GetxController {
     update();
     if (user != null && _selectedImage != null) {
       Get.snackbar('Sign Up', 'User is successfully created');
-      Get.offAllNamed("/signIn");
+      Get.offNamed('/1');
 
       Reference storageRef = FirebaseStorage.instance
           .ref()
@@ -36,7 +36,7 @@ class SignUpController extends GetxController {
 
       await storageRef.putFile(_selectedImage!);
       final imageUrl = await storageRef.getDownloadURL();
-      await FirebaseFirestore.instance.collection('user').doc(user.uid).set({
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
         'username': userName,
         'email': email,
         'image_url': imageUrl,

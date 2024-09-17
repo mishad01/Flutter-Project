@@ -29,7 +29,10 @@ class _NewMessageState extends State<NewMessage> {
           IconButton(
             onPressed: _submitMessage,
             color: Theme.of(context).colorScheme.primary,
-            icon: const Icon(Icons.send),
+            icon: const Icon(
+              Icons.send,
+              color: Colors.white,
+            ),
           )
         ],
       ),

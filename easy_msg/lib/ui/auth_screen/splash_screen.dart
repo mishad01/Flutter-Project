@@ -21,19 +21,13 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _moveToNextScreen() async {
     await Future.delayed(Duration(seconds: 3));
-    // final isUserLoggedIn = FirebaseAuth.instance.authStateChanges();
-    // print(isUserLoggedIn);
-    // if (mounted) {
-    //   Get.offNamed("/signIn");
-    // }
-
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       // User is logged in, navigate to the main/home screen
-      Get.offNamed("/5"); // Replace with your main screen route
+      Get.offNamed('/5'); // Replace with your main screen route
     } else {
       // User is not logged in, navigate to the sign-in screen
-      Get.offNamed("/1");
+      Get.offNamed('/1');
     }
   }
 

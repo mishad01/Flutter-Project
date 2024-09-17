@@ -1,8 +1,7 @@
-import 'package:easy_msg/ui/auth_screen/backup_auth/sign_in.dart';
 import 'package:easy_msg/ui/controller/sign_in_controller.dart';
+import 'package:easy_msg/ui/utility/asset_path.dart';
 import 'package:easy_msg/ui/widgets/chat_message.dart';
 import 'package:easy_msg/ui/widgets/new_message.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,24 +32,17 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter Chat'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: () async {
-              await FirebaseAuth.instance.signOut();
-              Get.off(() =>
-                  SignIn()); // Ensure to navigate back to SignInScreen after logout
-            },
-          ),
-        ],
-      ),
-      body: const Column(
-        children: [
-          Expanded(child: ChatMessage()),
-          NewMessage(),
-        ],
+      body: Container(
+        //height: ,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(AssetPath.backgroundImg), fit: BoxFit.cover)),
+        child: const Column(
+          children: [
+            Expanded(child: ChatMessage()),
+            NewMessage(),
+          ],
+        ),
       ),
     );
   }
