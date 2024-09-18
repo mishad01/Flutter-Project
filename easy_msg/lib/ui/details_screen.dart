@@ -23,6 +23,112 @@ class _DetailsScreenState extends State<DetailsScreen> {
     _fetchUserImage();
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        appBar: buildAppBar(),
+        body: Center(
+          child: _isLoading
+              ? CircularProgressIndicator() // Loading indicator
+              : Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 150.0,
+                        height: 150.0,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(200),
+                            image: DecorationImage(
+                                image: AssetImage(AssetPath.chatBg),
+                                fit: BoxFit.cover)),
+                        child: IconButton(
+                          onPressed: () async {
+                            await FirebaseAuth.instance.signOut();
+                            Get.offAllNamed('/1');
+                          },
+                          icon: Icon(
+                            Icons.logout,
+                            size: 50,
+                          ),
+                        ),
+                      ),
+                      /* SizedBox(height: 20),
+                      const Text(
+                        'Have a great day and enjoy your logout',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),*/
+                      /*Flexible(
+                        child: ListView.builder(
+                          itemCount: profileData.length,
+                          itemBuilder: (context, index) {
+                            ProfileData profData = profileData[index];
+                            return GestureDetector(
+                              child: ListTile(
+                                contentPadding: EdgeInsets.all(8.0),
+                                leading: Icon(profData.icon),
+                                title: Text(profData.text,
+                                    style: TextStyle(fontSize: 18)),
+                              ),
+                            );
+                          },
+                        ),
+                      )*/
+                    ],
+                  ),
+                ),
+        ),
+      ),
+    );
+  }
+
+  AppBar buildAppBar() {
+    return AppBar(
+      //toolbarHeight: 100,
+      backgroundColor: Colors.transparent,
+      flexibleSpace: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+          colors: [
+            Color(0xff7d9eac),
+            Color(0xff2e5e73),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.topRight,
+        )),
+      ),
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Hello, ${username ?? 'User'}',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+          // const Text(
+          //   'Hope you are doing well',
+          //   style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          // ),
+        ],
+      ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.all(3.0),
+          child: CircleAvatar(
+            radius: 30,
+            backgroundImage: _userImageUrl != null
+                ? NetworkImage(_userImageUrl!)
+                : AssetImage(AssetPath.logo) as ImageProvider,
+          ),
+        ),
+        SizedBox(width: 10),
+      ],
+    );
+  }
+
   Future<void> _fetchUserImage() async {
     try {
       // Retrieve the user's image URL from Firestore
@@ -46,73 +152,5 @@ class _DetailsScreenState extends State<DetailsScreen> {
         _isLoading = false;
       });
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(),
-      body: Center(
-        child: _isLoading
-            ? CircularProgressIndicator() // Loading indicator
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 200.0,
-                    height: 200.0,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(200),
-                        image: DecorationImage(
-                            image: AssetImage(AssetPath.chatBg),
-                            fit: BoxFit.cover)),
-                    child: IconButton(
-                      onPressed: () async {
-                        await FirebaseAuth.instance.signOut();
-                        Get.offAllNamed('/1');
-                      },
-                      icon: Icon(
-                        Icons.logout,
-                        size: 100,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  const Text('Have a great day and enjoy your logout'),
-                ],
-              ),
-      ),
-    );
-  }
-
-  AppBar buildAppBar() {
-    return AppBar(
-      toolbarHeight: 100,
-      backgroundColor: Colors.transparent,
-      flexibleSpace: Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-          colors: [Color(0xffb6bd6e), Color(0xffaaba77), Color(0xffa1b67d)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        )),
-      ),
-      title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Hello, ${username ?? 'User'}'),
-          const Text('Hope you are doing well'),
-        ],
-      ),
-      actions: [
-        CircleAvatar(
-          radius: 30,
-          backgroundImage: _userImageUrl != null
-              ? NetworkImage(_userImageUrl!)
-              : AssetImage(AssetPath.logo) as ImageProvider,
-        ),
-        SizedBox(width: 10),
-      ],
-    );
   }
 }
