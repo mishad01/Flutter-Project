@@ -31,19 +31,53 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        //height: ,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(AssetPath.backgroundImg), fit: BoxFit.cover)),
-        child: const Column(
-          children: [
-            Expanded(child: ChatMessage()),
-            NewMessage(),
-          ],
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) {
+        // backToHome();
+      },
+      child: Scaffold(
+        // appBar: buildAppBar(),
+        body: Container(
+          //height: ,
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(AssetPath.chatBg), fit: BoxFit.cover)),
+          child: const Column(
+            children: [
+              Expanded(child: ChatMessage()),
+              NewMessage(),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
+/*void backToHome() {
+  return Get.find<BottomNavBarController>().backToHome();
+}*/
+
+/*AppBar buildAppBar() {
+  return AppBar(
+    backgroundColor: Colors.white,
+    title: const Text('Easy Message'),
+    actions: [
+      AppBarIcon(
+        iconData: Icons.phone_outlined,
+        onTap: () {},
+      ),
+      const SizedBox(width: 10),
+      Padding(
+        padding: const EdgeInsets.only(right: 10),
+        child: AppBarIcon(
+          iconData: Icons.notifications_outlined,
+          onTap: () {
+            print('preseeeeeeeeeeeeeeed');
+          },
+        ),
+      ),
+    ],
+  );
+}*/

@@ -1,8 +1,7 @@
-import 'package:easy_msg/ui/auth_screen/backup_auth/sign_in.dart';
 import 'package:easy_msg/ui/chat_screens/chat_screen.dart';
 import 'package:easy_msg/ui/controller/bottom_nav_bar_controller.dart';
 import 'package:easy_msg/ui/details_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:easy_msg/ui/home_scree.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,35 +17,31 @@ class _MainBottomNavBarState extends State<MainBottomNavBar> {
       Get.find<BottomNavBarController>();
 
   List<Widget> _screens = [
+    HomeScree(),
     ChatScreen(),
     DetailsScreen(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<BottomNavBarController>(builder: (context) {
       return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white54,
-          title: const Text('Easy Message'),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.logout),
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-                Get.off(() =>
-                    SignIn()); // Ensure to navigate back to SignInScreen after logout
-              },
-            ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _navBarController.selectedIndex,
+          onTap: _navBarController.changeIndex,
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.account_box), label: 'Details'),
           ],
-        ),
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: _navBarController.selectedIndex,
-          onDestinationSelected: _navBarController.changeIndex,
-          destinations: const [
-            NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-            NavigationDestination(
-                icon: Icon(Icons.category), label: 'Categories'),
-          ],
+          type: BottomNavigationBarType
+              .fixed, // or BottomNavigationBarType.shifting
+          iconSize: 20, // Adjust icon size
+          selectedFontSize: 12, // Adjust selected label font size
+          unselectedFontSize: 10, // Adjust unselected label font size
+          selectedItemColor: Colors.blue, // Customize selected item color
+          unselectedItemColor: Colors.grey, // Customize unselected item color
         ),
         body: _screens[_navBarController.selectedIndex],
       );

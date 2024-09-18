@@ -13,6 +13,7 @@ class EasyMsg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       // home: AuthStateHandler(), //
       initialRoute: '/',
       initialBinding: ControllerBinder(),

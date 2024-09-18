@@ -42,8 +42,39 @@ class ChatMessage extends StatelessWidget {
               right: 13,
             ),
             reverse: true,
-            itemCount: loadedMessages.length,
+            itemCount: loadedMessages.length + 1,
             itemBuilder: (context, index) {
+              if (index == loadedMessages.length) {
+                // Return the welcome message as the first item
+                return Container(
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.blueAccent
+                        .withOpacity(0.1), // Light background color
+                    borderRadius: BorderRadius.circular(12), // Rounded corners
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2), // Shadow color
+                        //blurRadius: 8, // Blur radius for the shadow
+                        //offset: const Offset(0, 4), // Offset for the shadow
+                      ),
+                    ],
+                  ),
+                  child: Text(
+                    'Welcome to Easy Message! Feel free to share your thoughts and have fun',
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white, // Text color
+                    ),
+                  ),
+                );
+              }
               final chatMessage = loadedMessages[index].data();
               final nextChatMessage = index + 1 < loadedMessages.length
                   ? loadedMessages[index + 1].data()

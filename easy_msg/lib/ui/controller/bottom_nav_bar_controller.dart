@@ -14,6 +14,6 @@ class BottomNavBarController extends GetxController {
   }
 
   void backToHome() {
-    changeIndex(0);
+    Get.offAll(() => BottomNavBarController());
   }
 }
