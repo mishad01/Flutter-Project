@@ -187,7 +187,7 @@ class _SignInState extends State<SignIn> {
         _passwordTEController.text,
       );
       if (result) {
-        Get.offAllNamed('/5');
+        Get.offAllNamed('/mainNav');
       } else {
         if (mounted) {
           Get.snackbar('Error', 'Some issue occured');

@@ -1,7 +1,6 @@
 import 'package:easy_msg/ui/chat_screens/chat_screen.dart';
 import 'package:easy_msg/ui/controller/bottom_nav_bar_controller.dart';
 import 'package:easy_msg/ui/details_screen.dart';
-import 'package:easy_msg/ui/home_scree.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +16,7 @@ class _MainBottomNavBarState extends State<MainBottomNavBar> {
       Get.find<BottomNavBarController>();
 
   List<Widget> _screens = [
-    HomeScree(),
+    /*HomeScree(),*/
     ChatScreen(),
     DetailsScreen(),
   ];
@@ -30,7 +29,7 @@ class _MainBottomNavBarState extends State<MainBottomNavBar> {
           currentIndex: _navBarController.selectedIndex,
           onTap: _navBarController.changeIndex,
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            /*BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),*/
             BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.account_box), label: 'Details'),
