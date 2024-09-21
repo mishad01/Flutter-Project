@@ -282,7 +282,9 @@ class _HomeScreenState extends State<HomeScreen> {
         Coffee coffee = listGridCoffe[index];
         return GestureDetector(
           onTap: () {
-            Get.to(() => DetailScreen());
+            Get.to(() => DetailScreen(
+                  coffee: coffee,
+                ));
           },
           child: Container(
             padding: const EdgeInsets.fromLTRB(8, 8, 8, 12),

@@ -1,4 +1,3 @@
-import 'package:coffee_shop/presentation/ui/screens/detail_screen.dart';
 import 'package:coffee_shop/presentation/ui/screens/home_screen.dart';
 import 'package:coffee_shop/presentation/ui/screens/order_screen.dart';
 import 'package:coffee_shop/presentation/ui/widgets/bottom_nav_bar.dart';
@@ -18,7 +17,7 @@ class CoffeeShop extends StatelessWidget {
       getPages: [
         GetPage(name: '/', page: () => MainBottomNavBar()),
         GetPage(name: '/home', page: () => HomeScreen()),
-        GetPage(name: '/detail', page: () => DetailScreen()),
+        // GetPage(name: '/detail', page: () => DetailScreen(coffee: Coffee())),
         GetPage(name: '/order', page: () => OrderScreen()),
       ],
     );

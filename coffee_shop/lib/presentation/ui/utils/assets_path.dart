@@ -13,6 +13,7 @@ class AssetPath {
   static const String coffee2 = '$_image/coffee22.png';
   static const String coffee3 = '$_image/coffee3.png';
   static const String coffee4 = '$_image/coffee4.png';
+  static const String coffee11 = '$_image/coffee11.png';
   static const String icArrowDown = '$_image/ic_arrow_down.png';
   static const String icArrowLeft = '$_image/ic_arrow_left.png';
   static const String icBagBorder = '$_image/ic_bag_border.png';
