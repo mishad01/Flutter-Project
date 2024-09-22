@@ -29,6 +29,7 @@ class _DetailScreenState extends State<DetailScreen> {
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
         title: 'Details',
+        actionIcon: Icons.favorite_border_outlined,
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 35),
@@ -278,7 +279,9 @@ class _DetailScreenState extends State<DetailScreen> {
             width: 217,
             child: ElevatedButton(
                 onPressed: () {
-                  Get.to(() => OrderScreen());
+                  Get.to(() => OrderScreen(
+                        coffee: widget.coffee,
+                      ));
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.themeColor,

@@ -8,7 +8,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   });
 
   final String title;
-  final String? actionIcon;
+  final IconData? actionIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +16,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       //toolbarHeight: 100,
       backgroundColor: Colors.white,
-      leading: Padding(
-        padding: const EdgeInsets.all(22.0),
-        child: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
+      leading: GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Icon(Icons.arrow_back_ios),
         ),
       ),
+
       title: Text(
         title,
         style: textTheme.bodyLarge!
@@ -33,15 +34,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       actions: [
         if (actionIcon != null)
-          Padding(
-            padding: const EdgeInsets.all(22.0),
-            child: IconButton(
-              onPressed: () {
-                // Define action here if needed
-              },
-              icon: ImageIcon(
-                AssetImage(actionIcon!),
-              ),
+          IconButton(
+            onPressed: () {
+              // Define action here if needed
+            },
+            icon: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(actionIcon),
             ),
           ),
       ],

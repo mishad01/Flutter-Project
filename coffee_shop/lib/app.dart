@@ -1,5 +1,4 @@
 import 'package:coffee_shop/presentation/ui/screens/home_screen.dart';
-import 'package:coffee_shop/presentation/ui/screens/order_screen.dart';
 import 'package:coffee_shop/presentation/ui/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,7 +17,7 @@ class CoffeeShop extends StatelessWidget {
         GetPage(name: '/', page: () => MainBottomNavBar()),
         GetPage(name: '/home', page: () => HomeScreen()),
         // GetPage(name: '/detail', page: () => DetailScreen(coffee: Coffee())),
-        GetPage(name: '/order', page: () => OrderScreen()),
+        // GetPage(name: '/order', page: () => OrderScreen()),
       ],
     );
   }
