@@ -1,8 +1,11 @@
 import 'package:coffee_shop/data_model/coffe.dart';
+import 'package:coffee_shop/presentation/ui/screens/order_screen.dart';
 import 'package:coffee_shop/presentation/ui/utils/app_colors.dart';
 import 'package:coffee_shop/presentation/ui/utils/assets_path.dart';
+import 'package:coffee_shop/presentation/ui/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:readmore/readmore.dart';
 
@@ -24,7 +27,9 @@ class _DetailScreenState extends State<DetailScreen> {
     TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: buildAppBar(context, textTheme),
+      appBar: CustomAppBar(
+        title: 'Details',
+      ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 35),
         children: [
@@ -272,7 +277,9 @@ class _DetailScreenState extends State<DetailScreen> {
           SizedBox(
             width: 217,
             child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => OrderScreen());
+                },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.themeColor,
                     foregroundColor: Colors.white,
