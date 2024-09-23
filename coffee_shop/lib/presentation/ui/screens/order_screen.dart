@@ -1,16 +1,18 @@
 import 'package:coffee_shop/data_model/coffe.dart';
 import 'package:coffee_shop/presentation/ui/utils/app_colors.dart';
+import 'package:coffee_shop/presentation/ui/utils/assets_path.dart';
 import 'package:coffee_shop/presentation/ui/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:intl/intl.dart';
 import 'package:item_count_number_button/item_count_number_button.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({
     super.key,
-    required this.coffee,
+    this.coffee,
   });
-  final Coffee coffee;
+  final Coffee? coffee;
 
   @override
   State<OrderScreen> createState() => _OrderScreenState();
@@ -24,61 +26,225 @@ class _OrderScreenState extends State<OrderScreen> {
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: const CustomAppBar(title: 'Order'),
-        body: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: ListView(
+      //backgroundColor: Colors.white70,
+      appBar: const CustomAppBar(title: 'Order'),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: ListView(
+          children: [
+            _buildOrderOption(),
+            const Gap(20),
+            _buildAddressInfo(),
+            buildCoffeItemCount(),
+            const Gap(10),
+            const Divider(height: 10, thickness: 4, color: Color(0xffF9F2ED)),
+            Gap(10),
+            buildPaymentSummary(textTheme),
+            Gap(80),
+            buildBuySection(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildBuySection() {
+    TextTheme textTheme = Theme.of(context).textTheme;
+    return Container(
+      height: 165,
+      width: 400,
+      decoration: const BoxDecoration(
+        color: Color(0xffFFFFFF),
+        /*color: Colors.yellow,*/
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+              child: Column(
             children: [
-              _buildOrderOption(),
-              Gap(20),
-              _buildAddressInfo(textTheme),
-              Gap(10),
-              SizedBox(
-                height: 70,
-                width: 315,
-                child: Row(
-                  children: [
-                    ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.asset(
-                          widget.coffee.image,
-                          width: 70,
-                          height: 70,
-                          fit: BoxFit.cover,
-                        )),
-                    Gap(10),
-                    Column(
+              Row(
+                children: [
+                  Image.asset('assets/images/wallet.png'),
+                  Gap(15),
+                  Expanded(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          widget.coffee.name,
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                          'Cash/Wallet',
+                          style: textTheme.titleLarge!.copyWith(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
+                        Gap(5),
                         Text(
-                          widget.coffee.type,
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.normal),
-                        )
+                          '\$5.53',
+                          style: textTheme.titleLarge!.copyWith(
+                              fontSize: 12, color: AppColors.themeColor),
+                        ),
                       ],
                     ),
-                    Spacer(),
-                    ItemCount(
-                      initialValue: 1,
-                      minValue: 1,
-                      maxValue: 20,
-                      onChanged: (value) {},
-                      decimalPlaces: 0,
-                      color: Colors.white,
-                    )
-                  ],
+                  ),
+                  IconButton(
+                      onPressed: () {}, icon: Icon(Icons.arrow_drop_down))
+                ],
+              ),
+              Gap(10),
+              SizedBox(
+                width: 327,
+                child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.themeColor,
+                        foregroundColor: Colors.white,
+                        minimumSize: Size(327, 56),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16))),
+                    child: Text('Buy')),
+              ),
+            ],
+          )),
+        ],
+      ),
+    );
+  }
+
+  Widget buildPaymentSummary(TextTheme textTheme) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        OutlinedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+            minimumSize: Size(327, 56),
+            backgroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            side: BorderSide(color: Colors.grey.shade200),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment
+                .spaceBetween, // Aligns leading and action on opposite sides
+            children: [
+              const Row(
+                children: [
+                  Icon(Icons.local_offer,
+                      color: Colors.green), // Leading icon or widget
+                  SizedBox(width: 20), // Space between the icon and text
+                  Text('1 Discount is Applied',
+                      style: TextStyle(color: Colors.black)),
+                ],
+              ),
+              IconButton(
+                onPressed: () {
+                  // Action button functionality
+                },
+                icon: const Icon(Icons.arrow_forward_ios,
+                    color: Colors.grey), // Action icon
+              ),
+            ],
+          ),
+        ),
+        Gap(10),
+        Text(
+          'Payment Summary',
+          style: textTheme.titleLarge!
+              .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        Gap(10),
+        Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Price',
+                  style: TextStyle(fontSize: 14),
                 ),
+                Text(
+                  NumberFormat.currency(
+                    decimalDigits: 2,
+                    symbol: '\$',
+                    locale: 'en_US',
+                  ).format(
+                    widget.coffee?.price ?? 0.00,
+                  ),
+                ),
+              ],
+            ),
+            Gap(10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Delivery Fee',
+                  style: TextStyle(fontSize: 14),
+                ),
+                Text(
+                  NumberFormat.currency(
+                    decimalDigits: 2,
+                    symbol: '\$',
+                    locale: 'en_US',
+                  ).format(
+                    widget.coffee?.price ?? 0.0,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        )
+      ],
+    );
+  }
+
+  SizedBox buildCoffeItemCount() {
+    return SizedBox(
+      height: 70,
+      width: 315,
+      child: Row(
+        children: [
+          ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.asset(
+                widget.coffee?.image ?? AssetPath.coffee1,
+                width: 70,
+                height: 70,
+                fit: BoxFit.cover,
+              )),
+          Gap(10),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                widget.coffee?.name ?? 'Order First',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                widget.coffee?.type ?? 'Order First',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
               )
             ],
           ),
-        ));
+          Spacer(),
+          ItemCount(
+            initialValue: 1,
+            minValue: 1,
+            maxValue: 20,
+            onChanged: (value) {},
+            decimalPlaces: 0,
+            color: Colors.white,
+          )
+        ],
+      ),
+    );
   }
 
   Widget _buildOrderOption() {
@@ -98,7 +264,7 @@ class _OrderScreenState extends State<OrderScreen> {
                 setState(() {});
               },
               child: Container(
-                width: 190,
+                width: 185,
                 height: 50,
                 decoration: BoxDecoration(
                   color: isSelected ? AppColors.themeColor : Color(0xffF2F2F2),
@@ -122,7 +288,8 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
 
-  Widget _buildAddressInfo(TextTheme textTheme) {
+  Widget _buildAddressInfo() {
+    TextTheme textTheme = Theme.of(context).textTheme;
     return Container(
       height: 180,
       width: 315,
@@ -132,7 +299,7 @@ class _OrderScreenState extends State<OrderScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Delivery Adress',
+            'Delivery Address',
             style: textTheme.titleLarge!
                 .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
           ),
@@ -174,11 +341,12 @@ class _OrderScreenState extends State<OrderScreen> {
               icon: Icon(Icons.note_add, size: 15),
             )
           ]),
-          Gap(10),
+          Gap(5),
           Divider(
-            color: Colors.grey.shade300,
-            // height: 4,
-            thickness: 1.5,
+            color: Color(0xffE3E3E3),
+            indent: 20,
+            endIndent: 20,
+            thickness: 1,
           ),
         ],
       ),

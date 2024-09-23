@@ -21,6 +21,7 @@ class AssetPath {
   static const String icHeartBorder = '$_image/ic_heart_border.png';
   static const String icHomeBorder = '$_image/ic_home_border.png';
   static const String icHomeFilled = '$_image/ic_home_filled.png';
+  static const String waller = '$_image/wallet.png';
   static const String icNotificationBorder =
       '$_image/ic_notification_border.png';
   static const String icSearch = '$_image/ic_search.png';

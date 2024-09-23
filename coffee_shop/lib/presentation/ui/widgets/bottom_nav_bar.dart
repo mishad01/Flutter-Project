@@ -1,4 +1,5 @@
 import 'package:coffee_shop/presentation/ui/screens/home_screen.dart';
+import 'package:coffee_shop/presentation/ui/screens/order_screen.dart';
 import 'package:coffee_shop/presentation/ui/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -32,7 +33,7 @@ class _MainBottomNavBarState extends State<MainBottomNavBar> {
     {
       'icon': 'assets/images/ic_bag_border.png',
       'icon_active': 'assets/images/ic_bag_border.png',
-      'fragment': const Center(child: Text('Bag')),
+      'fragment': OrderScreen(),
     },
     {
       'icon': 'assets/images/ic_notification_border.png',
