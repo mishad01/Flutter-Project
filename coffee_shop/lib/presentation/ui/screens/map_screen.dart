@@ -121,12 +121,13 @@ class _LocationScreenState extends State<LocationScreen> {
   Widget _buildTimeSection() {
     TextTheme textTheme = Theme.of(context).textTheme;
     return Container(
-      height: 322,
+      height: 330,
       width: 400,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: Color(0xffFFFFFF),
         // color: Colors.greenAccent,
         /*color: Colors.yellow,*/
+        border: Border.all(color: Colors.grey.shade200),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(16),
           topRight: Radius.circular(16),
@@ -143,7 +144,7 @@ class _LocationScreenState extends State<LocationScreen> {
                   color: Color(0xffE3E3E3),
                   borderRadius: BorderRadius.circular(16)),
             ),
-            const Gap(20),
+            Gap(10),
             Text(
               '10 minutes left',
               style: textTheme.titleLarge!
@@ -167,7 +168,7 @@ class _LocationScreenState extends State<LocationScreen> {
                 ],
               ),
             ),
-            const Gap(10),
+            const Gap(12),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -196,49 +197,119 @@ class _LocationScreenState extends State<LocationScreen> {
                   height: 4,
                   width: 71.25,
                   decoration: BoxDecoration(
-                      color: Colors.green,
+                      color: Colors.grey,
                       borderRadius: BorderRadius.circular(16)),
                 ),
               ],
             ),
-            _buildCoffeeItemCount(),
+            Gap(20),
+            _buildCoffeeOrderStatus(),
+            _buildCoffeeDeliveryGuyInfo(),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildCoffeeItemCount() {
-    return SizedBox(
-      height: 70,
-      width: 315,
-      child: Row(
-        children: [
-          ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                AssetPath.deliver,
-                width: 70,
-                height: 70,
-                fit: BoxFit.cover,
-              )),
-          Gap(10),
-          /*Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                widget.coffee?.name ?? 'Order First',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+  Widget _buildCoffeeOrderStatus() {
+    return Container(
+      height: 77,
+      width: 335,
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey.shade200),
+          borderRadius: BorderRadius.circular(12)),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.asset(
+                  AssetPath.deliver,
+                  width: 50,
+                  height: 50,
+                  fit: BoxFit.cover,
+                )),
+            Gap(10),
+            Container(
+              //color: Colors.yellow,
+              height: 61,
+              width: 243,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Delivered your order',
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  ),
+                  Flexible(
+                    child: Text(
+                      'We will deliver your goods to you in the shortest possible time.',
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.normal),
+                    ),
+                  ),
+                ],
               ),
-              Text(
-                widget.coffee?.type ?? 'Order First',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
-              )
-            ],
-          ),*/
-          Spacer(),
-        ],
+            ),
+            Spacer(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCoffeeDeliveryGuyInfo() {
+    return Container(
+      height: 77,
+      width: 335,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.asset(
+                  AssetPath.image,
+                  width: 50,
+                  height: 50,
+                  fit: BoxFit.cover,
+                )),
+            Gap(10),
+            Container(
+              //color: Colors.yellow,
+              height: 61,
+              width: 243,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Brooklyn Simmons',
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  ),
+                  Flexible(
+                    child: Text(
+                      'Personal Courier',
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.normal),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Spacer(),
+          ],
+        ),
       ),
     );
   }

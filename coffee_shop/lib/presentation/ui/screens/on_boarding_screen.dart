@@ -2,6 +2,7 @@ import 'package:coffee_shop/presentation/ui/utils/app_colors.dart';
 import 'package:coffee_shop/presentation/ui/utils/assets_path.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
@@ -12,8 +13,14 @@ class OnBoardingScreen extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Align(
-              alignment: Alignment.topCenter, child: Image.asset(AssetPath.bg)),
+          Container(
+            alignment: Alignment.topCenter, // Aligns the image to the top
+            padding: EdgeInsets.only(bottom: 60), // Adjust this value as needed
+            child: Image.asset(
+              AssetPath.bg2,
+              fit: BoxFit.contain,
+            ),
+          ),
           Positioned(
             left: 0,
             right: 0,
@@ -59,7 +66,9 @@ class OnBoardingScreen extends StatelessWidget {
                   ),
                   const Gap(50),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.offAllNamed('/navbar');
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.themeColor,
                       shape: RoundedRectangleBorder(

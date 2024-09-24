@@ -30,4 +30,6 @@ class AssetPath {
   static const String call = '$_image/call.png';
   static const String image = '$_image/image.png';
   static const String deliver = '$_image/deliver.png';
+  static const String bg2 = '$_image/bg2.png';
+  static const String bg3 = '$_image/bg3.jpg';
 }

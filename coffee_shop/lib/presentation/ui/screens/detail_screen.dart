@@ -30,6 +30,7 @@ class _DetailScreenState extends State<DetailScreen> {
       appBar: CustomAppBar(
         title: 'Details',
         actionIcon: Icons.favorite_border_outlined,
+        coffee: widget.coffee,
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 35),

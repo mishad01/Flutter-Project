@@ -1,3 +1,4 @@
+import 'package:coffee_shop/presentation/ui/screens/favourtie_screen.dart';
 import 'package:coffee_shop/presentation/ui/screens/home_screen.dart';
 import 'package:coffee_shop/presentation/ui/screens/order_screen.dart';
 import 'package:coffee_shop/presentation/ui/utils/app_colors.dart';
@@ -28,7 +29,7 @@ class _MainBottomNavBarState extends State<MainBottomNavBar> {
     {
       'icon': 'assets/images/ic_heart_border.png',
       'icon_active': 'assets/images/ic_heart_border.png',
-      'fragment': const Center(child: Text('Favorite')),
+      'fragment': FavouriteScreen(),
     },
     {
       'icon': 'assets/images/ic_bag_border.png',
@@ -38,7 +39,7 @@ class _MainBottomNavBarState extends State<MainBottomNavBar> {
     {
       'icon': 'assets/images/ic_notification_border.png',
       'icon_active': 'assets/images/ic_notification_border.png',
-      'fragment': const Center(child: Text('Notification')),
+      'fragment': const Center(child: Text('No Notification yet')),
     },
   ];
 

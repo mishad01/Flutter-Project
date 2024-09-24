@@ -21,7 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
   String categoriesSelected = 'All Coffee';
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return Scaffold(
+        body: ListView(
       padding: EdgeInsets.all(0),
       children: [
         Stack(
@@ -32,9 +33,9 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
-                  Gap(40),
+                  const Gap(40),
                   buildHeader(),
-                  Gap(15),
+                  const Gap(15),
                   buildSearch(),
                   //Gap(),
                   buildBanner(),
@@ -49,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
         buildGridCoffee(),
         const Gap(20),
       ],
-    );
+    ));
   }
 
   /*Widget buildBanner() {
@@ -130,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
           items: [
             buildBannerName('1'),
             buildBannerName('5'),
-            buildBannerName(''),
+            buildBannerName('3'),
             buildBannerName('4'),
           ],
           options: CarouselOptions(
@@ -234,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Row(
           children: [
             const Text(
-              'Bilzen, Tanjungbalai',
+              'Dampara, Chattogram',
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 14, fontWeight: FontWeight.w200, color: Colors.white

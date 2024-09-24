@@ -59,3 +59,4 @@ final listGridCoffe = [
     price: 5.53,
   ),
 ];
+List<Coffee> listFavouriteGridCoffee = [];
