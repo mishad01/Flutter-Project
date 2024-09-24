@@ -95,22 +95,24 @@ class _SignInState extends State<SignIn> {
                     color: AppColor.white)),
           ),
         ),
-        GetBuilder<SignInController>(builder: (signInController) {
-          return Visibility(
-            visible: !signInController.signInApiInProgress,
-            replacement: Center(child: CircularProgressIndicator()),
-            child: ElevatedButton(
-                onPressed: _onTapNextButton,
-                style: ElevatedButton.styleFrom(
-                    minimumSize: Size(375, 50),
-                    backgroundColor: Color(0x343a40),
-                    foregroundColor: Colors.white),
-                child: Text(
-                  'Sign In',
-                  style: TextStyle(fontSize: 20),
-                )),
-          );
-        }),
+        GetBuilder<SignInController>(
+          builder: (signInController) {
+            return Visibility(
+              visible: !signInController.signInApiInProgress,
+              replacement: Center(child: CircularProgressIndicator()),
+              child: ElevatedButton(
+                  onPressed: _onTapNextButton,
+                  style: ElevatedButton.styleFrom(
+                      minimumSize: Size(375, 50),
+                      backgroundColor: Color(0x343a40),
+                      foregroundColor: Colors.white),
+                  child: Text(
+                    'Sign In',
+                    style: TextStyle(fontSize: 20),
+                  )),
+            );
+          },
+        ),
         TextButton(
           onPressed: () {
             Get.toNamed('/2');

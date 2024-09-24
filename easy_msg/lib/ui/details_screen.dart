@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_msg/data/profile_data.dart';
 import 'package:easy_msg/ui/utility/asset_path.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
+                      /*Container(
                         width: 150.0,
                         height: 150.0,
                         decoration: BoxDecoration(
@@ -55,19 +56,23 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             size: 50,
                           ),
                         ),
-                      ),
+                      ),*/
                       /* SizedBox(height: 20),
                       const Text(
                         'Have a great day and enjoy your logout',
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),*/
-                      /*Flexible(
+                      Flexible(
                         child: ListView.builder(
                           itemCount: profileData.length,
                           itemBuilder: (context, index) {
                             ProfileData profData = profileData[index];
                             return GestureDetector(
+                              onTap: () async {
+                                await FirebaseAuth.instance.signOut();
+                                Get.offAllNamed('/1');
+                              },
                               child: ListTile(
                                 contentPadding: EdgeInsets.all(8.0),
                                 leading: Icon(profData.icon),
@@ -77,7 +82,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             );
                           },
                         ),
-                      )*/
+                      )
                     ],
                   ),
                 ),

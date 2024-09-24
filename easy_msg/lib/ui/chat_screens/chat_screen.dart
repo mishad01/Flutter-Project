@@ -1,5 +1,7 @@
 import 'package:easy_msg/ui/controller/sign_in_controller.dart';
+import 'package:easy_msg/ui/utility/app_color.dart';
 import 'package:easy_msg/ui/utility/asset_path.dart';
+import 'package:easy_msg/ui/widgets/app_bar_icon.dart';
 import 'package:easy_msg/ui/widgets/chat_message.dart';
 import 'package:easy_msg/ui/widgets/new_message.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -37,7 +39,7 @@ class _ChatScreenState extends State<ChatScreen> {
         // backToHome();
       },
       child: Scaffold(
-        // appBar: buildAppBar(),
+        appBar: buildAppBar(),
         body: Container(
           //height: ,
           decoration: const BoxDecoration(
@@ -59,9 +61,9 @@ class _ChatScreenState extends State<ChatScreen> {
   return Get.find<BottomNavBarController>().backToHome();
 }*/
 
-/*AppBar buildAppBar() {
+AppBar buildAppBar() {
   return AppBar(
-    backgroundColor: Colors.white,
+    backgroundColor: AppColor.themeColor,
     title: const Text('Easy Message'),
     actions: [
       AppBarIcon(
@@ -80,4 +82,4 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
     ],
   );
-}*/
+}

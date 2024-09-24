@@ -27,4 +27,7 @@ class AssetPath {
   static const String icSearch = '$_image/ic_search.png';
   static const String icStarFilled = '$_image/ic_star_filled.png';
   static const String milk = '$_image/milk.png';
+  static const String call = '$_image/call.png';
+  static const String image = '$_image/image.png';
+  static const String deliver = '$_image/deliver.png';
 }
