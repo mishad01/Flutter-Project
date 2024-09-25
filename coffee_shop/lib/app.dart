@@ -11,7 +11,6 @@ class CoffeeShop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      //home: OnBoardingScreen(),
       theme: _ThemeData(),
       initialRoute: '/',
       getPages: [
