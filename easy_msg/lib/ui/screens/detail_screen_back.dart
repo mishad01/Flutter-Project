@@ -32,97 +32,110 @@ class _DetailsScreenBackState extends State<DetailsScreenBack> {
     return PopScope(
       canPop: false,
       child: Scaffold(
-        //backgroundColor: BoxDecoration(),
-        //appBar: buildAppBar(),
         body: Stack(
           children: [
-            Container(
-              height: double.infinity,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xff7d9eac),
-                    Color(0xff2e5e73),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.topRight,
-                ),
+            /*---Profile Image---*/
+            _buildProfileImage(),
+            /*---Details---*/
+            _buildDetails(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDetails() {
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: Container(
+        width: double.infinity,
+        height: 450,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(50),
+            topRight: Radius.circular(50),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20, top: 50, right: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              buildDisplayText('Display Name', ' $_userFullName'),
+              const Gap(10),
+              buildDisplayText('Email Address', '$_userEmail'),
+              const Gap(10),
+              buildDisplayText('Phone Number', ' 019xxxxxxxx'),
+              const Gap(40),
+              buildCard(
+                'Settings',
+                Icons.settings,
+                () {
+                  Get.to(() => SettingsScreen(
+                        name: _userFullName!,
+                      ));
+                },
               ),
+              buildCard(
+                'Logout',
+                Icons.logout,
+                () async {
+                  await FirebaseAuth.instance.signOut();
+                  Get.offAllNamed('/1');
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildProfileImage() {
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color(0xff7d9eac),
+            Color(0xff2e5e73),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.topRight,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 60),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topCenter, // Align at the top center
               child: Padding(
-                padding: const EdgeInsets.only(top: 60),
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.topCenter, // Align at the top center
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            top: 20.0), // Optional padding from the top
-                        child: CircleAvatar(
-                          radius: 70, // Adjusted size as needed
-                          backgroundImage: _userImageUrl != null
-                              ? NetworkImage(_userImageUrl!)
-                              : AssetImage(AssetPath.logo) as ImageProvider,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      '@$_userName',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                  ],
+                padding: const EdgeInsets.only(
+                    top: 20.0), // Optional padding from the top
+                child: CircleAvatar(
+                  radius: 70, // Adjusted size as needed
+                  backgroundImage: _userImageUrl != null
+                      ? NetworkImage(_userImageUrl!)
+                      : AssetImage(AssetPath.logo) as ImageProvider,
                 ),
               ),
             ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                width: double.infinity,
-                height: 450,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(50),
-                    topRight: Radius.circular(50),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20, top: 50, right: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      buildDisplayText('Display Name', ' $_userFullName'),
-                      Gap(10),
-                      buildDisplayText('Email Address', '$_userEmail'),
-                      Gap(10),
-                      buildDisplayText('Phone Number', ' 019xxxxxxxx'),
-                      Gap(40),
-                      buildCard(
-                        'Settings',
-                        Icons.settings,
-                        () {
-                          Get.to(() => SettingsScreen(
-                                name: _userFullName!,
-                              ));
-                        },
-                      ),
-                      buildCard(
-                        'Logout',
-                        Icons.logout,
-                        () async {
-                          await FirebaseAuth.instance.signOut();
-                          Get.offAllNamed('/1');
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            )
+            const SizedBox(height: 10),
+            Text(
+              '$_userFullName',
+              style: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              '@$_userName',
+              style: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold),
+            ),
           ],
         ),
       ),
@@ -182,49 +195,6 @@ class _DetailsScreenBackState extends State<DetailsScreenBack> {
               ))
         ],
       ),
-    );
-  }
-
-  AppBar buildAppBar() {
-    return AppBar(
-      //toolbarHeight: 100,
-      backgroundColor: Colors.transparent,
-      flexibleSpace: Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          colors: [
-            Color(0xff7d9eac),
-            Color(0xff2e5e73),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.topRight,
-        )),
-      ),
-      title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Hello, ${_userName ?? 'User'}',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-          // const Text(
-          //   'Hope you are doing well',
-          //   style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          // ),
-        ],
-      ),
-      actions: [
-        Padding(
-          padding: const EdgeInsets.all(3.0),
-          child: CircleAvatar(
-            radius: 30,
-            backgroundImage: _userImageUrl != null
-                ? NetworkImage(_userImageUrl!)
-                : AssetImage(AssetPath.logo) as ImageProvider,
-          ),
-        ),
-        SizedBox(width: 10),
-      ],
     );
   }
 

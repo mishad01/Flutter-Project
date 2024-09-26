@@ -91,7 +91,7 @@ class _SignInState extends State<SignIn> {
             onPressed: () {
               Get.to(() => EmailVerificationScreen());
             },
-            child: Text('Forgot your Password',
+            child: const Text('Forgot your Password',
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -135,7 +135,7 @@ class _SignInState extends State<SignIn> {
       children: [
         TextFormField(
           controller: _emailTEController,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               hintText: 'Email', hintStyle: TextStyle(color: Colors.grey)),
           validator: (value) {
             if (value == null || value.isEmpty) {

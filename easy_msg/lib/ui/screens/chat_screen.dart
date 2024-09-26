@@ -74,7 +74,7 @@ AppBar buildAppBar() {
         onTap: () {},
       ),
       const SizedBox(width: 10),
-      Padding(
+      /*Padding(
         padding: const EdgeInsets.only(right: 10),
         child: AppBarIcon(
           iconData: Icons.notifications_outlined,
@@ -82,7 +82,7 @@ AppBar buildAppBar() {
             print('preseeeeeeeeeeeeeeed');
           },
         ),
-      ),
+      ),*/
     ],
   );
 }
