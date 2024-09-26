@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easy_msg/data/profile_data.dart';
 import 'package:easy_msg/ui/utility/asset_path.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({super.key});
@@ -36,7 +34,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               : Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    //mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       /*Container(
                         width: 150.0,
@@ -63,7 +61,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),*/
-                      Flexible(
+                      /*Flexible(
                         child: ListView.builder(
                           itemCount: profileData.length,
                           itemBuilder: (context, index) {
@@ -82,10 +80,37 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             );
                           },
                         ),
-                      )
+                      ),*/
+                      buildCard('Your Profile', Icons.person),
+                      buildCard('Your Profile', Icons.settings),
+                      buildCard('Your Profile', Icons.logout),
                     ],
                   ),
                 ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildCard(String text, IconData icon) {
+    return SizedBox(
+      width: double.infinity,
+      height: 80,
+      child: Card(
+        color: Colors.grey.shade100,
+        elevation: 2,
+        child: InkWell(
+          onTap: () {},
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              children: [
+                Icon(icon),
+                SizedBox(width: 15),
+                Text(text, style: TextStyle(fontSize: 18)),
+              ],
+            ),
+          ),
         ),
       ),
     );

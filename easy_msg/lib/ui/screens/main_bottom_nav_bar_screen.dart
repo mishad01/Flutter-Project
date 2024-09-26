@@ -1,17 +1,17 @@
-import 'package:easy_msg/ui/chat_screens/chat_screen.dart';
 import 'package:easy_msg/ui/controller/bottom_nav_bar_controller.dart';
-import 'package:easy_msg/ui/details_screen.dart';
+import 'package:easy_msg/ui/screens/chat_screen.dart';
+import 'package:easy_msg/ui/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MainBottomNavBar extends StatefulWidget {
-  const MainBottomNavBar({super.key});
+class MainBottomNavBarScreen extends StatefulWidget {
+  const MainBottomNavBarScreen({super.key});
 
   @override
-  State<MainBottomNavBar> createState() => _MainBottomNavBarState();
+  State<MainBottomNavBarScreen> createState() => _MainBottomNavBarScreenState();
 }
 
-class _MainBottomNavBarState extends State<MainBottomNavBar> {
+class _MainBottomNavBarScreenState extends State<MainBottomNavBarScreen> {
   final BottomNavBarController _navBarController =
       Get.find<BottomNavBarController>();
 
