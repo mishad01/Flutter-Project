@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:easy_msg/ui/utility/asset_path.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -16,8 +15,9 @@ class _UserImagePickerState extends State<UserImagePicker> {
   File? _pickedImageFile;
 
   void pickImage() async {
-    final pickedImage = await ImagePicker()
-        .pickImage(source: ImageSource.camera, imageQuality: 50, maxWidth: 150);
+    final pickedImage = await ImagePicker().pickImage(
+      source: ImageSource.camera,
+    );
     if (pickedImage == null) {
       return;
     }
@@ -36,15 +36,6 @@ class _UserImagePickerState extends State<UserImagePicker> {
           backgroundColor: Colors.white38,
           foregroundImage:
               _pickedImageFile != null ? FileImage(_pickedImageFile!) : null,
-          child: SizedBox(
-            width: 30, // Adjust this to make the image smaller
-            height: 30, // Adjust this to make the image smaller
-            child: Image.asset(
-              AssetPath.person,
-              fit: BoxFit.cover,
-              // Ensure the image covers the available space
-            ),
-          ),
         ),
         TextButton.icon(
           onPressed: () {

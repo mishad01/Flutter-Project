@@ -1,6 +1,6 @@
 import 'package:easy_msg/ui/controller/bottom_nav_bar_controller.dart';
 import 'package:easy_msg/ui/screens/chat_screen.dart';
-import 'package:easy_msg/ui/screens/details_screen.dart';
+import 'package:easy_msg/ui/screens/detail_screen_back.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +18,7 @@ class _MainBottomNavBarScreenState extends State<MainBottomNavBarScreen> {
   List<Widget> _screens = [
     /*HomeScree(),*/
     ChatScreen(),
-    DetailsScreen(),
+    DetailsScreenBack(),
   ];
 
   @override
@@ -26,6 +26,7 @@ class _MainBottomNavBarScreenState extends State<MainBottomNavBarScreen> {
     return GetBuilder<BottomNavBarController>(builder: (context) {
       return Scaffold(
         bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
           currentIndex: _navBarController.selectedIndex,
           onTap: _navBarController.changeIndex,
           items: const [

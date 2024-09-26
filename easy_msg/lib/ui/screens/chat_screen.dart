@@ -64,7 +64,10 @@ class _ChatScreenState extends State<ChatScreen> {
 AppBar buildAppBar() {
   return AppBar(
     backgroundColor: AppColor.themeColor,
-    title: const Text('Easy Message'),
+    title: const Text(
+      'Easy Message',
+      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    ),
     actions: [
       AppBarIcon(
         iconData: Icons.phone_outlined,

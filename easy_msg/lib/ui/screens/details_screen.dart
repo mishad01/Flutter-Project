@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_msg/ui/utility/asset_path.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({super.key});
@@ -84,6 +85,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       buildCard('Your Profile', Icons.person),
                       buildCard('Your Profile', Icons.settings),
                       buildCard('Your Profile', Icons.logout),
+                      IconButton(
+                          onPressed: () async {
+                            await FirebaseAuth.instance.signOut();
+                            Get.offAllNamed('/1');
+                          },
+                          icon: Icon(Icons.logout, color: Colors.black))
                     ],
                   ),
                 ),

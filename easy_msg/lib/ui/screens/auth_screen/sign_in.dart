@@ -1,4 +1,5 @@
 import 'package:easy_msg/ui/controller/sign_in_controller.dart';
+import 'package:easy_msg/ui/screens/auth_screen/email_verification_screen.dart';
 import 'package:easy_msg/ui/utility/app_color.dart';
 import 'package:easy_msg/ui/utility/asset_path.dart';
 import 'package:easy_msg/ui/widgets/background_widgets.dart';
@@ -20,7 +21,7 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: BackgroundWidgets(
+        body: BackGroundWidgets(
       child: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -87,7 +88,9 @@ class _SignInState extends State<SignIn> {
         Align(
           alignment: Alignment.topRight,
           child: TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(() => EmailVerificationScreen());
+            },
             child: Text('Forgot your Password',
                 style: TextStyle(
                     fontSize: 14,
@@ -106,7 +109,7 @@ class _SignInState extends State<SignIn> {
                       minimumSize: Size(375, 50),
                       backgroundColor: Color(0x343a40),
                       foregroundColor: Colors.white),
-                  child: Text(
+                  child: const Text(
                     'Sign In',
                     style: TextStyle(fontSize: 20),
                   )),
@@ -117,7 +120,7 @@ class _SignInState extends State<SignIn> {
           onPressed: () {
             Get.toNamed('/2');
           },
-          child: Text('Create New Account',
+          child: const Text('Create New Account',
               style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,

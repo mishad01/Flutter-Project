@@ -16,8 +16,8 @@ class SignUpController extends GetxController {
   bool get signUpApiInProgress => _signUpApiProgress;
   String get errorMessage => _errorMessage;
 
-  Future<bool> signUp(String email, String userName, String password,
-      File? _selectedImage) async {
+  Future<bool> signUp(String fullName, String email, String userName,
+      String password, File? _selectedImage) async {
     bool isSuccess = false;
     _signUpApiProgress = true;
     update();
@@ -40,6 +40,7 @@ class SignUpController extends GetxController {
         'username': userName,
         'email': email,
         'image_url': imageUrl,
+        'full_name': fullName,
       });
       isSuccess = true;
     } else {

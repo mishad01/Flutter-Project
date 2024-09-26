@@ -91,9 +91,7 @@ class MessageBubble extends StatelessWidget {
                   // The "speech" box surrounding the message.
                   Container(
                     decoration: BoxDecoration(
-                      color: isMe
-                          ? Colors.grey[300]
-                          : theme.colorScheme.secondary.withAlpha(200),
+                      color: isMe ? Colors.white : Colors.black45,
                       // Only show the message bubble's "speaking edge" if first in
                       // the chain.
                       // Whether the "speaking edge" is on the left or right depends
@@ -128,9 +126,8 @@ class MessageBubble extends StatelessWidget {
                         // Add a little line spacing to make the text look nicer
                         // when multilined.
                         height: 1.3,
-                        color: isMe
-                            ? Colors.black87
-                            : theme.colorScheme.onSecondary,
+                        color:
+                            isMe ? Colors.black : theme.colorScheme.onSecondary,
                       ),
                       softWrap: true,
                     ),

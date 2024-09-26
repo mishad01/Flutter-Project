@@ -62,7 +62,7 @@ class ChatMessage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: Text(
+                  child: const Text(
                     'Welcome to Easy Message! Feel free to share your thoughts and have fun',
                     maxLines: 4,
                     overflow: TextOverflow.ellipsis,

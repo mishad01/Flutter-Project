@@ -15,7 +15,10 @@ class AppBarIcon extends StatelessWidget {
       //backgroundColor: Colors.grey.shade200,
       child: IconButton(
         onPressed: () {},
-        icon: Icon(iconData),
+        style: IconButton.styleFrom(backgroundColor: Colors.white),
+        icon: Icon(
+          iconData,
+        ),
       ),
     );
   }

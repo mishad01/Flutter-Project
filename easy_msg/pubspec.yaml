@@ -46,6 +46,9 @@ dependencies:
   encrypt: ^5.0.3
   flutter_svg: ^2.0.10+1
   google_fonts: ^6.2.1
+  gap: ^3.0.1
+  pin_code_fields: ^8.0.1
+
 
 dev_dependencies:
   flutter_test:

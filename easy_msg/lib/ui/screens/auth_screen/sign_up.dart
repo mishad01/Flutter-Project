@@ -18,13 +18,14 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _userNameTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
+  final TextEditingController _fullNameTEController = TextEditingController();
 
   final _formState = GlobalKey<FormState>();
   File? _selectedImage;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: BackgroundWidgets(
+        body: BackGroundWidgets(
       child: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20),
@@ -94,6 +95,20 @@ class _SignUpState extends State<SignUp> {
     return Column(
       children: [
         TextFormField(
+          controller: _fullNameTEController,
+          decoration: InputDecoration(
+            hintText: 'Full Name',
+            hintStyle: TextStyle(color: Colors.grey),
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please confirm your username';
+            }
+            return null;
+          },
+        ),
+        const SizedBox(height: 28),
+        TextFormField(
           controller: _emailTEController,
           decoration: InputDecoration(
             hintText: 'Email',
@@ -146,10 +161,12 @@ class _SignUpState extends State<SignUp> {
   void _submitForm() async {
     if (_formState.currentState!.validate()) {
       final bool result = await Get.find<SignUpController>().signUp(
-          _emailTEController.text,
-          _userNameTEController.text,
-          _passwordTEController.text,
-          _selectedImage);
+        _fullNameTEController.text,
+        _emailTEController.text,
+        _userNameTEController.text,
+        _passwordTEController.text,
+        _selectedImage,
+      );
       print('Checkingggg RESULT IS- ${result}');
       if (!result) {
         if (mounted) {

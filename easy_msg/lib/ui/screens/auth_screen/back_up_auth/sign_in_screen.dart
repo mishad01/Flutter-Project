@@ -85,7 +85,7 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BackgroundWidgets(
+      body: BackGroundWidgets(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Form(

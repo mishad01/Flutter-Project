@@ -1,8 +1,8 @@
 import 'package:easy_msg/ui/utility/asset_path.dart';
 import 'package:flutter/material.dart';
 
-class BackgroundWidgets extends StatelessWidget {
-  const BackgroundWidgets({
+class BackGroundWidgets extends StatelessWidget {
+  const BackGroundWidgets({
     super.key,
     required this.child,
   });

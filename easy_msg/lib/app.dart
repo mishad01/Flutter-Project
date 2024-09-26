@@ -1,6 +1,6 @@
 import 'package:easy_msg/controller_binder.dart';
-import 'package:easy_msg/ui/screens/auth_screen/backup_auth/sign_in.dart';
-import 'package:easy_msg/ui/screens/auth_screen/backup_auth/sign_up.dart';
+import 'package:easy_msg/ui/screens/auth_screen/sign_in.dart';
+import 'package:easy_msg/ui/screens/auth_screen/sign_up.dart';
 import 'package:easy_msg/ui/screens/auth_screen/splash_screen.dart';
 import 'package:easy_msg/ui/screens/chat_screen.dart';
 import 'package:easy_msg/ui/screens/main_bottom_nav_bar_screen.dart';
@@ -20,8 +20,7 @@ class EasyMsg extends StatelessWidget {
       initialBinding: ControllerBinder(),
       getPages: [
         GetPage(name: '/', page: () => const SplashScreen()),
-        GetPage(
-            name: '/1', page: () => const SignIn()), // Make sure this matches
+        GetPage(name: '/1', page: () => const SignIn()),
         GetPage(name: '/2', page: () => const SignUp()),
         GetPage(name: '/5', page: () => const ChatScreen()),
         GetPage(name: '/mainNav', page: () => const MainBottomNavBarScreen()),
