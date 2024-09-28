@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_msg/services/encryption_decryption.dart';
+import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +12,13 @@ class NewMessage extends StatefulWidget {
 }
 
 class _NewMessageState extends State<NewMessage> {
+  final key = encrypt.Key.fromUtf8('my 32 length key................');
+  final iv = encrypt.IV.fromLength(16);
   final TextEditingController _messageTEController = TextEditingController();
+
+  // Instantiate the EncryptionDecryption class
+  final EncryptionDecryption encryptionDecryption = EncryptionDecryption();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,9 +31,6 @@ class _NewMessageState extends State<NewMessage> {
               textCapitalization: TextCapitalization.sentences,
               autocorrect: true,
               enableSuggestions: true,
-              // decoration: const InputDecoration(
-              //   labelText: 'Send Message..',
-              // ),
               decoration: InputDecoration(
                   hintText: 'Send Message..',
                   hintStyle: TextStyle(fontWeight: FontWeight.w200)),
@@ -44,33 +49,17 @@ class _NewMessageState extends State<NewMessage> {
     );
   }
 
-  // void _submitMessage() async {
-  //   final enteredMessage = _messageTEController.text;
-  //   if (enteredMessage.trim().isEmpty) {
-  //     return;
-  //   }
-  //   //send to Firebase
-  //
-  //   final user = FirebaseAuth.instance.currentUser!;
-  //
-  //   final userData =
-  //       await FirebaseFirestore.instance.collection('user').doc(user.uid).get();
-  //
-  //   FirebaseFirestore.instance.collection('chat').add({
-  //     'text': enteredMessage,
-  //     'createdAt': Timestamp.now(),
-  //     'userId': user.uid,
-  //     'username': userData.data()!['username'],
-  //     'userImage': userData.data()!['image_url'],
-  //   });
-  //   _messageTEController.clear();
-  // }
   void _submitMessage() async {
     final enteredMessage = _messageTEController.text;
     if (enteredMessage.trim().isEmpty) {
       return;
     }
-    //send to Firebase
+
+    // Encrypt the message
+    String encryptedMessage =
+        encryptionDecryption.encryptText(enteredMessage, key, iv);
+
+    // Send to Firebase
     FocusScope.of(context).unfocus();
     _messageTEController.clear();
 
@@ -81,17 +70,19 @@ class _NewMessageState extends State<NewMessage> {
         .get();
 
     FirebaseFirestore.instance.collection('chat').add({
-      'text': enteredMessage,
+      'text': encryptedMessage, // Store the encrypted message
       'createdAt': Timestamp.now(),
       'userId': user.uid,
       'username': userData.data()!['username'],
       'userImage': userData.data()!['image_url'],
+      // Optionally, store key and iv if needed
+      'key': key.base64, // Convert key to base64 to store as string
+      'iv': iv.base64, // Convert iv to base64 to store as string
     });
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _messageTEController.dispose();
   }

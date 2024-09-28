@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_msg/services/encryption_decryption.dart';
 import 'package:easy_msg/ui/widgets/chat_bubbles.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -83,15 +84,21 @@ class ChatMessage extends StatelessWidget {
               final nextMessageUserId =
                   nextChatMessage != null ? nextChatMessage['userId'] : null;
               bool nextUserIsSame = nextMessageUserId == currentMessageUserId;
+              String decryptedText = EncryptionDecryption().decryptText(
+                chatMessage['text'],
+                chatMessage['key'],
+                chatMessage['iv'],
+              );
+
               if (nextUserIsSame) {
                 return MessageBubble.next(
-                    message: chatMessage['text'],
+                    message: decryptedText,
                     isMe: authenticatedUser.uid == currentMessageUserId);
               } else {
                 return MessageBubble.first(
                     userImage: chatMessage['userImage'],
                     username: chatMessage['username'],
-                    message: chatMessage['text'],
+                    message: decryptedText,
                     isMe: authenticatedUser.uid == currentMessageUserId);
               }
             });

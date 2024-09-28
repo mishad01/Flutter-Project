@@ -41,8 +41,8 @@ class _UserImagePickerState extends State<UserImagePicker> {
           onPressed: () {
             pickImage();
           },
-          icon: Icon(Icons.image),
-          label: Text(
+          icon: const Icon(Icons.image),
+          label: const Text(
             'Add Image',
             style: TextStyle(color: Colors.white),
           ),

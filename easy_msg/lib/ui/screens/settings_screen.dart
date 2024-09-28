@@ -176,7 +176,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         style: TextStyle(fontSize: 18, color: Colors.white)),
                     if (detail != null)
                       Text(
-                        'Privacy, security, change number',
+                        detail,
                         style: TextStyle(fontSize: 12, color: Colors.white),
                       )
                   ],

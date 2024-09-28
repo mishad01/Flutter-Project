@@ -43,11 +43,12 @@ dependencies:
   cloud_firestore: ^5.2.1
   flutter_chat_bubble: ^2.0.2
   firebase_messaging: ^15.0.4
-  encrypt: ^5.0.3
+
   flutter_svg: ^2.0.10+1
   google_fonts: ^6.2.1
   gap: ^3.0.1
   pin_code_fields: ^8.0.1
+  encrypt: ^5.0.3
 
 
 dev_dependencies:

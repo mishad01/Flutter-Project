@@ -76,7 +76,9 @@ class _SignUpState extends State<SignUp> {
                   );
                 }),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: Text('Already Have an account',
                       style: TextStyle(
                           fontSize: 14,
