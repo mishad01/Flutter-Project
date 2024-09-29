@@ -1,6 +1,9 @@
+import 'package:crud_app/controller/product_list_controller.dart';
+import 'package:crud_app/data/model/product_model.dart';
 import 'package:crud_app/ui/add_product_screen.dart';
 import 'package:crud_app/ui/update_product_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key});
@@ -10,18 +13,57 @@ class ProductListScreen extends StatefulWidget {
 }
 
 class _ProductListScreenState extends State<ProductListScreen> {
+  ProductListController productListController =
+      Get.find<ProductListController>();
+
+  @override
+  void initState() {
+    super.initState();
+    // Fetch the product list when the screen is initialized
+    getProduct();
+  }
+
+  Future<void> getProduct() async {
+    // Show a loading indicator while fetching data
+    bool isSuccess = await productListController.getProductList();
+
+    if (isSuccess) {
+      // Handle success, e.g., updating UI, showing success message
+      Get.snackbar('Success', 'Product list fetched successfully.',
+          snackPosition: SnackPosition.BOTTOM);
+    } else {
+      // Handle failure if needed
+      Get.snackbar('Error', 'Failed to fetch product list.',
+          snackPosition: SnackPosition.BOTTOM);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Product list'),
       ),
-      body: ListView.separated(
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          return _buildProductItem();
+      body: GetBuilder<ProductListController>(
+        builder: (controller) {
+          if (controller.getProductListApiInProgress) {
+            // Show a loading indicator while fetching data
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (controller.productList.isEmpty) {
+            return const Center(child: Text('No products available.'));
+          }
+
+          return ListView.separated(
+            itemCount: controller.productList.length,
+            itemBuilder: (context, index) {
+              final product = controller.productList[index];
+              return _buildProductItem(product);
+            },
+            separatorBuilder: (_, __) => const Divider(),
+          );
         },
-        separatorBuilder: (_, __) => const Divider(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -35,20 +77,15 @@ class _ProductListScreenState extends State<ProductListScreen> {
     );
   }
 
-  Widget _buildProductItem() {
+  Widget _buildProductItem(ProductModel product) {
     return ListTile(
-      // leading: Image.network(
-      //   'https://static.nike.com/a/images/t_default/3d0dd096-7c9d-495c-bf41-adbb0b9ad737/sabrina-1-team-basketball-shoes-bVkR71.png',
-      //   height: 60,
-      //   width: 60,
-      // ),
-      title: const Text('Product name'),
-      subtitle: const Wrap(
+      title: Text(product.productName.toString()), // Display the product name
+      subtitle: Wrap(
         spacing: 16,
         children: [
-          Text('Unit Price: 100'),
-          Text('Quantity : 100'),
-          Text('Total Price: 10000'),
+          Text('Unit Price: ${product.unitPrice}'),
+          Text('Quantity: ${product.qty}'),
+          Text('Total Price: ${product.totalPrice}'),
         ],
       ),
       trailing: Wrap(
@@ -66,7 +103,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
           IconButton(
             icon: const Icon(Icons.delete_outline_sharp),
             onPressed: () {
-              _showDeleteConfirmationDialog();
+              _showDeleteConfirmationDialog(product);
             },
           ),
         ],
@@ -74,7 +111,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
     );
   }
 
-  void _showDeleteConfirmationDialog() {
+  void _showDeleteConfirmationDialog(ProductModel product) {
     showDialog(
       context: context,
       builder: (context) {
@@ -91,6 +128,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
             ),
             TextButton(
               onPressed: () {
+                // Add logic to delete the product
                 Navigator.pop(context);
               },
               child: const Text('Yes, delete'),

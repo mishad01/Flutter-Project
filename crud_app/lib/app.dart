@@ -1,17 +1,20 @@
+import 'package:crud_app/controller_binder.dart';
 import 'package:crud_app/ui/product_list_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CrudApp extends StatelessWidget {
   const CrudApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Crud App',
       theme: _lightThemeData(),
       darkTheme: _dartThemeData(),
       themeMode: ThemeMode.system,
       home: const ProductListScreen(),
+      initialBinding: ControllerBinder(),
     );
   }
 

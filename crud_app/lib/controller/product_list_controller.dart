@@ -1,48 +1,37 @@
 import 'package:crud_app/data/model/product_model.dart';
 import 'package:crud_app/data/network_caller.dart';
+import 'package:crud_app/data/network_response.dart';
 import 'package:crud_app/data/urls.dart';
 import 'package:get/get.dart';
 
 class ProductListController extends GetxController {
-  // Variables to hold product list and API status
   bool getProductListApiInProgress = false;
   bool isSuccess = false;
   List<ProductModel> productList = [];
 
-  // Method to fetch product list
   Future<bool> getProductList() async {
-    // Set loading state to true
     getProductListApiInProgress = true;
-    update(); // Notify GetX about the state change
+    update();
 
-    // Call the API
-    final response = await NetworkCaller.getRequest(Urls.readGetProduct);
-
-    // Check if the request was successful
+    NetworkResponse response =
+        await NetworkCaller.getRequest(Urls.readGetProduct);
     if (response.isSuccess) {
-      // Clear the existing product list
       productList.clear();
 
-      // Parse the response data and update the product list
       final jsonProductList = response.responseData['data'];
-      for (Map<String, dynamic> json in jsonProductList) {
-        ProductModel productModel = ProductModel.fromJson(json);
-        productList.add(productModel);
-      }
 
-      // Set success status
+      for (Map<String, dynamic> j in jsonProductList) {
+        ProductModel product = ProductModel.fromJson(j);
+        productList.add(product);
+      }
       isSuccess = true;
     } else {
-      // In case of failure, show a message and set success to false
       Get.snackbar('Error', 'Failed to fetch product list. Try again.',
           snackPosition: SnackPosition.BOTTOM);
       isSuccess = false;
     }
-
-    // Set loading state to false and notify GetX about the state change
     getProductListApiInProgress = false;
     update();
-
     return isSuccess;
   }
 }

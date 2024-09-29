@@ -27,7 +27,7 @@ class AddNewProductController extends GetxController {
       "Img": img,
       "Qty": qty,
       "UnitPrice": unitPrice,
-      "TotalPrice": totalPrice,
+      "TotalPrice": totalPrice
     };
 
     NetworkResponse response =

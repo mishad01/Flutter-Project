@@ -38,7 +38,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   controller: _nameTEController,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
-                      hintText: 'Name', labelText: 'Name'),
+                      hintText: 'Product Name', labelText: 'Product Name'),
                   validator: (String? value) {
                     if (value == null || value.trim().isEmpty) {
                       return 'Write your product name';
@@ -87,6 +87,19 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
+                  controller: _productCodeTEController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                      hintText: 'Product Code', labelText: 'Product Code'),
+                  validator: (String? value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Write your unit price';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 16),
+                TextFormField(
                   controller: _imageTEController,
                   decoration: const InputDecoration(
                       hintText: 'Image', labelText: 'Image'),
@@ -100,7 +113,10 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 const SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {}
+                    if (_formKey.currentState!.validate()) {
+                      addNewProductApiCall();
+                      Navigator.pop(context);
+                    }
                   },
                   child: const Text('Add'),
                 )
@@ -131,6 +147,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   @override
   void dispose() {
+    _productCodeTEController.dispose();
     _nameTEController.dispose();
     _unitPriceTEController.dispose();
     _quantityTEController.dispose();
