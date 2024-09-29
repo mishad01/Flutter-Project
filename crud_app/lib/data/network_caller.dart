@@ -4,10 +4,10 @@ import 'package:crud_app/data/network_response.dart';
 import 'package:http/http.dart';
 
 class NetworkCaller {
-  Future<NetworkResponse> getRequest(String url) async {
+  static Future<NetworkResponse> getRequest(String url) async {
     try {
       Uri uri = Uri.parse(url);
-      Response response = await get(uri, headers: {'token': ''});
+      Response response = await get(uri);
       if (response.statusCode == 200) {
         final decodedBody = jsonDecode(response.body);
         return NetworkResponse(
@@ -31,8 +31,8 @@ class NetworkCaller {
     }
   }
 
-  Future<NetworkResponse> postRequest(
-      String url, Map<String, dynamic>? mapBody) async {
+  static Future<NetworkResponse> postRequest(
+      String url, Map<String, dynamic> mapBody) async {
     try {
       Uri uri = Uri.parse(url);
       Response response = await post(uri,
