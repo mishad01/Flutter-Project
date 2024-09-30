@@ -1,3 +1,4 @@
+import 'package:crud_app/controller/delete_product_controller.dart';
 import 'package:crud_app/controller/product_list_controller.dart';
 import 'package:crud_app/data/model/product_model.dart';
 import 'package:crud_app/ui/add_product_screen.dart';
@@ -15,6 +16,8 @@ class ProductListScreen extends StatefulWidget {
 class _ProductListScreenState extends State<ProductListScreen> {
   ProductListController productListController =
       Get.find<ProductListController>();
+  DeleteProductController deleteProductController =
+      Get.find<DeleteProductController>();
 
   @override
   void initState() {
@@ -23,47 +26,39 @@ class _ProductListScreenState extends State<ProductListScreen> {
     getProduct();
   }
 
-  Future<void> getProduct() async {
-    // Show a loading indicator while fetching data
-    bool isSuccess = await productListController.getProductList();
-
-    if (isSuccess) {
-      // Handle success, e.g., updating UI, showing success message
-      Get.snackbar('Success', 'Product list fetched successfully.',
-          snackPosition: SnackPosition.BOTTOM);
-    } else {
-      // Handle failure if needed
-      Get.snackbar('Error', 'Failed to fetch product list.',
-          snackPosition: SnackPosition.BOTTOM);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Product list'),
       ),
-      body: GetBuilder<ProductListController>(
-        builder: (controller) {
-          if (controller.getProductListApiInProgress) {
-            // Show a loading indicator while fetching data
-            return const Center(child: CircularProgressIndicator());
-          }
+      body: RefreshIndicator(
+        onRefresh: getProduct,
+        child: Visibility(
+          visible: productListController.getProductListApiInProgress == false,
+          replacement: Center(child: CircularProgressIndicator()),
+          child: GetBuilder<ProductListController>(
+            builder: (controller) {
+              if (controller.getProductListApiInProgress) {
+                // Show a loading indicator while fetching data
+                return const Center(child: CircularProgressIndicator());
+              }
 
-          if (controller.productList.isEmpty) {
-            return const Center(child: Text('No products available.'));
-          }
+              if (controller.productList.isEmpty) {
+                return const Center(child: Text('No products available.'));
+              }
 
-          return ListView.separated(
-            itemCount: controller.productList.length,
-            itemBuilder: (context, index) {
-              final product = controller.productList[index];
-              return _buildProductItem(product);
+              return ListView.separated(
+                itemCount: controller.productList.length,
+                itemBuilder: (context, index) {
+                  final product = controller.productList[index];
+                  return _buildProductItem(product);
+                },
+                separatorBuilder: (_, __) => const Divider(),
+              );
             },
-            separatorBuilder: (_, __) => const Divider(),
-          );
-        },
+          ),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -96,19 +91,49 @@ class _ProductListScreenState extends State<ProductListScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const UpdateProductScreen()),
+                    builder: (context) =>
+                        UpdateProductScreen(product: product)),
               );
             },
           ),
           IconButton(
-            icon: const Icon(Icons.delete_outline_sharp),
+            icon: Icon(Icons.delete_outline_sharp),
             onPressed: () {
               _showDeleteConfirmationDialog(product);
+              deleteProduct(product.sId!);
             },
           ),
         ],
       ),
     );
+  }
+
+  Future<void> getProduct() async {
+    // Show a loading indicator while fetching data
+    bool isSuccess = await productListController.getProductList();
+
+    if (isSuccess) {
+      // Handle success, e.g., updating UI, showing success message
+      Get.snackbar('Success', 'Product list fetched successfully.',
+          snackPosition: SnackPosition.BOTTOM);
+    } else {
+      // Handle failure if needed
+      Get.snackbar('Error', 'Failed to fetch product list.',
+          snackPosition: SnackPosition.BOTTOM);
+    }
+  }
+
+  Future<void> deleteProduct(String id) async {
+    bool isSuccess = await deleteProductController.deleteProduct(id);
+    if (isSuccess) {
+      // Handle success, e.g., updating UI, showing success message
+      Get.snackbar('Success', 'Product deleted successfully.',
+          snackPosition: SnackPosition.BOTTOM);
+    } else {
+      // Handle failure if needed
+      Get.snackbar('Error', 'Failed to delete.',
+          snackPosition: SnackPosition.BOTTOM);
+    }
   }
 
   void _showDeleteConfirmationDialog(ProductModel product) {
