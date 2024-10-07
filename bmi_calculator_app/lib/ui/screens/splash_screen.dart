@@ -1,7 +1,9 @@
+import 'package:bmi_calculator_app/ui/screens/calculator_screen.dart';
 import 'package:bmi_calculator_app/ui/utility/app_colors.dart';
 import 'package:bmi_calculator_app/ui/utility/asset_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -26,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 251,
               child: SvgPicture.asset(AssetPath.splashLogo),
             ),
-            SizedBox(height: 60),
+            const SizedBox(height: 60),
             Container(
               width: 270,
               child: Column(
@@ -48,22 +50,24 @@ class _SplashScreenState extends State<SplashScreen> {
                         fontWeight: FontWeight.bold,
                         fontSize: 25),
                   ),
-                  Text(
+                  const Text(
                       "Calculate your BMI and stay on top of your wellness journey, effortlessly.",
                       style:
                           TextStyle(color: Color(0xffC6C3F9), fontSize: 15.33))
                 ],
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => CalculatorScreen());
+                },
                 style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(63),
                     ),
-                    minimumSize: Size(double.maxFinite, 73)),
-                child: Text(
+                    minimumSize: const Size(double.maxFinite, 73)),
+                child: const Text(
                   "Get Started",
                   style: TextStyle(fontSize: 17.6),
                 )),
