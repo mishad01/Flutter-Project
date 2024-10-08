@@ -1,3 +1,5 @@
+import 'package:bmi_calculator_app/ui/widgets/gender_widget.dart';
+import 'package:bmi_calculator_app/ui/widgets/heigh_widget.dart';
 import 'package:bmi_calculator_app/ui/widgets/value_counter.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +13,7 @@ class CalculatorScreen extends StatefulWidget {
 class _CalculatorScreenState extends State<CalculatorScreen> {
   int age = 0;
   int weight = 0;
+  int height = 0;
 
   void _onAgeChanged(int newVal) {
     age = newVal;
@@ -19,6 +22,11 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
 
   void _onWeightChanged(int newVal) {
     weight = newVal;
+    setState(() {});
+  }
+
+  void _onHeightChanged(int newVal) {
+    height = newVal;
     setState(() {});
   }
 
@@ -48,6 +56,10 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                       onValueChanged: _onWeightChanged),
                 ],
               ),
+              SizedBox(height: 10),
+              HeightWidget(onValueChanged: _onHeightChanged),
+              SizedBox(height: 10),
+              GenderToggleButton()
             ],
           ),
         ),
