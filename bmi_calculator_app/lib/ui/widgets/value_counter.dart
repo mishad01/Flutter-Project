@@ -1,11 +1,41 @@
+import 'package:bmi_calculator_app/ui/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class ValueCounter extends StatelessWidget {
+class ValueCounter extends StatefulWidget {
   const ValueCounter({
     super.key,
     required this.title,
+    required this.value,
+    required this.onValueChanged,
   });
   final String title;
+  final int value;
+  final Function(int) onValueChanged;
+
+  @override
+  State<ValueCounter> createState() => _ValueCounterState();
+}
+
+class _ValueCounterState extends State<ValueCounter> {
+  late int val = 0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    val = widget.value;
+  }
+
+  void increment() {
+    val++;
+    widget.onValueChanged(val);
+    setState(() {});
+  }
+
+  void decrement() {
+    val--;
+    widget.onValueChanged(val);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,20 +49,23 @@ class ValueCounter extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            title,
+            widget.title,
             style: const TextStyle(
               fontSize: 17.6,
             ),
           ),
           Text(
-            '40',
-            style:
-                const TextStyle(fontSize: 57.39, fontWeight: FontWeight.bold),
+            '$val',
+            style: TextStyle(
+                fontSize: 57.39,
+                fontWeight: FontWeight.bold,
+                color: AppColor.themeColor),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               GestureDetector(
+                onTap: decrement,
                 child: Container(
                   height: 40,
                   width: 40,
@@ -52,6 +85,7 @@ class ValueCounter extends StatelessWidget {
                 ),
               ),
               GestureDetector(
+                onTap: increment,
                 child: Container(
                   height: 40,
                   width: 40,

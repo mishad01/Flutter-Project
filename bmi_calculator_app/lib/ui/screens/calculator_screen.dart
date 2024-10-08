@@ -9,6 +9,19 @@ class CalculatorScreen extends StatefulWidget {
 }
 
 class _CalculatorScreenState extends State<CalculatorScreen> {
+  int age = 0;
+  int weight = 0;
+
+  void _onAgeChanged(int newVal) {
+    age = newVal;
+    setState(() {});
+  }
+
+  void _onWeightChanged(int newVal) {
+    weight = newVal;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,10 +40,14 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ValueCounter(title: "Age"),
-                  ValueCounter(title: 'Weight (KG)'),
+                  ValueCounter(
+                      title: "Age", value: 0, onValueChanged: _onAgeChanged),
+                  ValueCounter(
+                      title: 'Weight (KG)',
+                      value: 0,
+                      onValueChanged: _onWeightChanged),
                 ],
-              )
+              ),
             ],
           ),
         ),
