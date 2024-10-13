@@ -1,7 +1,10 @@
+import 'package:bmi_calculator_app/ui/screens/result_screen.dart';
+import 'package:bmi_calculator_app/ui/utility/app_colors.dart';
 import 'package:bmi_calculator_app/ui/widgets/gender_widget.dart';
 import 'package:bmi_calculator_app/ui/widgets/heigh_widget.dart';
 import 'package:bmi_calculator_app/ui/widgets/value_counter.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CalculatorScreen extends StatefulWidget {
   const CalculatorScreen({super.key});
@@ -28,6 +31,12 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   void _onHeightChanged(int newVal) {
     height = newVal;
     setState(() {});
+  }
+
+  double bmiRes = 0;
+  double _calculateBMI() {
+    double heightInCm = (height / 100) * (height / 100);
+    return weight / heightInCm;
   }
 
   @override
@@ -59,7 +68,25 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               SizedBox(height: 10),
               HeightWidget(onValueChanged: _onHeightChanged),
               SizedBox(height: 10),
-              GenderToggleButton()
+              GenderToggleButton(),
+              SizedBox(height: 30),
+              ElevatedButton(
+                  onPressed: () {
+                    bmiRes = _calculateBMI();
+                    Get.to(() => ResultScreen(
+                          bmiRes: bmiRes,
+                        ));
+                  },
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(63),
+                      ),
+                      minimumSize: const Size(332, 73),
+                      backgroundColor: AppColor.themeColor),
+                  child: const Text(
+                    "Calculate BMI",
+                    style: TextStyle(fontSize: 17.6, color: Colors.white),
+                  )),
             ],
           ),
         ),
