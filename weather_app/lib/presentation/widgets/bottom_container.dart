@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/presentaion/widgets/container_hourly_weekly_forecast.dart';
+import 'package:weather_app/presentation/widgets/container_hourly_weekly_forecast.dart';
 
-class BackgroundContainer extends StatelessWidget {
-  const BackgroundContainer({
+class BottomContainer extends StatelessWidget {
+  const BottomContainer({
     super.key,
   });
 
@@ -14,7 +14,7 @@ class BackgroundContainer extends StatelessWidget {
           width: double.maxFinite,
           height: 325,
           decoration: BoxDecoration(
-            /*gradient: LinearGradient(
+              /*gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomRight,
               colors: [
@@ -25,11 +25,11 @@ class BackgroundContainer extends StatelessWidget {
                 Color(0xffE0D9FF), // Fully opaque
               ],
             ),*/
-            borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(44),
-              topLeft: Radius.circular(44),
-            ),
-          ),
+              borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(44),
+                topLeft: Radius.circular(44),
+              ),
+              border: Border(top: BorderSide(color: Colors.white))),
           child: ContainerHourlyWeeklyForecast(),
         ),
       ],

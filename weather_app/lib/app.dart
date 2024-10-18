@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:weather_app/presentaion/screens/home_screen.dart';
+import 'package:weather_app/presentation/screens/home_screen.dart';
 
 class WeatherApp extends StatelessWidget {
   const WeatherApp({super.key});
@@ -21,7 +21,7 @@ class WeatherApp extends StatelessWidget {
         color: Colors.white,
         fontSize: 15,
       )),
-      scaffoldBackgroundColor: Color(0xffF9F9F9),
+      scaffoldBackgroundColor: const Color(0xffF9F9F9),
     );
   }
 }

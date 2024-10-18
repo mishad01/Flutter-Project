@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:weather_app/presentation/utils/assets_path.dart';
 
 class ContainerHourlyWeeklyForecast extends StatefulWidget {
   const ContainerHourlyWeeklyForecast({super.key});
@@ -18,14 +19,14 @@ class _ContainerHourlyWeeklyForecastState
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topRight: Radius.circular(44),
             topLeft: Radius.circular(44),
           ),
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 25.0, sigmaY: 15.0),
             child: Container(
-              color: Colors.white.withOpacity(0.10),
+              color: Colors.grey.shade900.withOpacity(0.10),
             ),
           ),
         ),
@@ -57,13 +58,12 @@ class _ContainerHourlyWeeklyForecastState
                 ),
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                height: 146,
-                width:
-                    double.infinity, // Change to double.infinity for full width
+                height: 150,
+                width: double.infinity,
                 child: _buildListView(),
               ),
             ),
@@ -76,8 +76,7 @@ class _ContainerHourlyWeeklyForecastState
   Widget _buildListView() {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
-      physics:
-          BouncingScrollPhysics(), // Use ClampingScrollPhysics for Android-like scroll
+      physics: BouncingScrollPhysics(),
       itemCount: 10,
       itemBuilder: (context, index) {
         return Stack(
@@ -85,27 +84,43 @@ class _ContainerHourlyWeeklyForecastState
             Container(
               height: 146,
               width: 75,
-              margin: EdgeInsets.symmetric(
-                  horizontal: 4), // Adds spacing between items
-              decoration: BoxDecoration(
-                color: Colors
-                    .transparent, // Optional: Set a background color if needed
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 2), // Reduced gap here
+              decoration: const BoxDecoration(
+                color: Colors.transparent,
               ),
               child: SvgPicture.asset(
                 "assets/images/Hour.svg",
                 height: 146, // Adjust height if needed
                 width: 60, // Adjust width if needed
-                fit: BoxFit
-                    .cover, // Adjust how the image should fit in the container
+                fit: BoxFit.cover,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(12.0),
               child: Column(
                 children: [
-                  Text("12 PM",
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                  const Text(
+                    "12 PM",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  SvgPicture.asset(
+                    AssetsPath.moonCloudMidRain,
+                    height: 45,
+                    width: 45,
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "19°",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ],
               ),
             )
