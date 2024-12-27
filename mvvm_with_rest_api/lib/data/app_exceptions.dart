@@ -11,16 +11,10 @@ class AppExceptions implements Exception {
   }
 }
 
-class FetchDataException extends AppExceptions {
-  FetchDataException([String? message])
-      : super(message, "Error During Communication");
+class InternetException extends AppExceptions {
+  InternetException([String? message]) : super(message, "Bad Internet");
 }
 
-class BadRequestException extends AppExceptions {
-  BadRequestException([String? message]) : super(message, "Invalid Request");
-}
-
-class UnauthorisedException extends AppExceptions {
-  UnauthorisedException([String? message])
-      : super(message, "UnauthorisedException Request");
+class RequestTimeOut extends AppExceptions {
+  RequestTimeOut([String? message]) : super(message, "Invalid Request");
 }
