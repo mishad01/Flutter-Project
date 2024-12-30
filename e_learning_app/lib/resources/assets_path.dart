@@ -1,4 +1,8 @@
 class AssetsPath {
+  static const String _asset = 'assets';
+  static const String images = '$_asset/images';
+
+  static const String logo = '$images/logo.png';
   static String google =
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png";
   static String apple =

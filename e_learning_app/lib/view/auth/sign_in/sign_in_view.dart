@@ -1,8 +1,10 @@
 import 'package:e_learning_app/resources/app_colors.dart';
 import 'package:e_learning_app/resources/assets_path.dart';
+import 'package:e_learning_app/view/auth/login/login_view.dart';
 import 'package:e_learning_app/view/auth/sign_in/widget/sign_in_option.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignInView extends StatelessWidget {
   const SignInView({super.key});
@@ -42,7 +44,9 @@ class SignInView extends StatelessWidget {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.offAll(LoginView());
+                },
                 style: ElevatedButton.styleFrom(
                     fixedSize: Size(300, 60),
                     shape: RoundedRectangleBorder(
