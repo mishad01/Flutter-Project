@@ -1,12 +1,4 @@
-import 'package:e_learning_app/resources/app_colors.dart';
-import 'package:e_learning_app/resources/assets_path.dart';
-import 'package:e_learning_app/utils/widgets/custom_button.dart';
-import 'package:e_learning_app/utils/widgets/custom_text.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
+import 'package:e_learning_app/resources/export.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -57,6 +49,7 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(height: 3.h),
                 buildTextFormField(
                   "Email",
+                  controller: emailTEController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your email';
@@ -71,6 +64,7 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(height: 2.h),
                 buildTextFormField(
                   "Password",
+                  controller: passwordTEController,
                   obscureText: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -93,17 +87,38 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ),
                 SizedBox(height: 2.h),
-                CustomButton(
-                  text: "Sign In",
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  onPressed: () {
-                    Get.offAll(const LoginView());
+                GetBuilder<LogInController>(
+                  builder: (logInController) {
+                    return CustomButton(
+                      text: "Sign In",
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      onPressed: () async {
+                        final email = emailTEController.text;
+                        final password = passwordTEController.text;
+                        if (_formKey.currentState!.validate()) {
+                          print(email);
+                          print(password);
+                          bool isSuccess =
+                              await logInController.logIn(email, password);
+                          if (isSuccess) {
+                            Get.offAll(PinVerificationView());
+                          } else {
+                            Get.snackbar(
+                              'Error',
+                              logInController.errorMessage,
+                              backgroundColor: Colors.red,
+                              colorText: Colors.white,
+                            );
+                          }
+                        }
+                      },
+                      backgroundColor: AppColors.themeColor,
+                      textColor: Colors.white,
+                      icon: Icons.arrow_forward,
+                      buttonType: ButtonType.elevated,
+                    );
                   },
-                  backgroundColor: AppColors.themeColor,
-                  textColor: Colors.white,
-                  icon: Icons.arrow_forward,
-                  buttonType: ButtonType.elevated, // Elevated button style
                 ),
                 SizedBox(height: 2.h),
                 CustomText(
@@ -164,11 +179,16 @@ class _LoginViewState extends State<LoginView> {
   }
 
   // Reusable TextFormField
-  Widget buildTextFormField(String labelText,
-      {bool obscureText = false, String? Function(String?)? validator}) {
+  Widget buildTextFormField(
+    String labelText, {
+    bool obscureText = false,
+    String? Function(String?)? validator,
+    required TextEditingController controller,
+  }) {
     return TextFormField(
       obscureText: obscureText,
       validator: validator,
+      controller: controller,
       decoration: InputDecoration(
         labelText: labelText,
         contentPadding:

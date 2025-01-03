@@ -1,5 +1,6 @@
+import 'package:e_learning_app/controller_binder.dart';
 import 'package:e_learning_app/resources/app_colors.dart';
-import 'package:e_learning_app/view/auth/fill_profile/fill_profile_view.dart';
+import 'package:e_learning_app/view/auth/register/register_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,7 +13,10 @@ class ELearningApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Sizer(
       builder: (context, orientation, deviceType) => GetMaterialApp(
-          theme: _buildThemeData(), home: const FillProfileView()),
+        initialBinding: ControllerBinder(),
+        theme: _buildThemeData(),
+        home: const RegisterView(),
+      ),
     );
   }
 

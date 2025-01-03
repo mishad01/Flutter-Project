@@ -1,13 +1,4 @@
-import 'package:e_learning_app/resources/app_colors.dart';
-import 'package:e_learning_app/resources/assets_path.dart';
-import 'package:e_learning_app/utils/widgets/custom_button.dart';
-import 'package:e_learning_app/utils/widgets/custom_text.dart';
-import 'package:e_learning_app/view/auth/login/login_view.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
+import 'package:e_learning_app/resources/export.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -97,17 +88,48 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                 ),*/
                 SizedBox(height: 2.h),
-                CustomButton(
-                  text: "Sign Up",
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  onPressed: () {
-                    Get.offAll(const RegisterView());
+                GetBuilder<SignUpController>(
+                  builder: (signUpController) {
+                    return Visibility(
+                      visible: !signUpController.signUpApiInProgress,
+                      replacement:
+                          const Center(child: CircularProgressIndicator()),
+                      child: CustomButton(
+                        text: "Sign Up",
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        onPressed: () async {
+                          if (!_formKey.currentState!.validate()) {
+                            return; // Exit if form is invalid
+                          }
+
+                          // Get the latest values of email and password
+                          final email = emailTEController.text;
+                          final password = passwordTEController.text;
+
+                          // Attempt to sign in
+                          final isSuccess =
+                              await signUpController.signUp(email, password);
+                          if (isSuccess) {
+                            Get.offAll(const SignInView());
+                          } else {
+                            Get.snackbar(
+                              'Error',
+                              signUpController.errorMessage,
+                              backgroundColor: Colors.red,
+                              colorText: Colors.white,
+                              snackPosition: SnackPosition.BOTTOM,
+                              duration: const Duration(seconds: 3),
+                            );
+                          }
+                        },
+                        backgroundColor: AppColors.themeColor,
+                        textColor: Colors.white,
+                        icon: Icons.arrow_forward,
+                        buttonType: ButtonType.elevated,
+                      ),
+                    );
                   },
-                  backgroundColor: AppColors.themeColor,
-                  textColor: Colors.white,
-                  icon: Icons.arrow_forward,
-                  buttonType: ButtonType.elevated, // Elevated button style
                 ),
                 SizedBox(height: 2.h),
                 CustomText(

@@ -43,6 +43,12 @@ dependencies:
   sizer: ^3.0.4
   google_fonts: ^6.2.1
   flutter_svg: ^2.0.16
+  firebase_core: ^3.9.0
+  firebase_auth: ^5.3.4
+  firebase_storage: ^12.3.7
+  image_picker: ^1.1.2
+  cloud_firestore: ^5.6.0
+
 
 dev_dependencies:
   flutter_test:
