@@ -1,5 +1,7 @@
 import 'package:e_learning_app/resources/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sizer/sizer.dart';
 
 class SignInOption extends StatelessWidget {
   const SignInOption({
@@ -13,31 +15,18 @@ class SignInOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+      height: 6.7.h,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              color: Colors.white,
-            ),
-            child: Center(
-              child: Image.network(
-                logo,
-                height: 20,
-                width: 20,
-              ),
-            ),
-          ),
+          Center(child: SvgPicture.asset(logo)),
           Text(
             "Continue with $title",
             style: TextStyle(
-                fontWeight: FontWeight.w900,
-                fontSize: 16,
-                color: AppColors.blackGray),
+              fontWeight: FontWeight.bold,
+              fontSize: 17.sp,
+              color: AppColors.blackGray,
+            ),
           ),
         ],
       ),

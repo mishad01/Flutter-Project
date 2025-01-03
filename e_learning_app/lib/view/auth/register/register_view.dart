@@ -2,23 +2,25 @@ import 'package:e_learning_app/resources/app_colors.dart';
 import 'package:e_learning_app/resources/assets_path.dart';
 import 'package:e_learning_app/utils/widgets/custom_button.dart';
 import 'package:e_learning_app/utils/widgets/custom_text.dart';
+import 'package:e_learning_app/view/auth/login/login_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class RegisterView extends StatefulWidget {
+  const RegisterView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<RegisterView> createState() => _RegisterViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _RegisterViewState extends State<RegisterView> {
   final emailTEController = TextEditingController();
   final passwordTEController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,12 +43,12 @@ class _LoginViewState extends State<LoginView> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const CustomText(
-                        text: "Let’s Sign In.!",
+                        text: "Getting Started.!",
                         fontWeight: FontWeight.bold,
                         fontSize: 24,
                       ),
                       CustomText(
-                        text: "Login to Your Account to Continue your Courses",
+                        text: "Create an Account to Continue your all Courses",
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
                         color: AppColors.blackGray,
@@ -57,6 +59,7 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(height: 3.h),
                 buildTextFormField(
                   "Email",
+                  controller: emailTEController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your email';
@@ -71,6 +74,7 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(height: 2.h),
                 buildTextFormField(
                   "Password",
+                  controller: passwordTEController,
                   obscureText: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -83,7 +87,7 @@ class _LoginViewState extends State<LoginView> {
                   },
                 ),
                 SizedBox(height: 2.h),
-                Align(
+                /*Align(
                   alignment: Alignment.topRight,
                   child: CustomText(
                     text: "Forget Password",
@@ -91,14 +95,14 @@ class _LoginViewState extends State<LoginView> {
                     fontSize: 16,
                     color: AppColors.blackGray,
                   ),
-                ),
+                ),*/
                 SizedBox(height: 2.h),
                 CustomButton(
-                  text: "Sign In",
+                  text: "Sign Up",
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   onPressed: () {
-                    Get.offAll(const LoginView());
+                    Get.offAll(const RegisterView());
                   },
                   backgroundColor: AppColors.themeColor,
                   textColor: Colors.white,
@@ -133,7 +137,7 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(height: 5.h),
                 RichText(
                   text: TextSpan(
-                    text: 'Don\'t have an account? ',
+                    text: 'Already have an account? ',
                     style: TextStyle(
                       color: AppColors.blackGray,
                       fontWeight: FontWeight.w600,
@@ -141,9 +145,12 @@ class _LoginViewState extends State<LoginView> {
                     ),
                     children: [
                       TextSpan(
-                        text: 'Sign Up',
+                        text: 'Sign In',
                         style: TextStyle(color: AppColors.themeColor),
-                        recognizer: TapGestureRecognizer()..onTap = () {},
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Get.to(LoginView());
+                          },
                       ),
                     ],
                   ),
@@ -156,6 +163,7 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
+  @override
   void dispose() {
     // TODO: implement dispose
     emailTEController.dispose();
@@ -164,11 +172,16 @@ class _LoginViewState extends State<LoginView> {
   }
 
   // Reusable TextFormField
-  Widget buildTextFormField(String labelText,
-      {bool obscureText = false, String? Function(String?)? validator}) {
+  Widget buildTextFormField(
+    String labelText, {
+    bool obscureText = false,
+    String? Function(String?)? validator,
+    required TextEditingController controller,
+  }) {
     return TextFormField(
       obscureText: obscureText,
       validator: validator,
+      controller: controller,
       decoration: InputDecoration(
         labelText: labelText,
         contentPadding:
