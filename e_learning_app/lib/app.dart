@@ -1,6 +1,6 @@
 import 'package:e_learning_app/controller_binder.dart';
 import 'package:e_learning_app/resources/app_colors.dart';
-import 'package:e_learning_app/view/auth/register/register_view.dart';
+import 'package:e_learning_app/view/on_boarding/on_boarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,7 +15,7 @@ class ELearningApp extends StatelessWidget {
       builder: (context, orientation, deviceType) => GetMaterialApp(
         initialBinding: ControllerBinder(),
         theme: _buildThemeData(),
-        home: const RegisterView(),
+        home: const OnBoarding(),
       ),
     );
   }
