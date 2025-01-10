@@ -7,6 +7,8 @@ class AssetsPath {
 
   static String google = '$icons/google_logo.svg';
   static String apple = '$icons/apple_logo.svg';
+  static String sliderCard = '$images/offer.png';
+
   static String google1 =
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png";
   static String apple2 =

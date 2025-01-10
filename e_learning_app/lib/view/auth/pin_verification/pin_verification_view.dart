@@ -14,6 +14,7 @@ class _PinVerificationViewState extends State<PinVerificationView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
