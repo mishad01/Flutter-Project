@@ -3,26 +3,25 @@ import 'package:e_learning_app/resources/export.dart';
 class CategoriesSection extends StatelessWidget {
   const CategoriesSection({
     super.key,
-    required this.type,
     required this.widgets,
   });
-  final String type;
+
   final Widget widgets;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 14.0.h,
+    return Container(
+      height: 12.h,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomText(
-                  text: type,
+                const CustomText(
+                  text: "Categories",
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
@@ -35,7 +34,7 @@ class CategoriesSection extends StatelessWidget {
               ],
             ),
           ),
-          widgets,
+          Expanded(child: widgets),
         ],
       ),
     );

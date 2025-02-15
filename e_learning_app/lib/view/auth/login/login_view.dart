@@ -1,4 +1,5 @@
 import 'package:e_learning_app/resources/export.dart';
+import 'package:e_learning_app/view/home/home_view.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -97,12 +98,10 @@ class _LoginViewState extends State<LoginView> {
                         final email = emailTEController.text;
                         final password = passwordTEController.text;
                         if (_formKey.currentState!.validate()) {
-                          print(email);
-                          print(password);
                           bool isSuccess =
                               await logInController.logIn(email, password);
                           if (isSuccess) {
-                            Get.offAll(PinVerificationView());
+                            Get.offAll(HomeView());
                           } else {
                             Get.snackbar(
                               'Error',

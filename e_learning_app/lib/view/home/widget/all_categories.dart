@@ -3,25 +3,41 @@ import 'package:e_learning_app/resources/export.dart';
 class AllCategories extends StatelessWidget {
   const AllCategories({
     super.key,
-    required this.categories,
+    required this.categoriesList,
   });
 
-  final List<String> categories;
+  final List<String> categoriesList;
 
   @override
   Widget build(BuildContext context) {
+    if (categoriesList.isEmpty) {
+      return const Center(
+        child: Text(
+          'No categories available',
+          style: TextStyle(color: Colors.grey),
+        ),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: SizedBox(
-          width: 70,
-          height: 76,
-          child: ListView.builder(
-            itemCount: categories.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return SvgPicture.asset(categories[index]);
-            },
-          )),
+        height: 6.h,
+        child: ListView.builder(
+          itemCount: categoriesList.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4.0),
+              child: SvgPicture.asset(
+                categoriesList[index],
+                width: 70,
+                height: 70,
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 }
